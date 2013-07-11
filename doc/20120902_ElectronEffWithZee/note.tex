@@ -1,0 +1,303 @@
+\documentclass{cmspaper}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage[pdfborder=0 0 0,
+            colorlinks,
+            urlcolor = blue,
+            linkcolor = black,
+            citecolor = black,
+            menucolor = black,]
+           {hyperref}
+%% \usepackage[colorlinks]{hyperref}
+%% \usepackage{url}
+\usepackage[toc,page]{appendix}
+\usepackage{varioref}
+\renewcommand{\appendixname}{Appendix}
+%% \renewcommand{\appendixtocname}{List of appendices}
+
+\input{defs.tex}
+
+\setcounter{topnumber}{1}
+\setcounter{bottomnumber}{1}
+\setcounter{secnumdepth}{6}
+%===================================================================================================
+\begin{document}
+\begin{titlepage}
+
+  \analysisnote{2012/XXX}
+
+  \date{\today}
+
+  \title{Electron Efficiency From Zee}
+
+  \input{authors.tex}
+
+  \begin{abstract}
+  
+  \end{abstract} 
+
+\end{titlepage}
+\tableofcontents
+%\listoftables
+%\listoffigures
+\newpage 
+
+%===================================================================================================
+
+\section{2011 Results}
+
+
+ \begin{table}[!ht]
+ \begin{center} 
+ \begin{tabular}{|c|c|c|c|}
+ \hline
+ $p_{T}$ / $\eta$ bin    &  Monte Carlo Efficiency    &  Data Efficiency   &  MC to Data Scale Factor \\   \hline           
+\hline
+$ 10.0 < p_{T} \le  15.0$ , $  0.0  \le |\eta| <   1.5$   &       0.8684 +/- 0.0016   &       0.8573 +/- 0.0004   &       0.9871 +/- 0.0019   \\   
+\hline
+$ 10.0 < p_{T} \le  15.0$ , $  1.5  \le |\eta| <   2.5$   &       0.8164 +/- 0.0019   &       0.8022 +/- 0.0101   &       0.9826 +/- 0.0126   \\   
+\hline
+$ 15.0 < p_{T} \le  20.0$ , $  0.0  \le |\eta| <   1.5$   &       0.8993 +/- 0.0009   &       0.8916 +/- 0.0024   &       0.9914 +/- 0.0029   \\   
+\hline
+$ 15.0 < p_{T} \le  20.0$ , $  1.5  \le |\eta| <   2.5$   &       0.8793 +/- 0.0011   &       0.8756 +/- 0.0045   &       0.9958 +/- 0.0053   \\   
+\hline
+$ 20.0 < p_{T} $ , $  0.0  \le |\eta| <   1.5$   &       0.9619 +/- 0.0001   &       0.9557 +/- 0.0000   &       0.9935 +/- 0.0001   \\   
+\hline
+$ 20.0 < p_{T} $ , $  1.5  \le |\eta| <   2.5$   &       0.9410 +/- 0.0002   &       0.9265 +/- 0.0001   &       0.9846 +/- 0.0002   \\   
+\hline
+\end{tabular}
+\caption{Electron selection efficiencies measured from the 2011 data, and the 
+Monte Carlo to data scale factors in bins of $p_{T}$ and $\eta$ for electrons with $p_{T}<20$~\GeV.}
+\label{tab:eff_ele_selection_lowpt}
+\end{center}
+\end{table}
+
+
+ \begin{table}[!ht]
+ \begin{center} 
+ \begin{tabular}{|c|c|c|c|}
+ \hline
+ $p_{T}$ / $\eta$ bin    &  Monte Carlo Efficiency    &  Data Efficiency   &  MC to Data Scale Factor \\   \hline           
+\hline
+$ 20.0 < p_{T} \le  30.0$ , $  0.0  \le |\eta| <   0.8$   &       0.9346 +/- 0.0004   &       0.9257 +/- 0.0003   &       0.9905 +/- 0.0005   \\   
+\hline
+$ 20.0 < p_{T} \le  30.0$ , $  0.8  \le |\eta| <   1.4$   &       0.9369 +/- 0.0004   &       0.9165 +/- 0.0018   &       0.9782 +/- 0.0020   \\   
+\hline
+$ 20.0 < p_{T} \le  30.0$ , $  1.4  \le |\eta| <   1.6$   &       0.8669 +/- 0.0016   &       0.8640 +/- 0.0004   &       0.9967 +/- 0.0019   \\   
+\hline
+$ 20.0 < p_{T} \le  30.0$ , $  1.6  \le |\eta| <   2.0$   &       0.9373 +/- 0.0005   &       0.9221 +/- 0.0022   &       0.9838 +/- 0.0024   \\   
+\hline
+$ 20.0 < p_{T} \le  30.0$ , $  2.0  \le |\eta| <   2.5$   &       0.9014 +/- 0.0007   &       0.8815 +/- 0.0022   &       0.9779 +/- 0.0026   \\   
+\hline
+$ 30.0 < p_{T} \le  40.0$ , $  0.0  \le |\eta| <   0.8$   &       0.9612 +/- 0.0002   &       0.9580 +/- 0.0000   &       0.9967 +/- 0.0002   \\   
+\hline
+$ 30.0 < p_{T} \le  40.0$ , $  0.8  \le |\eta| <   1.4$   &       0.9587 +/- 0.0002   &       0.9507 +/- 0.0000   &       0.9916 +/- 0.0002   \\   
+\hline
+$ 30.0 < p_{T} \le  40.0$ , $  1.4  \le |\eta| <   1.6$   &       0.9130 +/- 0.0010   &       0.9037 +/- 0.0020   &       0.9899 +/- 0.0024   \\   
+\hline
+$ 30.0 < p_{T} \le  40.0$ , $  1.6  \le |\eta| <   2.0$   &       0.9555 +/- 0.0003   &       0.9419 +/- 0.0000   &       0.9858 +/- 0.0003   \\   
+\hline
+$ 30.0 < p_{T} \le  40.0$ , $  2.0  \le |\eta| <   2.5$   &       0.9215 +/- 0.0005   &       0.9007 +/- 0.0004   &       0.9775 +/- 0.0007   \\   
+\hline
+$ 40.0 < p_{T} \le  50.0$ , $  0.0  \le |\eta| <   0.8$   &       0.9725 +/- 0.0001   &       0.9702 +/- 0.0000   &       0.9976 +/- 0.0001   \\   
+\hline
+$ 40.0 < p_{T} \le  50.0$ , $  0.8  \le |\eta| <   1.4$   &       0.9682 +/- 0.0002   &       0.9605 +/- 0.0000   &       0.9920 +/- 0.0002   \\   
+\hline
+$ 40.0 < p_{T} \le  50.0$ , $  1.4  \le |\eta| <   1.6$   &       0.9527 +/- 0.0008   &       0.9408 +/- 0.0012   &       0.9875 +/- 0.0015   \\   
+\hline
+$ 40.0 < p_{T} \le  50.0$ , $  1.6  \le |\eta| <   2.0$   &       0.9641 +/- 0.0003   &       0.9508 +/- 0.0007   &       0.9863 +/- 0.0007   \\   
+\hline
+$ 40.0 < p_{T} \le  50.0$ , $  2.0  \le |\eta| <   2.5$   &       0.9345 +/- 0.0004   &       0.9135 +/- 0.0010   &       0.9775 +/- 0.0012   \\   
+\hline
+$ 50.0 < p_{T} $ , $  0.0  \le |\eta| <   0.8$   &       0.9765 +/- 0.0002   &       0.9727 +/- 0.0005   &       0.9961 +/- 0.0006   \\   
+\hline
+$ 50.0 < p_{T} $ , $  0.8  \le |\eta| <   1.4$   &       0.9711 +/- 0.0003   &       0.9590 +/- 0.0001   &       0.9876 +/- 0.0003   \\   
+\hline
+$ 50.0 < p_{T} $ , $  1.4  \le |\eta| <   1.6$   &       0.9545 +/- 0.0016   &       0.9411 +/- 0.0002   &       0.9860 +/- 0.0016   \\   
+\hline
+$ 50.0 < p_{T} $ , $  1.6  \le |\eta| <   2.0$   &       0.9660 +/- 0.0005   &       0.9495 +/- 0.0001   &       0.9829 +/- 0.0005   \\   
+\hline
+$ 50.0 < p_{T} $ , $  2.0  \le |\eta| <   2.5$   &       0.9394 +/- 0.0008   &       0.9178 +/- 0.0007   &       0.9770 +/- 0.0011   \\   
+\hline
+\end{tabular}
+\caption{Electron selection efficiencies measured from the 2011 data, and the Monte Carlo to data
+scale factors in bins of $p_{T}$ and $\eta$ for electrons with $p_{T}>20$~\GeV.}
+\label{tab:eff_ele_selection_highpt}
+\end{center}
+\end{table}
+
+
+
+
+
+\begin{figure}[!htbp]
+\begin{center}
+\subfigure[$|\eta| < 1.479$]{
+  \includegraphics[width=0.35\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Pass_Pt10To15_Barrel.png}
+  \includegraphics[width=0.35\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Fail_Pt10To15_Barrel.png}
+}\\
+\subfigure[$|\eta| > 1.479$]{
+  \includegraphics[width=0.35\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Pass_Pt10To15_Endcap.png}
+  \includegraphics[width=0.35\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Fail_Pt10To15_Endcap.png}
+}
+\caption{Unbinned likelihood fits for the $\mathrm{Z}\rightarrow e^{+}e^{-}$ signal and the background
+  to the dielectron mass distribution for electrons with $10.0$~\GeVc~$ < p_{T} \le 15.0$~\GeVc.}
+\label{fig:ElectronSelectionEfficiencyFits_Pt10To15}
+\end{center}
+\end{figure}
+
+\begin{figure}[!htbp]
+\begin{center}
+\subfigure[$|\eta| < 1.479$]{
+  \includegraphics[width=0.35\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Pass_Pt15To20_Barrel.png}
+  \includegraphics[width=0.35\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Fail_Pt15To20_Barrel.png}
+}\\
+\subfigure[$|\eta| > 1.479$]{
+  \includegraphics[width=0.35\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Pass_Pt15To20_Endcap.png}
+  \includegraphics[width=0.35\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Fail_Pt15To20_Endcap.png}
+}
+\caption{Unbinned likelihood fits for the $\mathrm{Z}\rightarrow e^{+}e^{-}$ signal and the background
+  to the dielectron mass distribution for electrons with $15.0$~\GeVc~$ < p_{T} \le 20.0$~\GeVc.}
+\label{fig:ElectronSelectionEfficiencyFits_Pt15To20}
+\end{center}
+\end{figure}
+
+
+
+\begin{figure}[!htbp]
+\begin{center}
+\subfigure[$|\eta| < 0.8$]{
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Pass_Pt20To30_EtaBin0.png}
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Fail_Pt20To30_EtaBin0.png}
+}\\
+\subfigure[$0.8 \le  |\eta| < 1.4442$]{
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Pass_Pt20To30_EtaBin1.png}
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Fail_Pt20To30_EtaBin1.png}
+}\\
+\subfigure[$1.4442 \le  |\eta| < 1.566$]{
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Pass_Pt20To30_EtaBin2.png}
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Fail_Pt20To30_EtaBin2.png}
+}\\
+\subfigure[$1.566 \le  |\eta| < 2.0$]{
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Pass_Pt20To30_EtaBin3.png}
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Fail_Pt20To30_EtaBin3.png}
+}\\
+\subfigure[$2.0 \le  |\eta| < 2.5$]{
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Pass_Pt20To30_EtaBin4.png}
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Fail_Pt20To30_EtaBin4.png}
+}
+\caption{Unbinned likelihood fits for the $\mathrm{Z}\rightarrow e^{+}e^{-}$ signal and the background
+  to the dielectron mass distribution for electrons with $20.0$~\GeVc~$ < p_{T} \le 30.0$~\GeVc.}
+\label{fig:ElectronSelectionEfficiencyFits_Pt20To30}
+\end{center}
+\end{figure}
+
+\begin{figure}[!htbp]
+\begin{center}
+\subfigure[$|\eta| < 0.8$]{
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Pass_Pt30To40_EtaBin0.png}
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Fail_Pt30To40_EtaBin0.png}
+}\\
+\subfigure[$0.8 \le  |\eta| < 1.4442$]{
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Pass_Pt30To40_EtaBin1.png}
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Fail_Pt30To40_EtaBin1.png}
+}\\
+\subfigure[$1.4442 \le  |\eta| < 1.566$]{
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Pass_Pt30To40_EtaBin2.png}
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Fail_Pt30To40_EtaBin2.png}
+}\\
+\subfigure[$1.566 \le  |\eta| < 2.0$]{
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Pass_Pt30To40_EtaBin3.png}
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Fail_Pt30To40_EtaBin3.png}
+}\\
+\subfigure[$2.0 \le  |\eta| < 2.5$]{
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Pass_Pt30To40_EtaBin4.png}
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Fail_Pt30To40_EtaBin4.png}
+}
+\caption{Unbinned likelihood fits for the $\mathrm{Z}\rightarrow e^{+}e^{-}$ signal and the background
+  to the dielectron mass distribution for electrons with $30.0$~\GeVc~$ < p_{T} \le 40.0$~\GeVc.}
+\label{fig:ElectronSelectionEfficiencyFits_Pt30To40}
+\end{center}
+\end{figure}
+
+\begin{figure}[!htbp]
+\begin{center}
+\subfigure[$|\eta| < 0.8$]{
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Pass_Pt40To50_EtaBin0.png}
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Fail_Pt40To50_EtaBin0.png}
+}\\
+\subfigure[$0.8 \le  |\eta| < 1.4442$]{
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Pass_Pt40To50_EtaBin1.png}
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Fail_Pt40To50_EtaBin1.png}
+}\\
+\subfigure[$1.4442 \le  |\eta| < 1.566$]{
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Pass_Pt40To50_EtaBin2.png}
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Fail_Pt40To50_EtaBin2.png}
+}\\
+\subfigure[$1.566 \le  |\eta| < 2.0$]{
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Pass_Pt40To50_EtaBin3.png}
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Fail_Pt40To50_EtaBin3.png}
+}\\
+\subfigure[$2.0 \le  |\eta| < 2.5$]{
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Pass_Pt40To50_EtaBin4.png}
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Fail_Pt40To50_EtaBin4.png}
+}
+\caption{Unbinned likelihood fits for the $\mathrm{Z}\rightarrow e^{+}e^{-}$ signal and the background
+  to the dielectron mass distribution for electrons with $40.0$~\GeVc~$ < p_{T} \le 50.0$~\GeVc.}
+\label{fig:ElectronSelectionEfficiencyFits_Pt40To50}
+\end{center}
+\end{figure}
+
+\begin{figure}[!htbp]
+\begin{center}
+\subfigure[$|\eta| < 0.8$]{
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Pass_Pt50To100_EtaBin0.png}
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Fail_Pt50To100_EtaBin0.png}
+}\\
+\subfigure[$0.8 \le  |\eta| < 1.4442$]{
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Pass_Pt50To100_EtaBin1.png}
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Fail_Pt50To100_EtaBin1.png}
+}\\
+\subfigure[$1.4442 \le  |\eta| < 1.566$]{
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Pass_Pt50To100_EtaBin2.png}
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Fail_Pt50To100_EtaBin2.png}
+}\\
+\subfigure[$1.566 \le  |\eta| < 2.0$]{
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Pass_Pt50To100_EtaBin3.png}
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Fail_Pt50To100_EtaBin3.png}
+}\\
+\subfigure[$2.0 \le  |\eta| < 2.5$]{
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Pass_Pt50To100_EtaBin4.png}
+  \includegraphics[width=0.3\textwidth]{figures/EleSelectionEffFit_Data2011_Zee_Fail_Pt50To100_EtaBin4.png}
+}
+\caption{Unbinned likelihood fits for the $\mathrm{Z}\rightarrow e^{+}e^{-}$ signal and the background
+  to the dielectron mass distribution for electrons with $50.0$~\GeVc~$ < p_{T} \le 100.0$~\GeVc.}
+\label{fig:ElectronSelectionEfficiencyFits_Pt50To100}
+\end{center}
+\end{figure}
+
+
+
+
+
+
+
+\section{Conclusion}
+
+
+
+%===================================================================================================
+\input{biblio.tex}
+%===================================================================================================
+
+\appendix
+\appendixpage
+
+
+
+\end{document}
+
+

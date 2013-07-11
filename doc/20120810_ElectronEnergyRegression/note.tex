@@ -1,0 +1,1297 @@
+\documentclass{cmspaper}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage[pdfborder=0 0 0,
+            colorlinks,
+            urlcolor = blue,
+            linkcolor = black,
+            citecolor = black,
+            menucolor = black,]
+           {hyperref}
+%% \usepackage[colorlinks]{hyperref}
+%% \usepackage{url}
+\usepackage[toc,page]{appendix}
+\usepackage{varioref}
+
+%% package for
+
+\renewcommand{\appendixname}{Appendix}
+%% \renewcommand{\appendixtocname}{List of appendices}
+
+\input{defs.tex}
+
+\setcounter{topnumber}{1}
+\setcounter{bottomnumber}{1}
+\setcounter{secnumdepth}{6}
+%===================================================================================================
+\begin{document}
+\begin{titlepage}
+
+  \analysisnote{2012/XXX}
+
+  \date{\today}
+
+  \title{Electron Energy Regression}
+
+  \input{authors.tex} 
+
+  \begin{abstract}
+    In this note we describe the training and application of a multivariate regression 
+    approach to measuring the momentum of electrons. In the context of the \HiggsToZZ\ 
+    analysis we observe an improvement in the resolution of the reconstructed Higgs boson
+    mass of $17\%$ for the four electron channel and $12\%$ for the two electron two muon channel. 
+    This results in an improvement of the expected signal significance at $30~\ifb$ of 
+    about $7\%$ for the four electron channel, $5\%$ for the two electron two muon channel, and $3\%$ for the
+    combined analysis. The Higgs boson mass measurement in the four lepton channel 
+    is correspondingly improved by about $20\%$ in the four electron channel, $11\%$ 
+    in the two electron two muon channel, and $5\%$ for the combination
+    of all channels.
+
+  \end{abstract} 
+
+\end{titlepage}
+\tableofcontents
+%\listoftables
+%\listoffigures
+\newpage 
+
+%===================================================================================================
+\section{Introduction}
+  \label{sec:intro}
+
+The current standard electromagnetic cluster corrections, intended to flatten energy response as a function
+of various observables, have been shown to be suboptimal~\cite{RegressionTalk}. A multivariate regression approach has been proven 
+to significantly increase performance and decrease the energy resolution for electrons and photons \cite{HggICHEP2012Note}.
+To improve the mass resolution for the \HiggsToZZToFourL\ analysis, we employ a similar regression method
+for measuring the energy of electrons. 
+
+\section{Trigger and Datasets}
+\label{sec:datasets}
+In this note we make use of both data and simulation for different purposes. The data used are the first $5$~\ifb\ of the data
+collected in 2012 and the full 2011 dataset. We use the certified data up to run number $196531$. 
+The full simulation samples used are summarized in Table \ref{tab:MCDatasets}.
+
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+ Process Type                     & Primary Dataset Name                       \\
+
+\hline 
+Drell-Yan                & \footnotesize /DYJetsToLL\_M-50\_TuneZ2Star\_8TeV-madgraph-tarball/Summer12-PU\_S7\_START52\_V9-v2/AODSIM \\
+\hline
+Higgs Signal             & \footnotesize /GluGluToHToZZTo4L\_M-115\_8TeV-powheg-pythia6/Summer12-PU\_S7\_START52\_V9-v1/AODSIM \\
+Higgs Signal             & \footnotesize /GluGluToHToZZTo4L\_M-117\_8TeV-powheg-pythia6/Summer12-PU\_S7\_START52\_V9-v1/AODSIM \\
+Higgs Signal             & \footnotesize /GluGluToHToZZTo4L\_M-119\_8TeV-powheg-pythia6/Summer12-PU\_S7\_START52\_V9-v1/AODSIM \\
+Higgs Signal             & \footnotesize /GluGluToHToZZTo4L\_M-120\_8TeV-powheg-pythia6/Summer12-PU\_S7\_START52\_V9-v1/AODSIM \\
+Higgs Signal             & \footnotesize /GluGluToHToZZTo4L\_M-121\_8TeV-powheg-pythia6/Summer12-PU\_S7\_START52\_V9-v1/AODSIM \\
+Higgs Signal             & \footnotesize /GluGluToHToZZTo4L\_M-123\_8TeV-powheg-pythia6/Summer12-PU\_S7\_START52\_V9-v1/AODSIM \\
+Higgs Signal             & \footnotesize /GluGluToHToZZTo4L\_M-124\_8TeV-powheg-pythia6/Summer12-PU\_S7\_START52\_V9-v1/AODSIM \\
+Higgs Signal             & \footnotesize /GluGluToHToZZTo4L\_M-125\_8TeV-powheg-pythia6/Summer12-PU\_S7\_START52\_V9-v1/AODSIM \\
+Higgs Signal             & \footnotesize /GluGluToHToZZTo4L\_M-126\_8TeV-powheg-pythia6/Summer12-PU\_S7\_START52\_V9-v1/AODSIM \\
+Higgs Signal             & \footnotesize /GluGluToHToZZTo4L\_M-127\_8TeV-powheg-pythia6/Summer12-PU\_S7\_START52\_V9-v1/AODSIM \\
+Higgs Signal             & \footnotesize /GluGluToHToZZTo4L\_M-145\_8TeV-powheg-pythia6/Summer12-PU\_S7\_START52\_V9-v1/AODSIM \\
+Higgs Signal             & \footnotesize /GluGluToHToZZTo4L\_M-150\_8TeV-powheg-pythia6/Summer12-PU\_S7\_START52\_V9-v1/AODSIM \\
+Higgs Signal             & \footnotesize /GluGluToHToZZTo4L\_M-180\_8TeV-powheg-pythia6/Summer12-PU\_S7\_START52\_V9-v1/AODSIM \\
+Higgs Signal             & \footnotesize /GluGluToHToZZTo4L\_M-200\_8TeV-powheg-pythia6/Summer12-PU\_S7\_START52\_V9-v1/AODSIM \\
+Higgs Signal             & \footnotesize /GluGluToHToZZTo4L\_M-220\_8TeV-powheg-pythia6/Summer12-PU\_S7\_START52\_V9-v1/AODSIM \\
+
+\hline
+\end{tabular}
+\caption{Summary of Monte Carlo simulation datasets used}
+  \label{tab:MCDatasets}
+\end{center}
+\end{table}
+
+\section{Regression Training}
+\label{sec:regressiontraining}
+
+We use the GBRForest implementation of the regression algorithm using boosted decision trees. We studied a number of different versions of the
+regression which used different sets of input variables and binning configurations. We begin with a baseline regression trained using 
+exactly the same variables that have been used for the \HiggsToGammaGamma\ analysis \cite{HggICHEP2012Note}. Different sets of input 
+variables are used depending on whether the electron is detected in the barrel or the endcap of the electromagnetic calorimater.
+The variables that are used for both the barrel and the endcap are the following:
+
+\begin{itemize}
+\item SCRawEnergy: the uncorrected energy of the supercluster,
+\item scEta: $\eta$ coordinate of the supercluster
+\item scPhi: $\phi$ coordinate of the supercluster
+\item R9: ratio of the energy in the 3-by-3 grid of crystals around the seed crystal to the uncorrected energy of the supercluster,
+\item etawidth: width of the supercluster in the $\eta$ direction,
+\item phiwidth: width of the supercluster in the $\phi$ direction,
+\item NClusters: the number of clusters forming the supercluster,
+\item HoE: ratio of hadronic energy to electromagnetic energy,
+\item rho: measure of the energy density of the pileup in the event,
+\item vertices: number of reconstructed primary vertices,
+\item EtaSeed: $\eta$ coordinate of the seed cluster,
+\item PhiSeed: $\phi$ coordinate of the seed cluster,
+\item ESeed: energy of the seed cluster,
+\item E3x3Seed: energy in the 3-by-3 grid of crystals around the seed crystal, 
+\item E5x5Seed: energy in the 5-by-5 grid of crystals around the seed crystal, 
+\item $\sigma_{i\eta i\eta}$
+\item $\sigma_{i\phi i\phi}$
+\item $\sigma_{i\eta i\phi}$
+\item EMaxSeed: energy of the highest energy crystal,
+\item E2ndSeed: energy of the second highest energy crystal,
+\item ETopSeed: energy of the adjacent crystal above the highest energy crystal,
+\item EBottomSeed: energy of the adjacent crystal below the highest energy crystal,
+\item ELeftSeed: energy of the adjacent crystal to the left of the highest energy crystal,
+\item ERightSeed: energy of the adjacent crystal to the right of the highest energy crystal,
+\item E2x5MaxSeed,
+\item E2x5TopSeed,
+\item E2x5BottomSeed,
+\item E2x5LeftSeed,
+\item E2x5RightSeed,
+\item pt: transverse momentum of the electron computed using the standard combination of the ECAL energy measurement and the track momentum measurement.
+\end{itemize}
+
+In addition, the following variables which indicate the proximity of the electron to gaps between modules and supermodules 
+are used for electrons in the barrel:
+\begin{itemize}
+\item IEtaSeed: the index of the seed crystal in the $\eta$ coordinate,
+\item IPhiSeed: the index of the seed crystal in the $\phi$ coordinate, 
+\item IEtaSeed mod 5,
+\item IPhiSeed mod 2,
+%\item $(|\mathrm{IEtaSeed}|<=25)*(\mathrm{IEtaSeed} mod 25) + (|\mathrm{IEtaSeed}|>25)*((\mathrm{IEtaSeed}-25*|\mathrm{IEtaSeed}|/\mathrm{IEtaSeed})%20)$ ,
+\item IPhiSeed mod 20,
+\item EtaCrySeed: the $\eta$ of the seed crystal in local coordinates,
+\item PhiCrySeed: the $\eta$ of the seed crystal in local coordinates.
+\end{itemize} 
+
+For endcap electrons, we additionally include the ratio of the energy measured in the preshower to the 
+energy of the supercluster.
+
+On top of this baseline, we construct an alternative regression where we 
+add the following track-related variables to the list of input variables in order to test for
+possible improvement in resolution:
+
+\begin{itemize}
+\item $p_{\mathrm{mode}}$: the momentum of the GSF track fit corresponding to the mode of the trajectory states,
+\item $f_{\mathrm{brem}}$: the fraction of momentum lost to bremstrahlung as determined from the track trajectory fit,
+\item charge of the electron using the standard majority method for charge assignment,
+\item $E/P$: the ratio of the energy measured in the ECAL to the momentum measured by the GSF track.
+\end{itemize}
+
+We train each regression separately for barrel and endcap electrons. For each of the 
+two types of regressions, we additionally studied the effect of splitting up 
+the training into two separate bins of $p_{T}$, one with $p_{T} < 15$~\GeV, and one with
+$p_{T} \ge 15$~\GeV. Therefore we constructed four versions of the regression, labelled 
+in the following way:
+
+\begin{enumerate}
+\item No $p_T$ split, no tracker variables
+\item No $p_T$ split, with tracker variables
+\item With $p_T$ split, no tracker variables
+\item With $p_T$ split, with tracker variables
+\end{enumerate}
+
+We train these regressions using both the Drell-Yan Monte Carlo sample and the \HiggsToZZ\ signal Monte Carlo
+samples. In order to test against over-training, these samples were explicitly divided in two. Only one half
+is used for training, while the remaining half is used to test the performance of the regression. In the 
+case of the Drell-Yan sample, due to excessive memory consumption, we used only about $35\%$ of
+half of the sample for the training. 
+The training was restricted to non-radiative electrons, with radiated energy fraction $< 0.01$ as determined
+from the Monte Carlo truth information. Only electrons with $p_T > 7$ are considered in the training. No
+additional selection requirements have been applied to the training sample. 
+
+We defined different targets for each of the four versions of the regression. They are enumerated in Table \ref{tab:targetratios}. 
+In the case where we train separately in the two $p_{T}$ bins, the target is chosen to be $p_{T}$ for the low $p_{T}$ bin 
+because in this kinematic regime, the momentum measurement is expected to outperform the ECAL energy measurement.
+For endcap electrons, we include the energy measured in the preshower detector for the target definition since this is 
+expected to improve resolution. The reference energy is taken to be the energy of the status 1 electron
+from the Monte Carlo generated particles, the electron obtained after final state radiation. 
+Since we use only minimally radiative electrons for the training, 
+there is minimal distinction between the energy of the status 1 electron and the energy of the status 3 electron.
+
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+ Type of regression & Regression Target Expression \\
+\hline 
+Regressions without $p_T$ split, barrel & Generated Energy/SCRawEnergy \\ \hline
+Regressions without $p_T$ split, endcap & Generated Energy/(SCRawEnergy (1+PreShowerOverRaw)) \\ \hline
+Regressions with $p_T$ split, low $p_T$, all $\eta$ & Generated Energy/pt \\ \hline
+Regressions with $p_T$ split, high $p_T$, barrel & Generated Energy/SCRawEnergy \\ \hline
+Regressions with $p_T$ split, high $p_T$, endcap & Generated Energy/(SCRawEnergy (1+PreShowerOverRaw)) \\
+\hline
+\end{tabular}
+\caption{List of targets ratios used for each regression}
+  \label{tab:targetratios}
+\end{center}
+\end{table}
+
+
+\section{Regression Performance}
+\label{sec:regressionperformance}
+
+The evaluation of the performance of different regressions was done in two ways. We first compare the energy response
+on a per electron basis in the Monte Carlo simulation, plotting the fractional difference between the reconstructed
+energy and the generated energy. Next, we compare the width of the mass peak in \ZToEE\ events, allowing us to 
+evaluate the improvement in resolution between the standard energy reconstruction and the various versions of
+the regression. The \ZToEE\ event sample also allows us to evaluate any differences in performance between data and
+Monte Carlo simulation. 
+
+
+\subsection{Single Electron Energy Response Performance}
+\label{subsec:electronsamplesperformance}
+
+We compare the distribution of the energy response, defined to be the ratio of the estimated energy to the true generated energy,
+for the standard electron momentum reconstruction and for each of the four energy regressions. The performance was evaluated  
+on events that were not used for the regression training, to avoid any potential bias due to over-training. 
+The distribution of these ratios is plotted separately for nine different bins, corresponding to electrons in 
+different ranges of $|\eta|$ and $p_T$. Two $\eta$ bins are used, corresponding to the barrel and the endcap, and
+three bins in $p_T$ were used in order to isolate any differences in performance for difference $p_{T}$ ranges. 
+Figures \ref{fig:higgssignalEnergyResponse1}, \ref{fig:higgssignalEnergyResponse2}, and \ref{fig:higgssignalEnergyResponse3} show the 
+energy response comparisons for the \HiggsToZZ\ signal Monte Carlo sample, while 
+Figures \ref{fig:drellyanEnergyResponse1}, \ref{fig:drellyanEnergyResponse2}, and \ref{fig:drellyanEnergyResponse3} show the 
+analogous comparisons for the Drell-Yan Monte Carlo sample. 
+
+%% figures for Higgs Signal
+\begin{figure}[h]
+\centering
+		\subfigure[]{
+			\includegraphics[width=0.6\textwidth]{figures/HZZ4l/EnergyResponse_allversions_binOption0.pdf}
+		} \\
+		\subfigure[]{
+			\includegraphics[width=0.6\textwidth]{figures/HZZ4l/EnergyResponse_allversions_binOption1.pdf}
+		} \\
+		\subfigure[]{
+			\includegraphics[width=0.6\textwidth]{figures/HZZ4l/EnergyResponse_allversions_binOption2.pdf}
+		}
+		\caption{Performance on Higgs Signal sample, low $p_T$ bins}
+		\label{fig:higgssignalEnergyResponse1}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+		\subfigure[]{
+			\includegraphics[width=0.6\textwidth]{figures/HZZ4l/EnergyResponse_allversions_binOption3.pdf}
+		} \\
+		\subfigure[]{
+			\includegraphics[width=0.6\textwidth]{figures/HZZ4l/EnergyResponse_allversions_binOption4.pdf}
+		} \\
+		\subfigure[]{
+			\includegraphics[width=0.6\textwidth]{figures/HZZ4l/EnergyResponse_allversions_binOption5.pdf}
+		}
+		\caption{Performance on Higgs Signal sample, medium $p_T$ bins}
+		\label{fig:higgssignalEnergyResponse2}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+		\subfigure[]{
+			\includegraphics[width=0.6\textwidth]{figures/HZZ4l/EnergyResponse_allversions_binOption6.pdf}
+		} \\
+		\subfigure[]{
+			\includegraphics[width=0.6\textwidth]{figures/HZZ4l/EnergyResponse_allversions_binOption7.pdf}
+		} \\
+		\subfigure[]{
+			\includegraphics[width=0.6\textwidth]{figures/HZZ4l/EnergyResponse_allversions_binOption8.pdf}
+		}
+		\caption{Performance on Higgs Signal sample, high $p_T$ bins}
+		\label{fig:higgssignalEnergyResponse3}
+\end{figure}
+
+%% Figures for Drell-Yan
+\begin{figure}[h]
+\centering
+		\subfigure[]{
+			\includegraphics[width=0.6\textwidth]{figures/DY/EnergyResponse_allversions_binOption0.pdf}
+		} \\
+		\subfigure[]{
+			\includegraphics[width=0.6\textwidth]{figures/DY/EnergyResponse_allversions_binOption1.pdf}
+		} \\
+		\subfigure[]{
+			\includegraphics[width=0.6\textwidth]{figures/DY/EnergyResponse_allversions_binOption2.pdf}
+		}
+		\caption{Performance on Drell-Yan sample, low $p_T$ bins}
+		\label{fig:drellyanEnergyResponse1}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+		\subfigure[]{
+			\includegraphics[width=0.6\textwidth]{figures/DY/EnergyResponse_allversions_binOption3.pdf}
+		} \\
+		\subfigure[]{
+			\includegraphics[width=0.6\textwidth]{figures/DY/EnergyResponse_allversions_binOption4.pdf}
+		} \\
+		\subfigure[]{
+			\includegraphics[width=0.6\textwidth]{figures/DY/EnergyResponse_allversions_binOption5.pdf}
+		}
+		\caption{Performance on Drell-Yan sample, medium $p_T$ bins}
+		\label{fig:drellyanEnergyResponse2}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+		\subfigure[]{
+			\includegraphics[width=0.6\textwidth]{figures/DY/EnergyResponse_allversions_binOption6.pdf}
+		} \\
+		\subfigure[]{
+			\includegraphics[width=0.6\textwidth]{figures/DY/EnergyResponse_allversions_binOption7.pdf}
+		} \\
+		\subfigure[]{
+			\includegraphics[width=0.6\textwidth]{figures/DY/EnergyResponse_allversions_binOption8.pdf}
+		}
+		\caption{Performance on Drell-Yan sample, high $p_T$ bins}
+		\label{fig:drellyanEnergyResponse3}
+\end{figure}
+
+
+A number of general conclusions can be drawn from these comparisons. We observe that the regression energy calculation
+significantly improves the energy resolution over the standard electron momentum reconstruction in all kinematic
+regions with the exception of the barrel electrons in the lowest $p_{T}$ bin, where the inclusion of the momentum
+uncertainty in the standard reconstruction may be yielding additional information not used in the regression. 
+For the endcap, the standard reconstruction appears to systematically overestimate the electron energy, which
+is corrected by the regression. We also observe that the inclusion of the
+track-related variables in the regression significantly improves the energy resolution. 
+
+Similar conclusions are drawn for the comparison using the Drell-Yan sample. 
+The most significant additional feature is in the low-$p_T$, high-$\eta$ bins where
+we observe a secondary peak and a significantly larger tail at low values of the
+energy response. We hypothesize that these are highly radiative electrons, which are 
+enhanced in the Drell-Yan sample by the fact that we are selecting a very specific
+kinematic bin. 
+
+We also observe that the regressions trained with two $p_T$ bins does not result in any 
+significant improvement to the resolution, in almost all kinematic bins. The only
+case where any improvement is observed is in the lowest $p_{T}$ barrel bin, without
+the inclusion of track-related variables, where it is most likely that the difference
+in the amount of bremstrahlung between low $p_{T}$ electrons and high $p_{T}$ electrons 
+are partially captured by the explicit binning. The fact that no improvement is
+observed when we use two $p_{T}$ bins in the case where track-related variables are 
+included suggests that the multivariate regression algorithm is able to successfully
+categorize these electrons and internally correct for any differences between electrons
+in different $p_{T}$ regions.
+
+
+In order to evaluate the sensitivity of the regression on sample composition, we also evaluated the performance
+of the regression on a sample that is different from the one with which it was trained. The plots for the 
+regressions trained on Higgs Signal and evaluated on Drell-Yan samples are shown in 
+Figures \ref{fig:higgssignalCrossDrellyanEnergyResponse1}, \ref{fig:higgssignalCrossDrellyanEnergyResponse2}, and
+\ref{fig:higgssignalCrossDrellyanEnergyResponse3}, and the plots for the regressions trained on the Drell-Yan sample
+and evaluated on the \HiggsToZZ\ signal sample are shown in Figures \ref{fig:drellyanCrossHiggssignalPlots1},
+\ref{fig:drellyanCrossHiggssignalPlots2}, and \ref{fig:drellyanCrossHiggssignalPlots3}. From these plots, we observe
+that the performance of the regression is very similar when applied to an alternative Monte Carlo sample. This 
+suggests that the performance of the regression is not particularly sensitive to the underlying physics process
+which produce the electrons.  
+
+%% Figures for cross HZZ4l x DY
+\begin{figure}[h]
+\centering
+	\subfigure[]{
+		\includegraphics[width=0.6\textwidth]{figures/HZZ4l_cross_DY/EnergyResponse_allversions_binOption0.pdf}
+	} \\
+	\subfigure[]{
+		\includegraphics[width=0.6\textwidth]{figures/HZZ4l_cross_DY/EnergyResponse_allversions_binOption1.pdf}
+	} \\
+	\subfigure[]{
+		\includegraphics[width=0.6\textwidth]{figures/HZZ4l_cross_DY/EnergyResponse_allversions_binOption2.pdf}
+	}
+	\caption{Performance of regression trained on Higgs Signal and evaluated on Drell-Yan, low $p_T$ bins}
+	\label{fig:higgssignalCrossDrellyanEnergyResponse1}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+	\subfigure[]{
+		\includegraphics[width=0.6\textwidth]{figures/HZZ4l_cross_DY/EnergyResponse_allversions_binOption3.pdf}
+	} \\
+	\subfigure[]{
+		\includegraphics[width=0.6\textwidth]{figures/HZZ4l_cross_DY/EnergyResponse_allversions_binOption4.pdf}
+	} \\
+	\subfigure[]{
+		\includegraphics[width=0.6\textwidth]{figures/HZZ4l_cross_DY/EnergyResponse_allversions_binOption5.pdf}
+	}
+	\caption{Performance of regression trained on Higgs Signal and evaluated on Drell-Yan, medium $p_T$ bins}
+	\label{fig:higgssignalCrossDrellyanEnergyResponse2}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+	\subfigure[]{
+		\includegraphics[width=0.6\textwidth]{figures/HZZ4l_cross_DY/EnergyResponse_allversions_binOption6.pdf}
+	} \\
+	\subfigure[]{
+		\includegraphics[width=0.6\textwidth]{figures/HZZ4l_cross_DY/EnergyResponse_allversions_binOption7.pdf}
+	} \\
+	\subfigure[]{
+		\includegraphics[width=0.6\textwidth]{figures/HZZ4l_cross_DY/EnergyResponse_allversions_binOption8.pdf}
+	}
+	\caption{Performance of regression trained on Higgs Signal and evaluated on Drell-Yan, high $p_T$ bins}
+	\label{fig:higgssignalCrossDrellyanEnergyResponse3}
+\end{figure}
+
+%% Figures for cross DY x HZZ4l
+\begin{figure}[h]
+\centering
+	\subfigure[]{
+		\includegraphics[width=0.6\textwidth]{figures/DY_cross_HZZ4l/EnergyResponse_allversions_binOption0.pdf}
+	} \\
+	\subfigure[]{
+		\includegraphics[width=0.6\textwidth]{figures/DY_cross_HZZ4l/EnergyResponse_allversions_binOption1.pdf}
+	} \\
+	\subfigure[]{
+		\includegraphics[width=0.6\textwidth]{figures/DY_cross_HZZ4l/EnergyResponse_allversions_binOption2.pdf}
+	}
+	\caption{Performance of regression trained on Drell-Yan and evaluated on Higgs Signal, low $p_T$ bins}
+	\label{fig:drellyanCrossHiggssignalEnergyResponse1}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+	\subfigure[]{
+		\includegraphics[width=0.6\textwidth]{figures/DY_cross_HZZ4l/EnergyResponse_allversions_binOption3.pdf}
+	} \\
+	\subfigure[]{
+		\includegraphics[width=0.6\textwidth]{figures/DY_cross_HZZ4l/EnergyResponse_allversions_binOption4.pdf}
+	} \\
+	\subfigure[]{
+		\includegraphics[width=0.6\textwidth]{figures/DY_cross_HZZ4l/EnergyResponse_allversions_binOption5.pdf}
+	}
+	\caption{Performance of regression trained on Drell-Yan and evaluated on Higgs Signal, medium $p_T$ bins}
+	\label{fig:drellyanCrossHiggssignalEnergyResponse2}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+	\subfigure[]{
+		\includegraphics[width=0.6\textwidth]{figures/DY_cross_HZZ4l/EnergyResponse_allversions_binOption6.pdf}
+	} \\
+	\subfigure[]{
+		\includegraphics[width=0.6\textwidth]{figures/DY_cross_HZZ4l/EnergyResponse_allversions_binOption7.pdf}
+	} \\
+	\subfigure[]{
+		\includegraphics[width=0.6\textwidth]{figures/DY_cross_HZZ4l/EnergyResponse_allversions_binOption8.pdf}
+	}
+	\caption{Performance of regression trained on Drell-Yan and evaluated on Higgs Signal, high $p_T$ bins}
+	\label{fig:drellyanCrossHiggssignalEnergyResponse3}
+\end{figure}
+
+\subsection{Performance Evaluated using \ZToEE\ mass spectrum} 
+\label{subsec:zeesamplesperformance}
+
+The resolution improvement brought by the electron energy regression is also evaluated in terms of its 
+impact on the reconstructed Z mass spectrum. Using these samples also allow us to evaluate the difference 
+in performance between data and Monte Carlo simulation. The samples used for the \ZToEE\ data and Monte Carlo
+were given in Section \ref{sec:datasets}. For each sample, we compare the dielectron mass distribution for each regression 
+with the mass computed using the standard electron momentum calculation.
+
+(INSERT SOMETHING ABOUT CUTS ON ELECTRONS, LOW PT ETC.)
+
+The distributions of the reconstructed Z masses can be seen for the MC sample in Figure \ref{fig:zmassMC} and for the data 
+sample in Figure \ref{fig:zmassData}. We observe a significant improvement in mass resolution for the regression
+compared to the standard momentum reconstruction. The different versions of the regression perform fairly similarly.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9 \textwidth]{figures/zmass/{ZeeNtuple.s12-zllm50-2-v9.Plots_zMass}.pdf}
+	\caption{Distribution of reconstructed Z masses around Z pole, for the Monte Carlo sample}
+	\label{fig:zmassMC}
+\end{figure}
+
+\begin{figure}[h]
+	\centering 
+	\includegraphics[width=0.9 \textwidth]{figures/zmass/{ZeeNtuple.2012Data.Plots_zMass}.pdf}
+	\caption{Distribution of reconstructed Z masses around Z pole, for data}
+	\label{fig:zmassData}
+\end{figure}
+
+\subsubsection{Energy Scale and Resolution Correction}
+\label{sec:DataToMCCorrection}
+Using the \ZToEE\ sample, we can determine any deviations in the average energy scale used to reconstruct
+the momentum of the electrons in data, and any deviations between the average resolution 
+predicted in the simulation and that observed in the data. We perform the same procedure used for the
+\HiggsToGammaGamma\ analysis, where we perform a maximum likelihood fit to the dielectron mass distribution,
+modelling the signal by the convolution of a Breit-Wigner function with a Crystal Ball function. The fit
+is performed separately on data and Monte Carlo, where we extract the $\Delta$m and $\sigma$ parameters 
+corresponding to the shift in the peak position of the \Z\ resonance and the width of the core of the 
+mass resonance distribution. We extract these parameters in three bins of $|\eta|$, by performing 
+the fit using events where both electron legs fall into the given $|\eta|$ bin. The resulting parameters
+are summarized in Table \ref{tab:ScaleAndResolution_Standard} for the standard electron momentum
+measurement and in Tables \ref{tab:ScaleAndResolution_Regression1} to \ref{tab:ScaleAndResolution_Regression4},
+for the four versions of the regression. The fits from which the parameters are extracted are shown in 
+Appendix \ref{sec:ScaleAndResolutionFits}. 
+
+
+
+\begin{table}[!ht]
+\begin{center} 
+ Standard Electron Momentum Measurement \\
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Bin   &   $\Delta m$ (MC)   &   $\Delta m$ (Data)  &  $\sigma$ (MC)  &   $\sigma$ (Data)  \\  \hline
+$0.0 \le |\eta| < 1.0$ & $1.055 \pm 0.006$ & $0.388 \pm 0.005$ & $1.546 \pm 0.006$ & $1.592 \pm 0.006$ \\\hline
+$1.0 \le |\eta| < 1.479$ & $-0.222 \pm 0.016$ & $-1.627 \pm 0.019$ & $2.598 \pm 0.017$ & $3.021 \pm 0.019$ \\\hline
+$1.479 \le |\eta| < 2.5$ & $2.227 \pm 0.012$ & $0.261 \pm 0.015$ & $3.166 \pm 0.013$ & $4.210 \pm 0.015$ \\\hline
+\end{tabular}
+\caption{The parameters for the mass shift and the width of the crystal ball resolution function are 
+shown for the data and Monte Carlo simulation in different bins of electron $\eta$ for the standard
+electron momentum measurement. }
+\label{tab:ScaleAndResolution_Standard}
+\end{center}
+\end{table}
+
+
+
+\begin{table}[!ht]
+\begin{center} 
+ Regression without track-related variables and without $p_{T}$ bin splitting \\
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Bin   &   $\Delta m$ (MC)   &   $\Delta m$ (Data)  &  $\sigma$ (MC)  &   $\sigma$ (Data)  \\  \hline
+$0.0 \le |\eta| < 1.0$ & $0.027 \pm 0.005$ & $0.046 \pm 0.004$ & $1.049 \pm 0.006$ & $1.239 \pm 0.005$ \\\hline
+$1.0 \le |\eta| < 1.479$ & $-0.265 \pm 0.018$ & $-1.093 \pm 0.016$ & $2.135 \pm 0.019$ & $2.539 \pm 0.017$ \\\hline
+$1.479 \le |\eta| < 2.5$ & $-0.199 \pm 0.010$ & $-0.836 \pm 0.013$ & $1.906 \pm 0.011$ & $3.680 \pm 0.014$ \\\hline
+
+
+
+
+\end{tabular}
+\caption{ The parameters for the mass shift and the width of the crystal ball resolution function are 
+shown for the data and Monte Carlo simulation in different bins of electron $\eta$ for the regression
+trained without track-related variables and no $p_{T}$ bin splitting.}
+\label{tab:ScaleAndResolution_Regression1}
+\end{center}
+\end{table}
+
+\begin{table}[!ht]
+\begin{center} 
+ Regression with track-related variables and without $p_{T}$ bin splitting \\
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Bin   &   $\Delta m$ (MC)   &   $\Delta m$ (Data)  &  $\sigma$ (MC)  &   $\sigma$ (Data)  \\  \hline
+$0.0 \le |\eta| < 1.0$ & $0.031 \pm 0.005$ & $0.048 \pm 0.004$ & $1.050 \pm 0.006$ & $1.239 \pm 0.005$ \\\hline
+$1.0 \le |\eta| < 1.479$ & $-0.274 \pm 0.018$ & $-0.951 \pm 0.016$ & $2.154 \pm 0.019$ & $2.421 \pm 0.015$ \\\hline
+$1.479 \le |\eta| < 2.5$ & $-0.198 \pm 0.010$ & $-0.827 \pm 0.013$ & $1.906 \pm 0.011$ & $3.678 \pm 0.014$ \\\hline
+\end{tabular}
+\caption{The parameters for the mass shift and the width of the crystal ball resolution function are 
+shown for the data and Monte Carlo simulation in different bins of electron $\eta$ for the regression
+trained with track-related variables and no $p_{T}$ bin splitting.}
+\label{tab:ScaleAndResolution_Regression2}
+\end{center}
+\end{table}
+
+
+\begin{table}[!ht]
+\begin{center} 
+ Regression without track-related variables and with $p_{T}$ bin splitting \\
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Bin   &   $\Delta m$ (MC)   &   $\Delta m$ (Data)  &  $\sigma$ (MC)  &   $\sigma$ (Data)  \\  \hline
+$0.0 \le |\eta| < 1.0$ & $0.054 \pm 0.005$ & $0.117 \pm 0.004$ & $1.099 \pm 0.006$ & $1.297 \pm 0.005$ \\\hline
+$1.0 \le |\eta| < 1.479$ & $-0.263 \pm 0.017$ & $-1.188 \pm 0.016$ & $2.244 \pm 0.018$ & $2.652 \pm 0.017$ \\\hline
+$1.479 \le |\eta| < 2.5$ & $-0.189 \pm 0.010$ & $-0.854 \pm 0.014$ & $1.931 \pm 0.011$ & $3.739 \pm 0.014$ \\\hline
+\end{tabular}
+\caption{The parameters for the mass shift and the width of the crystal ball resolution function are 
+shown for the data and Monte Carlo simulation in different bins of electron $\eta$ for the regression
+trained without track-related variables and with $p_{T}$ bin splitting.}
+\label{tab:ScaleAndResolution_Regression3}
+\end{center}
+\end{table}
+
+\clearpage
+
+\begin{table}[!ht]
+\begin{center} 
+ Regression with track-related variables and with $p_{T}$ bin splitting \\
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Bin   &   $\Delta m$ (MC)   &   $\Delta m$ (Data)  &  $\sigma$ (MC)  &   $\sigma$ (Data)  \\  \hline
+$0.0 \le |\eta| < 1.0$ & $0.060 \pm 0.005$ & $0.122 \pm 0.004$ & $1.095 \pm 0.006$ & $1.294 \pm 0.005$ \\\hline
+$1.0 \le |\eta| < 1.479$ & $-0.257 \pm 0.018$ & $-1.175 \pm 0.016$ & $2.247 \pm 0.019$ & $2.663 \pm 0.017$ \\\hline
+$1.479 \le |\eta| < 2.5$ & $-0.182 \pm 0.010$ & $-0.841 \pm 0.014$ & $1.928 \pm 0.011$ & $3.741 \pm 0.014$ \\\hline
+\end{tabular}
+\caption{The parameters for the mass shift and the width of the crystal ball resolution function are 
+shown for the data and Monte Carlo simulation in different bins of electron $\eta$ for the regression
+trained with track-related variables and with $p_{T}$ bin splitting.}
+\label{tab:ScaleAndResolution_Regression4} 
+\end{center}
+\end{table}
+
+
+From these parameters we determine energy corrections to be applied to the data electrons, described by:
+
+\begin{eqnarray}
+  \label{eqn:DeltaE} 
+\frac{\Delta E}{E} = \frac{\Delta m_{\mathrm{Data}} - \Delta m_{\mathrm{MC}}}{m_{\mathrm{Z}} + \Delta m_{\mathrm{MC}}},
+\end{eqnarray} 
+
+where $\frac{\Delta E}{e}$ is the size of the energy scale correction expressed as a fraction of the 
+energy of the electron, and terms that are second order in $\frac{\Delta E}{E}$ are neglected. 
+The additional gaussian smearing that must be applied to the energy of each electron in the
+Monte Carlo simulation is determined by subtracting in quadrature the width parameter obtained from the fit to the
+simulation from the width parameter obtained from the data fit. The expression is given by:
+
+\begin{eqnarray}
+  \label{eqn:DeltaE} 
+\frac{\sigma_{E}}{E} = \sqrt{2}\times\frac{\sigma^{\mathrm{CB}}_{\mathrm{Data}} - \sigma^{\mathrm{CB}}_{\mathrm{MC}}}{\times(m_{\mathrm{Z}} + \Delta m_{\mathrm{MC}})},
+\end{eqnarray} 
+ 
+where $\frac{\sigma_{E}}{E}$ is the width of the gaussian with which we smear the energy of the electrons
+in the Monte Carlo simulation expressed as a fraction of the electron energy, and
+$\sigma^{\mathrm{CB}}$ is the width parameter of the fitted Crystal Ball function. The energy scale
+correction parameters and width parameters for the extra smearing are 
+summarized in Tables \ref{tab:EnergyScaleAndResolutionCorrection_Regression1} to \ref{tab:EnergyScaleAndResolutionCorrection_Regression4}
+for the four versions of the regressions.
+
+
+\begin{table}[!ht]
+\begin{center} 
+ Regression without trk var \\
+\begin{tabular}{|c|c|c|}
+\hline
+Bin   &   $\Delta E/E$ &   $\sigma_{E}/E$ \\  \hline
+$0.0 \le |\eta| < 1.0$ & $0.00020 \pm 0.00007$ & $0.0102 \pm 0.0002$ \\\hline
+$1.0 \le |\eta| < 1.479$ & $-0.0091 \pm 0.0003$ & $0.0214 \pm 0.0007$ \\\hline
+$1.479 \le |\eta| < 2.5$ & $-0.0070 \pm 0.0002$ & $0.0489 \pm 0.0003$ \\\hline
+\end{tabular}
+\caption{The energy scale correction and the width of the additional gaussian smearing function
+expressed as a fraction of the electron energy 
+are shown for different bins of electron $\eta$ for the regression trained 
+without track-related variables and without $p_{T}$ bin splitting. }
+\label{tab:EnergyScaleAndResolutionCorrection_Regression1}
+\end{center}
+\end{table}
+
+
+\begin{table}[!ht]
+\begin{center} 
+ Regression with trk var \\
+\begin{tabular}{|c|c|c|}
+\hline
+Bin   &   $\Delta E/E$ &   $\sigma_{E}/E$ \\  \hline
+$0.0 \le |\eta| < 1.0$ & $0.00019 \pm 0.00007$ & $0.0102 \pm 0.0002$ \\\hline
+$1.0 \le |\eta| < 1.479$ & $-0.0074 \pm 0.0003$ & $0.0172 \pm 0.0008$ \\\hline
+$1.479 \le |\eta| < 2.5$ & $-0.0069 \pm 0.0002$ & $0.0489 \pm 0.0003$ \\\hline
+\end{tabular}
+\caption{The energy scale correction and the width of the additional gaussian smearing function
+expressed as a fraction of the electron energy 
+are shown for different bins of electron $\eta$ for the regression trained 
+with track-related variables and without $p_{T}$ bin splitting.}
+\label{tab:EnergyScaleAndResolutionCorrection_Regression2}
+\end{center}
+\end{table}
+
+ 
+\begin{table}[!ht]
+\begin{center} 
+ Regression without trk var, two pt bins \\
+\begin{tabular}{|c|c|c|}
+\hline
+Bin   &   $\Delta E/E$ &   $\sigma_{E}/E$ \\  \hline
+$0.0 \le |\eta| < 1.0$ & $0.00069 \pm 0.00007$ & $0.0107 \pm 0.0002$ \\\hline
+$1.0 \le |\eta| < 1.479$ & $-0.0102 \pm 0.0003$ & $0.0220 \pm 0.0007$ \\\hline
+$1.479 \le |\eta| < 2.5$ & $-0.0073 \pm 0.0002$ & $0.0498 \pm 0.0003$ \\\hline
+\end{tabular}
+\caption{The energy scale correction and the width of the additional gaussian smearing function
+expressed as a fraction of the electron energy 
+are shown for different bins of electron $\eta$ for the regression trained 
+without track-related variables and with $p_{T}$ bin splitting.}
+\label{tab:EnergyScaleAndResolutionCorrection_Regression3}
+\end{center}
+\end{table}
+
+
+\begin{table}[!ht]
+\begin{center} 
+ Regression with trk var, two pt bins \\
+\begin{tabular}{|c|c|c|}
+\hline
+Bin   &   $\Delta E/E$ &   $\sigma_{E}/E$ \\  \hline
+$0.0 \le |\eta| < 1.0$ & $0.00068 \pm 0.00007$ & $0.0107 \pm 0.0002$ \\\hline
+$1.0 \le |\eta| < 1.479$ & $-0.0101 \pm 0.0003$ & $0.0222 \pm 0.0007$ \\\hline
+$1.479 \le |\eta| < 2.5$ & $-0.0072 \pm 0.0002$ & $0.0498 \pm 0.0003$ \\\hline
+\end{tabular}
+\caption{The energy scale correction and the width of the additional gaussian smearing function
+expressed as a fraction of the electron energy 
+are shown for different bins of electron $\eta$ for the regression trained 
+with track-related variables and with $p_{T}$ bin splitting.} 
+\label{tab:EnergyScaleAndResolutionCorrection_Regression4}
+\end{center}
+\end{table}
+
+
+The impact of these energy scale and resolution corrections are illustrated by comparing Figure~\ref{fig:ZMassValidation_BeforeCorr}
+with Figure~\ref{fig:ZMassValidation_AfterCorr}, where we plot the reconstructed Z mass distributions for \ZToEE\ events
+before and after the corrections in different kinematic bins. The regression trained with track-related variables and 
+without $p_{T}$ bin splitting is used for these plots. The agreement between data and Monte Carlo simulation is
+significantly improved after the corrections. Small residual discrepancies remain even after the corrections, which are 
+propagated as systematic uncertainties. 
+ 
+\clearpage
+
+\begin{figure}[h]
+\centering
+  \subfigure[Central Barrel, Central Barrel]{
+    \includegraphics[width=0.45\textwidth]{figures/ZeeMassScaleAndResolutionValidationPlots_EnergyType2_BeforeCorr_CategoryBin0.pdf}
+  } 
+  \subfigure[Central Barrel, Outer Barrel ]{
+    \includegraphics[width=0.45\textwidth]{figures/ZeeMassScaleAndResolutionValidationPlots_EnergyType2_BeforeCorr_CategoryBin1.pdf}
+  } 
+  \subfigure[Central Barrel, Endcap ]{
+    \includegraphics[width=0.45\textwidth]{figures/ZeeMassScaleAndResolutionValidationPlots_EnergyType2_BeforeCorr_CategoryBin2.pdf}
+  } 
+  \subfigure[Outer Barrel, Outer Barrel ]{
+    \includegraphics[width=0.45\textwidth]{figures/ZeeMassScaleAndResolutionValidationPlots_EnergyType2_BeforeCorr_CategoryBin3.pdf}
+  } 
+  \subfigure[Outer Barrel, Endcap Barrel]{
+    \includegraphics[width=0.45\textwidth]{figures/ZeeMassScaleAndResolutionValidationPlots_EnergyType2_BeforeCorr_CategoryBin4.pdf}
+  } 
+  \subfigure[Endcap Barrel, Endcap Barrel]{
+    \includegraphics[width=0.45\textwidth]{figures/ZeeMassScaleAndResolutionValidationPlots_EnergyType2_BeforeCorr_CategoryBin5.pdf}
+  }
+  \caption{Distributions of dielectron mass for events passing \ZToEE\ selection in various kinematic bins of the
+  two electrons before performing the energy scale and resolution corrections. The regression including track-related variables
+  and without splitting in $p_{T}$ bins is used. ``Central Barrel'' is defined to be the region with
+  $|\eta| < 1.0$; ``Outer Barrel'' is defined to be the region with $1.0 \le |\eta| < 1.479$; and ``Endcap''
+  is defined to be the region with $1.479 \le |\eta| < 2.5$. } 
+  \label{fig:ZMassValidation_BeforeCorr} 
+\end{figure}
+
+
+
+
+\begin{figure}[h]
+\centering
+  \subfigure[Central Barrel, Central Barrel]{
+    \includegraphics[width=0.45\textwidth]{figures/ZeeMassScaleAndResolutionValidationPlots_EnergyType2_AfterCorr_CategoryBin0.pdf}
+  } 
+  \subfigure[Central Barrel, Outer Barrel ]{
+    \includegraphics[width=0.45\textwidth]{figures/ZeeMassScaleAndResolutionValidationPlots_EnergyType2_AfterCorr_CategoryBin1.pdf}
+  } 
+  \subfigure[Central Barrel, Endcap ]{
+    \includegraphics[width=0.45\textwidth]{figures/ZeeMassScaleAndResolutionValidationPlots_EnergyType2_AfterCorr_CategoryBin2.pdf}
+  } 
+  \subfigure[Outer Barrel, Outer Barrel ]{
+    \includegraphics[width=0.45\textwidth]{figures/ZeeMassScaleAndResolutionValidationPlots_EnergyType2_AfterCorr_CategoryBin3.pdf}
+  } 
+  \subfigure[Outer Barrel, Endcap Barrel]{
+    \includegraphics[width=0.45\textwidth]{figures/ZeeMassScaleAndResolutionValidationPlots_EnergyType2_AfterCorr_CategoryBin4.pdf}
+  } 
+  \subfigure[Endcap Barrel, Endcap Barrel]{
+    \includegraphics[width=0.45\textwidth]{figures/ZeeMassScaleAndResolutionValidationPlots_EnergyType2_AfterCorr_CategoryBin5.pdf}
+  }
+  \caption{Distributions of dielectron mass for events passing \ZToEE\ selection in various kinematic bins of the
+  two electrons after performing the energy scale and resolution corrections. The regression including track-related variables
+  and without splitting in $p_{T}$ bins is used. ``Central Barrel'' is defined to be the region with 
+  $|\eta| < 1.0$; ``Outer Barrel'' is defined to be the region with $1.0 \le |\eta| < 1.479$; and ``Endcap''
+  is defined to be the region with $1.479 \le |\eta| < 2.5$. } 
+  \label{fig:ZMassValidation_AfterCorr} 
+\end{figure}
+
+
+\clearpage
+
+\section{Impact on \HiggsToZZToFourL\ Analysis }
+
+The four different regressions are applied to the \HiggsToZZ\ Monte Carlo simulation sample with mass 
+$126$~\GeV\ and the corresponding four lepton mass distributions are compared with the one obtained
+using the standard momentum measurement in Figure \ref{fig:HZZMass_Regression_NoCorrection}. 
+No additional smearing has been applied yet.
+We observe significant improvement in the four lepton mass resolution when using the regression.
+ 
+\begin{figure}[h]
+\centering
+	\subfigure[4 electron final state]{
+		\includegraphics[width=0.45\textwidth]{figures/HZZMass_Regression_4e.pdf}
+	} 
+	\subfigure[2 electron, 2 muon final state]{
+		\includegraphics[width=0.45\textwidth]{figures/HZZMass_Regression_2e2m.pdf}
+	} 
+	\subfigure[all final states combined]{
+		\includegraphics[width=0.6\textwidth]{figures/HZZMass_Regression_all.pdf}
+	}
+	\caption{Distributions of the reconstructed Higgs boson mass computed using various versions
+          of the electron energy regression are compared to the mass distribution obtained using
+          the standard electron momentum measurement. }
+	\label{fig:HZZMass_Regression_NoCorrection}
+\end{figure} 
+ 
+
+Using the results of Section \ref{sec:DataToMCCorrection}, we perform the appropriate smearing to
+each of the different regressions, as well as the standard smearing used for the standard 
+momentum measurement \cite{HZZICHEPCMSNote}. The comparison of reconstructed Higgs boson mass distribution
+after applying these simulation to data corrections between the standard electron momentum
+measurement and the two regressions using track-related variables are shown in 
+Figure \ref{fig:HZZMass_Regression_WithCorrection}. The improvement 
+in performance using the regression remains after performing these corrections. The performance
+is not significantly affected by the splitting of the $p_{T}$ bin, and therefore we choose the
+version which does not do the explicit categorization for the sake of simplicity. 
+In Figure \ref{fig:HZZMass_CompareFinalstates} we compare the reconstructed Higgs boson
+mass distributions between the four electron, two electron two muon, and four muon final states
+for the standard electron momentum measurement and the electron regression. We clearly observe
+that the regression brings the resolution of the final states involving electrons much closer
+to the resolution of the four muon final state. 
+
+
+\begin{figure}[h]
+\centering
+	\subfigure[4 electron final state]{
+		\includegraphics[width=0.45\textwidth]{figures/HZZMass_RegressionWithCorr_4e.pdf}
+	} 
+	\subfigure[2 electron, 2 muon final state]{
+		\includegraphics[width=0.45\textwidth]{figures/HZZMass_RegressionWithCorr_2e2m.pdf}
+	}  
+	\subfigure[all final states combined]{
+		\includegraphics[width=0.6\textwidth]{figures/HZZMass_RegressionWithCorr_all.pdf}
+	}
+	\caption{Distributions of the reconstructed Higgs boson mass computed using regressions 
+          that include track-related variables are compared to the mass distribution obtained using
+          the standard electron momentum measurement. The momentum of individual electrons from the 
+          Monte Carlo simulation have been corrected to reflect the resolution measured in data. }
+	\label{fig:HZZMass_Regression_WithCorrection}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+	\subfigure[Standard Electron Momentum Measurement]{
+		\includegraphics[width=0.45\textwidth]{figures/HZZMassCompareFinalstates_Standard.pdf}
+	} 
+	\subfigure[Electron Regression]{
+		\includegraphics[width=0.45\textwidth]{figures/HZZMassCompareFinalstates_Regression.pdf}
+	}  
+	\caption{Distributions of the reconstructed Higgs boson mass in different final states are compared
+        for the standard electron momentum measurement and the regression. 
+        The momentum of individual electrons from the Monte Carlo simulation have been corrected
+        to reflect the resolution measured in data. }
+	\label{fig:HZZMass_CompareFinalstates}
+\end{figure}
+
+
+
+\subsection{ Combination with Track Momentum Measurement }
+
+Given that a significant component of the overall improvement brought by the regression technique is
+due to the improvement in the ECAL energy measurement, we further study the specific effect of the
+inclusion of the tracking measurements into the regression. We define two benchmark regression
+reconstruction methods. The electron momentum reconstruction labelled as ``Regression1'' is the combination
+of the ECAL energy measured using the regression which does not include any track-related variables, and
+the track momentum measurement from the GSF track fit. The standard combination is performed using the
+regression estimate of the uncertainty on the ECAl energy measurement \cite{HZZICHEPCMSNote}. The
+electron momentum reconstruction labelled as ``Regression2'' is the combined measurement from 
+the regression that has been trained with track-related variables included.
+
+In Figure \ref{fig:HZZMassComparison_NoCorr}, we compare the distributions of the reconstructed
+Higgs boson mass, before applying any Monte Carlo to data corrections, 
+using the default electron momentum reconstruction and the two variations of the
+regression reconstruction for the four electron channel, two electron two muon channel, and 
+the combination of all channels respectively. We observe relatively small differences in the performance
+between the two different regression techniques. The analogous comparison after applying the 
+Monte Carlo to data corrections are shown in Figure \ref{fig:HZZMassComparison_WithCorr}.
+As the uncertainty of the ECAL regression measurement is increased in the method labelled
+``Regression1'', a larger fraction of electrons rely more on the track momentum measurement. As a 
+result the resolution becomes visibly worse for the four electron channel. 
+ 
+\begin{figure}[h]
+\centering
+	\subfigure[4e Channel]{
+		\includegraphics[width=0.45\textwidth]{figures/HZZMass_EPCombComparison_RegressionNoCorr_4e.pdf}
+	} 
+	\subfigure[2e2$\mu$ Channel]{
+		\includegraphics[width=0.45\textwidth]{figures/HZZMass_EPCombComparison_RegressionNoCorr_2e2m.pdf}
+	}  
+	\subfigure[All Channels Combined]{
+		\includegraphics[width=0.45\textwidth]{figures/HZZMass_EPCombComparison_RegressionNoCorr_all.pdf}
+	}
+	\caption{ A comparison of the reconstructed Higgs boson mass distributions before applying any Monte Carlo
+          to data corrections for the default electron momentum reconstruction and two different regression reconstructions.
+        Regression1 refers to the combination of the regression energy using only ECAL measurements and the
+        momentum from the GSF track measurement, and Regression2 refers to the regression measurement that 
+        combines ECAL measurements and track measurements.}
+	\label{fig:HZZMassComparison_NoCorr}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+	\subfigure[4e Channel]{
+		\includegraphics[width=0.45\textwidth]{figures/HZZMass_EPCombComparison_RegressionWithCorr_4e.pdf}
+	} 
+	\subfigure[2e2$\mu$ Channel]{
+		\includegraphics[width=0.45\textwidth]{figures/HZZMass_EPCombComparison_RegressionWithCorr_2e2m.pdf}
+	}  
+	\subfigure[All Channels Combined]{
+		\includegraphics[width=0.45\textwidth]{figures/HZZMass_EPCombComparison_RegressionWithCorr_all.pdf}
+	}
+	\caption{ A comparison of the reconstructed Higgs boson mass distributions after applying any Monte Carlo
+          to data corrections for the default electron momentum reconstruction and two different regression reconstructions.
+        Regression1 refers to the combination of the regression energy using only ECAL measurements and the
+        momentum from the GSF track measurement, and Regression2 refers to the regression measurement that 
+        combines ECAL measurements and track measurements.}
+	\label{fig:HZZMassComparison_WithCorr}
+\end{figure}
+
+Finally, we perform the signal model fit and extract the $\sigma$ parameter which describes the resolution of
+the reconstructed Higgs boson mass. The comparison of the $\sigma$ parameter for the default electron momentum
+reconstruction and the two different regression techniques is shown in Table \ref{tab:HiggsResolutionComparison}
+for a signal mass of $125~\GeV$. We observe that the ``Regression1'' technique improves the resolution by about
+$12\%$ over the standard electron momentum reconstruction 
+for both the four electron and two electron two muon channels. The ``Regression2'' technique, which
+includes track-related variables in a combined measurement of the electron momentum, gives an improvement
+of about $17\%$ for the four electron channel and about $12\%$ for the two electron
+two muon channel.
+
+\begin{table}[!ht]
+\begin{center} 
+\begin{tabular}{|c|c|c|}
+\hline
+Electron Momentum Type   &   4e Channel               & 2e2$\mu$ Channel    \\  \hline
+Default                  &   $3.21~\GeV$              & $2.25~\GeV$         \\  \hline
+Regression1              &   $2.81~\GeV$              & $1.97~\GeV$         \\  \hline
+Regression2              &   $2.67~\GeV$              & $1.98~\GeV$         \\  \hline
+\end{tabular}
+\caption{ Comparison of the $\sigma$ parameter describing the resolution of the reconstructed
+  Higgs boson mass for different methods for reconstructing the electron momentum.}
+\label{tab:HiggsResolutionComparison}
+\end{center}
+\end{table}
+
+
+
+
+\subsection{Impact on Signal Significance }
+
+We evaluate the impact of the regression on the expected signal significance on a dataset corresponding
+to $30~\ifb$. The comparisons of the expected signal significance computed using the representative Asimov Toy
+are shown in Figure \ref{fig:SignalSignificance}, and the ratios of expected signal significances are shown
+in Figure \ref{fig:SignalSignificanceRatio}. We observe an improvement to the signal significance of 
+about $7\%$ for the four electron final state, $5\%$ for the two electron two muon final state,
+and $3\%$ for the combined analysis.
+
+
+\begin{figure}[h]
+\centering
+	\subfigure[4e Channel]{
+		\includegraphics[width=0.45\textwidth]{figures/expsignif_4e.pdf}
+	} 
+	\subfigure[2e2$\mu$ Channel]{
+		\includegraphics[width=0.45\textwidth]{figures/expsignif_2e2mu.pdf}
+	}  
+	\subfigure[All Channels Combined]{
+		\includegraphics[width=0.45\textwidth]{figures/expsignif_allchannels.pdf}
+	}
+	\caption{ A comparison of the expected signal significance at $30\ifb$ are shown for
+        the default electron momentum reconstruction and two different regression reconstructions.
+        Regression1 refers to the combination of the regression energy using only ECAL measurements and the
+        momentum from the GSF track measurement, and Regression2 refers to the regression measurement that 
+        combines ECAL measurements and track measurements.}
+	\label{fig:SignalSignificance}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+	\subfigure[4e Channel]{
+		\includegraphics[width=0.45\textwidth]{figures/expsignif_ratio_4e.pdf}
+	} 
+	\subfigure[2e2$\mu$ Channel]{
+		\includegraphics[width=0.45\textwidth]{figures/expsignif_ratio_2e2mu.pdf}
+	}  
+	\subfigure[All Channels Combined]{
+		\includegraphics[width=0.45\textwidth]{figures/expsignif_ratio_allchannels.pdf}
+	}
+	\caption{ Ratios of the expected signal significance using the regression electron energy measurements
+          to the expected signal significance using the default electron momentum reconstruction at $30\ifb$ are shown.}
+	\label{fig:SignalSignificanceRatio}
+\end{figure}
+
+
+\subsection{Impact on Mass Measurement }
+
+The impact of the electron energy regression on the Higgs boson mass measurement are 
+summarized in Tables \ref{tab:MassMeasurementUncertainty_4e}, \ref{tab:MassMeasurementUncertainty_2e2mu},
+and \ref {tab:MassMeasurementUncertainty_combined}, where the uncertainties estimated
+using the asimov toy dataset for $30~\ifb$ are compared using the default electron momentum
+reconstruction and the electron momentum reconstruction using the regression. We observe reductions
+in the uncertainty of the mass measurement of about $20\%$ for the four electron channel only,
+$11\%$ for the two electron two muon channel only, and $5\%$ for the combined measurement.
+
+\begin{table}[!ht]
+\begin{center} 
+\begin{tabular}{|c|c|c|c|}
+\hline
+Electron Momentum Type   &   Statistical Uncertainty & Systematic Uncertainty  & Total Uncertainty    \\  \hline
+Default                  &   $2.93~\GeV$              & $1.43~\GeV$              & $3.26~\GeV$        \\  \hline
+Regression1              &   $2.57~\GeV$              & $1.16~\GeV$              & $2.82~\GeV$        \\  \hline
+Regression2              &   $2.39~\GeV$              & $1.05~\GeV$              & $2.61~\GeV$        \\  \hline
+\end{tabular}
+\caption{ Uncertainties in the Higgs boson mass measurement performed using the four electron channel only
+are compared between different methods for reconstructing the electron momentum.}
+\label{tab:MassMeasurementUncertainty_4e}
+\end{center}
+\end{table}
+
+\begin{table}[!ht]
+\begin{center} 
+\begin{tabular}{|c|c|c|c|}
+\hline
+Electron Momentum Type   &   Statistical Uncertainty & Systematic Uncertainty  & Total Uncertainty    \\  \hline
+Default                  &   $1.09~\GeV$              & $0.60~\GeV$              & $1.24~\GeV$        \\  \hline
+Regression1              &   $0.96~\GeV$              & $0.59~\GeV$              & $1.13~\GeV$        \\  \hline
+Regression2              &   $0.94~\GeV$              & $0.59~\GeV$              & $1.11~\GeV$        \\  \hline
+\end{tabular}
+\caption{ Uncertainties in the Higgs boson mass measurement performed using the two electron two muon channel only
+are compared between different methods for reconstructing the electron momentum.}
+\label{tab:MassMeasurementUncertainty_2e2mu}
+\end{center}
+\end{table}
+
+\begin{table}[!ht]
+\begin{center} 
+\begin{tabular}{|c|c|c|c|}
+\hline
+Electron Momentum Type   &   Statistical Uncertainty & Systematic Uncertainty  & Total Uncertainty    \\  \hline
+Default                  &   $0.53~\GeV$              & $0.41~\GeV$              & $0.67~\GeV$        \\  \hline
+Regression1              &   $0.51~\GeV$              & $0.39~\GeV$              & $0.64~\GeV$        \\  \hline
+Regression2              &   $0.51~\GeV$              & $0.39~\GeV$              & $0.64~\GeV$        \\  \hline
+\end{tabular}
+\caption{ Uncertainties in the Higgs boson mass measurement performed using all channels
+are compared between different methods for reconstructing the electron momentum.}
+\label{tab:MassMeasurementUncertainty_combined}
+\end{center}
+\end{table}
+
+
+
+\section{Conclusion}
+
+We described the training and performance evaluation of a multivariate regression 
+approach to measuring the momentum of electrons. The regression method is applied
+to the \HiggsToZZ\ analysis where we observe an improvement of $17\%$ for the
+four electron channel and $12\%$ for the two electron two muon channel. Propagating
+this improvement in resolution to the signal extraction results in an improvement
+of the expected signal significance at $30~\ifb$ of about $7\%$ for the four electron
+channel, $5\%$ for the two electron two muon channel, and $3\%$ for the
+combined analysis. Propagating this improvement in resolution to the Higgs boson
+mass measurement in the four lepton channel gives a reduction in the 
+mass uncertainty of about $20\%$ in the four electron channel, $11\%$ 
+in the two electron two muon channel, and $5\%$ for the combination
+of all channels.
+
+
+%===================================================================================================
+\input{biblio.tex}
+%===================================================================================================
+
+\appendix
+\appendixpage
+
+\section{Energy Scale and Resolution Fits}
+\label{sec:ScaleAndResolutionFits}
+\subsection{Standard Electron Momentum Measurement }
+
+\begin{figure}[h]
+\centering
+	\subfigure[$0.0 \le |\eta| < 1.0$]{
+		\includegraphics[width=0.45\textwidth]{figures/ZMassFits/ZeeFits_MC_EnergyType0_CategoryBin0.pdf}
+	} 
+	\subfigure[$1.0 \le |\eta| < 1.479$]{
+		\includegraphics[width=0.45\textwidth]{figures/ZMassFits/ZeeFits_MC_EnergyType0_CategoryBin1.pdf}
+	}  
+	\subfigure[$1.479 \le |\eta| < 2.5$]{
+		\includegraphics[width=0.45\textwidth]{figures/ZMassFits/ZeeFits_MC_EnergyType0_CategoryBin2.pdf}
+	}
+	\caption{Fits of the dielectron mass distribution in the Monte Carlo simulation to
+        a Breit-Wigner convoluted with a Crystal Ball resolution function. The fitted parameters 
+        of the Crystal Ball function are shown. The standard electron momentum measurement is 
+        used.}
+	\label{fig:ZMassFit_MC_Standard}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+	\subfigure[$0.0 \le |\eta| < 1.0$]{
+		\includegraphics[width=0.45\textwidth]{figures/ZMassFits/ZeeFits_2012Data_EnergyType0_CategoryBin0.pdf}
+	} 
+	\subfigure[$1.0 \le |\eta| < 1.479$]{
+		\includegraphics[width=0.45\textwidth]{figures/ZMassFits/ZeeFits_2012Data_EnergyType0_CategoryBin1.pdf}
+	}  
+	\subfigure[$1.479 \le |\eta| < 2.5$]{
+		\includegraphics[width=0.45\textwidth]{figures/ZMassFits/ZeeFits_2012Data_EnergyType0_CategoryBin2.pdf}
+	}
+	\caption{Fits of the dielectron mass distribution in the 2012 data to
+        a Breit-Wigner convoluted with a Crystal Ball resolution function. The parameters $a_{\mathrm{CB}}$ 
+        and $n_{\mathrm{CB}}$ describing the low side tail of the Crystal Ball function have been fixed to the values
+        obtained from the corresponding fit to the MC simulation. The mass shift and width parameters 
+        of the Crystal Ball function are shown. The standard electron momentum measurement is 
+        used.}
+	\label{fig:ZMassFit_2012Data_Standard}
+\end{figure}
+ 
+\clearpage
+
+\subsection{Regression Without Track-related Variables and Without split $p_{T}$ bins }
+
+\begin{figure}[h]
+\centering
+	\subfigure[$0.0 \le |\eta| < 1.0$]{
+		\includegraphics[width=0.45\textwidth]{figures/ZMassFits/ZeeFits_MC_EnergyType1_CategoryBin0.pdf}
+	} 
+	\subfigure[$1.0 \le |\eta| < 1.479$]{
+		\includegraphics[width=0.45\textwidth]{figures/ZMassFits/ZeeFits_MC_EnergyType1_CategoryBin1.pdf}
+	}  
+	\subfigure[$1.479 \le |\eta| < 2.5$]{
+		\includegraphics[width=0.45\textwidth]{figures/ZMassFits/ZeeFits_MC_EnergyType1_CategoryBin2.pdf}
+	}
+	\caption{Fits of the dielectron mass distribution in the Monte Carlo simulation to
+        a Breit-Wigner convoluted with a Crystal Ball resolution function. The fitted parameters 
+        of the Crystal Ball function are shown. The regression trained without track-related variables
+        and without $p_{T}$ bin splitting has been used to compute the electron momentum.}
+	\label{fig:ZMassFit_MC_Regression1}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+	\subfigure[$0.0 \le |\eta| < 1.0$]{
+		\includegraphics[width=0.45\textwidth]{figures/ZMassFits/ZeeFits_2012Data_EnergyType1_CategoryBin0.pdf}
+	} 
+	\subfigure[$1.0 \le |\eta| < 1.479$]{
+		\includegraphics[width=0.45\textwidth]{figures/ZMassFits/ZeeFits_2012Data_EnergyType1_CategoryBin1.pdf}
+	}  
+	\subfigure[$1.479 \le |\eta| < 2.5$]{
+		\includegraphics[width=0.45\textwidth]{figures/ZMassFits/ZeeFits_2012Data_EnergyType1_CategoryBin2.pdf}
+	}
+	\caption{Fits of the dielectron mass distribution in the 2012 data to
+        a Breit-Wigner convoluted with a Crystal Ball resolution function. The parameters $a_{\mathrm{CB}}$ 
+        and $n_{\mathrm{CB}}$ describing the low side tail of the Crystal Ball function have been fixed to the values
+        obtained from the corresponding fit to the MC simulation. The mass shift and width parameters 
+        of the Crystal Ball function are shown. The regression trained without track-related variables
+        and without $p_{T}$ bin splitting has been used to compute the electron momentum.}
+	\label{fig:ZMassFit_2012Data_Regression1}
+\end{figure}
+
+\clearpage
+
+
+\subsection{Regression Without Track-related Variables and With split $p_{T}$ bins }
+
+\begin{figure}[h]
+\centering
+	\subfigure[$0.0 \le |\eta| < 1.0$]{
+		\includegraphics[width=0.45\textwidth]{figures/ZMassFits/ZeeFits_MC_EnergyType2_CategoryBin0.pdf}
+	} 
+	\subfigure[$1.0 \le |\eta| < 1.479$]{
+		\includegraphics[width=0.45\textwidth]{figures/ZMassFits/ZeeFits_MC_EnergyType2_CategoryBin1.pdf}
+	}  
+	\subfigure[$1.479 \le |\eta| < 2.5$]{
+		\includegraphics[width=0.45\textwidth]{figures/ZMassFits/ZeeFits_MC_EnergyType2_CategoryBin2.pdf}
+	}
+	\caption{Fits of the dielectron mass distribution in the Monte Carlo simulation to
+        a Breit-Wigner convoluted with a Crystal Ball resolution function. The fitted parameters 
+        of the Crystal Ball function are shown. The regression trained with track-related variables
+        and without $p_{T}$ bin splitting has been used to compute the electron momentum.}
+	\label{fig:ZMassFit_MC_Regression2}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+	\subfigure[$0.0 \le |\eta| < 1.0$]{
+		\includegraphics[width=0.45\textwidth]{figures/ZMassFits/ZeeFits_2012Data_EnergyType2_CategoryBin0.pdf}
+	} 
+	\subfigure[$1.0 \le |\eta| < 1.479$]{
+		\includegraphics[width=0.45\textwidth]{figures/ZMassFits/ZeeFits_2012Data_EnergyType2_CategoryBin1.pdf}
+	}  
+	\subfigure[$1.479 \le |\eta| < 2.5$]{
+		\includegraphics[width=0.45\textwidth]{figures/ZMassFits/ZeeFits_2012Data_EnergyType2_CategoryBin2.pdf}
+	}
+	\caption{Fits of the dielectron mass distribution in the 2012 data to
+        a Breit-Wigner convoluted with a Crystal Ball resolution function. The parameters $a_{\mathrm{CB}}$ 
+        and $n_{\mathrm{CB}}$ describing the low side tail of the Crystal Ball function have been fixed to the values
+        obtained from the corresponding fit to the MC simulation. The mass shift and width parameters 
+        of the Crystal Ball function are shown. The regression trained with track-related variables
+        and without $p_{T}$ bin splitting has been used to compute the electron momentum.}
+	\label{fig:ZMassFit_2012Data_Regression2}
+\end{figure}
+
+\clearpage
+
+\subsection{Regression With Track-related Variables and Without split $p_{T}$ bins }
+
+\begin{figure}[h]
+\centering
+	\subfigure[$0.0 \le |\eta| < 1.0$]{
+		\includegraphics[width=0.45\textwidth]{figures/ZMassFits/ZeeFits_MC_EnergyType3_CategoryBin0.pdf}
+	} 
+	\subfigure[$1.0 \le |\eta| < 1.479$]{
+		\includegraphics[width=0.45\textwidth]{figures/ZMassFits/ZeeFits_MC_EnergyType3_CategoryBin1.pdf}
+	}  
+	\subfigure[$1.479 \le |\eta| < 2.5$]{
+		\includegraphics[width=0.45\textwidth]{figures/ZMassFits/ZeeFits_MC_EnergyType3_CategoryBin2.pdf}
+	}
+	\caption{Fits of the dielectron mass distribution in the Monte Carlo simulation to
+        a Breit-Wigner convoluted with a Crystal Ball resolution function. The fitted parameters 
+        of the Crystal Ball function are shown. The regression trained without track-related variables
+        and with $p_{T}$ bin splitting has been used to compute the electron momentum.}
+	\label{fig:ZMassFit_MC_Regression3}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+	\subfigure[$0.0 \le |\eta| < 1.0$]{
+		\includegraphics[width=0.45\textwidth]{figures/ZMassFits/ZeeFits_2012Data_EnergyType3_CategoryBin0.pdf}
+	} 
+	\subfigure[$1.0 \le |\eta| < 1.479$]{
+		\includegraphics[width=0.45\textwidth]{figures/ZMassFits/ZeeFits_2012Data_EnergyType3_CategoryBin1.pdf}
+	}  
+	\subfigure[$1.479 \le |\eta| < 2.5$]{
+		\includegraphics[width=0.45\textwidth]{figures/ZMassFits/ZeeFits_2012Data_EnergyType3_CategoryBin2.pdf}
+	}
+	\caption{Fits of the dielectron mass distribution in the 2012 data to
+        a Breit-Wigner convoluted with a Crystal Ball resolution function. The parameters $a_{\mathrm{CB}}$ 
+        and $n_{\mathrm{CB}}$ describing the low side tail of the Crystal Ball function have been fixed to the values
+        obtained from the corresponding fit to the MC simulation. The mass shift and width parameters 
+        of the Crystal Ball function are shown. The regression trained without track-related variables
+        and with $p_{T}$ bin splitting has been used to compute the electron momentum.}
+	\label{fig:ZMassFit_2012Data_Regression3}
+\end{figure}
+
+\clearpage
+
+\subsection{Regression With Track-related Variables and With split $p_{T}$ bins }
+
+\begin{figure}[h]
+\centering
+	\subfigure[$0.0 \le |\eta| < 1.0$]{
+		\includegraphics[width=0.45\textwidth]{figures/ZMassFits/ZeeFits_MC_EnergyType4_CategoryBin0.pdf}
+	} 
+	\subfigure[$1.0 \le |\eta| < 1.479$]{
+		\includegraphics[width=0.45\textwidth]{figures/ZMassFits/ZeeFits_MC_EnergyType4_CategoryBin1.pdf}
+	}  
+	\subfigure[$1.479 \le |\eta| < 2.5$]{
+		\includegraphics[width=0.45\textwidth]{figures/ZMassFits/ZeeFits_MC_EnergyType4_CategoryBin2.pdf}
+	}
+	\caption{Fits of the dielectron mass distribution in the Monte Carlo simulation to
+        a Breit-Wigner convoluted with a Crystal Ball resolution function. The fitted parameters 
+        of the Crystal Ball function are shown. The regression trained with track-related variables
+        and with $p_{T}$ bin splitting has been used to compute the electron momentum.}
+	\label{fig:ZMassFit_MC_Regression4}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+	\subfigure[$0.0 \le |\eta| < 1.0$]{
+		\includegraphics[width=0.45\textwidth]{figures/ZMassFits/ZeeFits_2012Data_EnergyType4_CategoryBin0.pdf}
+	} 
+	\subfigure[$1.0 \le |\eta| < 1.479$]{
+		\includegraphics[width=0.45\textwidth]{figures/ZMassFits/ZeeFits_2012Data_EnergyType4_CategoryBin1.pdf}
+	}  
+	\subfigure[$1.479 \le |\eta| < 2.5$]{
+		\includegraphics[width=0.45\textwidth]{figures/ZMassFits/ZeeFits_2012Data_EnergyType4_CategoryBin2.pdf}
+	}
+	\caption{Fits of the dielectron mass distribution in the 2012 data to
+        a Breit-Wigner convoluted with a Crystal Ball resolution function. The parameters $a_{\mathrm{CB}}$ 
+        and $n_{\mathrm{CB}}$ describing the low side tail of the Crystal Ball function have been fixed to the values
+        obtained from the corresponding fit to the MC simulation. The mass shift and width parameters 
+        of the Crystal Ball function are shown. The regression trained with track-related variables
+        and with $p_{T}$ bin splitting has been used to compute the electron momentum.}
+	\label{fig:ZMassFit_2012Data_Regression4}
+\end{figure}
+
+\clearpage
+
+
+\end{document}

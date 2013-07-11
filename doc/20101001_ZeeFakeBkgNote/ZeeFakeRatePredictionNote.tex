@@ -1,0 +1,315 @@
+\documentclass{cmspaper}
+%
+% LaTeX packages
+%
+\usepackage{graphicx}
+%\usepackage{psfig}
+%\usepackage{epsfig} 
+%\addtolength{\topmargin}{0.5 in}
+\usepackage{epic,rotating,epsfig}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{pstricks,pst-grad}
+\usepackage{subfigure}
+\usepackage{lineno}
+\usepackage{url}
+\linenumbers
+
+
+
+% include common commands
+\input{defs.tex}
+\input{commands.tex}
+
+%==========================================================
+\begin{document}
+% 
+%
+\begin{titlepage}
+\internalnote{AN-2010/000}
+\date{\today}
+\title{Fake Lepton Background Estimate for the \Z\To\EE Cross Section Measurement Using the Fake Rate Method}
+
+\begin{Authlist}
+%
+G.~Bauer~\Aref{a},
+J.~Bendavid~\Aref{a},
+E.~Butz~\Aref{a},
+M.~Chan~\Aref{a},
+V.~Dutta~\Aref{a},
+P.~Everaerts~\Aref{a},
+G.~G\'omez-Ceballos~\Aref{a},
+M.~Goncharov~\Aref{a},
+K.~Hahn~\Aref{a},
+P.~Harris~\Aref{a},
+M.~Klute~\Aref{a},
+I.~Kravchenko~\Aref{c},
+S.~Nahn~\Aref{a},
+C.~Paus~\Aref{a},
+D.~Ralph~\Aref{a},
+M.~Rudolph~\Aref{a},
+K.~Sumorok~\Aref{a},
+K.~Sung~\Aref{a},
+S.~Tkaczyk~\Aref{b},
+S.~Xie~\Aref{a},
+M.~Yang~\Aref{a},
+M.~Zanetti~\Aref{a}
+%
+\end{Authlist}
+
+\Anotfoot{a}{Laboratory for Nuclear Science, Massachusetts Institute of Technology, Cambridge, USA}
+\Anotfoot{b}{Fermilab National Accelerator Laboratory, Batavia, USA}
+\Anotfoot{c}{University of Nebraska, Lincoln, USA}
+
+
+\begin{abstract}
+A data driven estimate of the fake lepton backgrounds for the \Z\To\EE cross section measurement is presented for the first 2.88\ipb of CMS data. We obtain an estimate of $4.5 \pm 5.1$ (statistical) $\pm 2.2$ (systematic) events, representing a sub-percent level uncertainty on the cross section measurement. A comprehensive set of systematic uncertainties are accounted for.
+\end{abstract}
+\end{titlepage}
+
+
+\customSection{Introduction}
+One important aspect of the first \Z\To\EE cross section measurement \cite{CrossSectionNote} that was missing was a robust, data driven, estimate of the fake lepton backgrounds. The Monte Carlo simulation is known to be unreliable in predicting backgrounds containing fake electrons. The two main reasons for this deficiency in the Monte Carlo simulation is that a fake isolated electron is the result of a jet fragmentation occurring in a very extreme region of phase space where the fragmentation and hadronization models are not well constrained, and that the exact detector material is not precisely known. As a result one typically makes use of data driven techniques to estimate these backgrounds. We use one such method where we extrapolate from the yield of loose electrons to the yield of tight electrons using an orthogonal calibration sample dominated by fake electrons, where the tight electrons refer to those passing the electron selection that is used in the final event selection. The precise definition of the loose electron can be tuned in order to minimize systematic uncertainties, 
+
+The fake electron dominated calibration sample is defined by selecting events passing the HLT\_Jet30U trigger. From here on, we will refer to the VBTF 95\% working point electron selection as the tight electron selection. The fake rate is measured by counting the number of electron candidates passing the tight electron selection and dividing by the number of electron candidates passing the looser denominator selection. It is therefore a function of the particular definition that one uses for the loose candidates. We will use two different denominator selections for two different purposes, as explained in greater detail in Section \ref{sec:fakeratemethod}. 
+
+In order to remove any bias introduced by the jet trigger requirements, we veto any candidates that lie within a 0.3 $\Delta$R cone to the trigger jet with the highest measured transverse momentum. To account for dependencies on the kinematic quantities of the candidates, the fake rates are measured in bins of transverse momentum and pseudorapidity. 
+
+
+
+
+\customSection{Fake Lepton Background Estimation Method}
+\label{sec:fakeratemethod}
+For the \Z\To\EE analysis, there are three background processes involving fake electrons: QCD multijet events, where both electrons are jets faking electrons, \GAM+Jets events where one electron is a photon faking an electron and the other electron is a jet faking an electron, and \W+Jets events where one electron is a real electron and the other one is a jet faking an electron. One feature of the \Z\To\EE analysis, which generates some complications for estimating fake lepton backgrounds, is the fact that the signal to background ratio is particulaly large, even after imposing various anti-signal selection requirements. As a result, one must pay particular attention to signal contaminating the background sample. We use two different types of anti-signal selection and combine them to derive a total fake lepton background estimate.
+
+In the first case, referred to as the ``Loose+Loose'' extrapolation, we define the denominator to be any reconstructed GSF electrons falling inside the electron acceptance region. We select events containing two such denominator electrons, which fail the tight electron selection, whose mass lies inside of the Z mass window, between $60$ \GeVcc and $120$ \GeVcc. The requirement of two anti-selected electrons is sufficient to suppress signal contamination to a neglegible degree. These events are subsequently weighted by the product of the two individual fake rates, defined to be the efficiency that a denominator object, originating from a jet, passes the tight electron selection requirements, in order to construct a background estimate. This extrapolation makes the implicit assumption that all such denominator object pairs originate from jets, and essentially ignores the W+Jets and \GAM+Jets background. As a result, this estimate accounts for the QCD background only.
+
+For the second case, denoted as the ``Tight+Jet'' extrapolation, we define the denominator to be a reconstructed jet falling inside the electron acceptance region. The anti-Kt jet algorithm is used through the analysis. We select events containing one electron passing the full electron selection criteria and one such denominator jet, whose mass lies inside of the Z mass window, between $60$\GeVcc and $120$\GeVcc. The events are weighted by the fake rate for a jet to be matched to a reconstructed GSF electron passing the full electron selection. For the QCD component of the background, both selected electrons are fake electrons. Since the Tight+Jet selection does not specify which of the two fake electrons is required to pass the tight selection, our selection includes both cases. This results in a combinatorial double counting of the QCD background. 
+
+We correct for this overlap by subtracting the Loose+Loose prediction from the Tight+Jet prediction.
+
+
+\customSection{Electron Fake Rate Measurements}
+
+The fake rate measurements are performed in data events triggered by the presence of a $30$ \GeV\ Jet (HLT\_Jet30U trigger). The objects matching the trigger jet with the largest transverse momentum is ignored in the fake rate computation, in order to reduce bias from the jet trigger requirements. Details of the procedure can be found in reference\cite{FakeRateNote}. 
+
+Figure \ref{fig:GSFElectronFakeRate} shows one dimensional projections of the GSF electron fake rate as a function of the transverse momentum and pseudorapidity of the GSF electron. Figure \ref{fig:GSFElectronFakeRate_slices} show various slices of the two dimensional fake rate in bins of the transverse momentum. The measurement in the Jet30 data is in close agreement with the prediction from the Monte Carlo simulation.
+
+\begin{figure}[htb]
+  \begin{center}
+    \subfigure[]{\includegraphics[width=0.49\textwidth]{RecoElectronEfficiency_RecoDenominator_VBTF95WPIdIsoNumerator_Pt.eps}} 
+    \subfigure[]{\includegraphics[width=0.49\textwidth]{RecoElectronEfficiency_RecoDenominator_VBTF95WPIdIsoNumerator_Eta.eps}}
+    
+    \caption{The fake rate for a GSF electron to pass the VBTF95 electron selection measured in the Jet30 data sample are compared to the measurements performed in the corresponding QCD Monte Carlo sample. They are shown as a function of the $p_T$ (a) and $\eta$ (b) of the GSF electron. }
+    \label{fig:GSFElectronFakeRate}
+  \end{center}
+\end{figure}
+
+\begin{figure}[htb]
+  \begin{center} 
+    \subfigure[GSF electron $p_{T}$ $20$ - $25$]{\includegraphics[width=0.24\textwidth]{ElectronFakeRate_RecoDenominator_VBTF95WPIdIsoNumerator_PtSlices_Pt20.00To25.00.eps}} 
+    \subfigure[GSF electron $p_{T}$ $25$ - $30$]{\includegraphics[width=0.24\textwidth]{ElectronFakeRate_RecoDenominator_VBTF95WPIdIsoNumerator_PtSlices_Pt25.00To30.00.eps}}
+    \subfigure[GSF electron $p_{T}$ $30$ - $50$]{\includegraphics[width=0.24\textwidth]{ElectronFakeRate_RecoDenominator_VBTF95WPIdIsoNumerator_PtSlices_Pt30.00To50.00.eps}} 
+    \subfigure[GSF electron $p_{T}$ $50$ - $80$]{\includegraphics[width=0.24\textwidth]{ElectronFakeRate_RecoDenominator_VBTF95WPIdIsoNumerator_PtSlices_Pt50.00To80.00.eps}}
+    
+    \caption{The fake rate for a GSF electron to pass the VBTF95 electron selection measured in the Jet30 data sample are compared to the measurements performed in the corresponding QCD Monte Carlo sample. They are shown as a function of $\eta$ in various bins of transverse momentum. }
+    \label{fig:GSFElectronFakeRate_slices}
+  \end{center}
+\end{figure}
+
+
+
+
+One dimensional projections of the fake rate for jets to pass the VBTF95 electron selection are shown in Figure \ref{fig:JetElectronFakeRate} as a function of the transverse momentum and pseudorapidity of the jet. Figure \ref{fig:JetElectronFakeRate_slices} show various slices of the two dimensional fake rate in bins of the transverse momentum. The measurement in the Jet30 data is in close agreement with the prediction from the QCD Monte Carlo simulation, while there is a clear difference with respect to the W+Jets Monte Carlo. This difference is attributed to different fake electron composition and different quark-gluon content, and accounted for in the systematic uncertainties.
+
+\begin{figure}[htb]
+  \begin{center}
+    \subfigure[]{\includegraphics[width=0.49\textwidth]{RecoElectronEfficiency_JetDenominator_VBTF95WPIdIsoNumerator_Pt.eps}} 
+    \subfigure[]{\includegraphics[width=0.49\textwidth]{RecoElectronEfficiency_JetDenominator_VBTF95WPIdIsoNumerator_Eta.eps}}
+    
+    \caption{The fake rate for a jet to pass the VBTF95 electron selection measured in the Jet30 data sample are compared to the measurements performed in the corresponding QCD Monte Carlo sample. They are shown as a function of the $p_T$ (a) and $\eta$ (b) of the GSF electron. }
+    \label{fig:JetElectronFakeRate}
+  \end{center}
+\end{figure}
+
+\begin{figure}[htb]
+  \begin{center}
+    \subfigure[jet $p_{T}$ $20$ - $25$]{\includegraphics[width=0.24\textwidth]{ElectronFakeRate_JetDenominator_VBTF95WPIdIsoNumerator_PtSlices_Pt20.00To25.00.eps}} 
+    \subfigure[jet $p_{T}$ $25$ - $30$]{\includegraphics[width=0.24\textwidth]{ElectronFakeRate_JetDenominator_VBTF95WPIdIsoNumerator_PtSlices_Pt25.00To30.00.eps}}
+    \subfigure[jet $p_{T}$ $30$ - $50$]{\includegraphics[width=0.24\textwidth]{ElectronFakeRate_JetDenominator_VBTF95WPIdIsoNumerator_PtSlices_Pt30.00To50.00.eps}} 
+    \subfigure[jet $p_{T}$ $50$ - $80$]{\includegraphics[width=0.24\textwidth]{ElectronFakeRate_JetDenominator_VBTF95WPIdIsoNumerator_PtSlices_Pt50.00To80.00.eps}}
+    
+    \caption{The fake rate for a jet to pass the VBTF95 electron selection measured in the Jet30 data sample are compared to the measurements performed in the corresponding QCD Monte Carlo sample. They are shown as a function of $\eta$ in various bins of transverse momentum. }
+    \label{fig:JetElectronFakeRate_slices}
+  \end{center}
+\end{figure}
+
+
+\customSection{Performance on Monte Carlo Simulation}
+
+We first perform a check of the method using the Monte Carlo simulation, where we apply fake rates computed in simulated QCD events on simulated QCD, W+Jets, and Photon+Jets events and compare the estimate with the prediction of the Monte Carlo simulation. For the QCD simulation prediction, a different Monte Carlo sample has been used where certain generator level cuts have been introduced in order to enhance the number of simulated events with fake electrons. Figures \ref{fig:ZeeQCDBkgPrediction_MC}, \ref{fig:ZeeWJetsBkgPrediction_MC}, and \ref{fig:ZeePhotonJetsBkgPrediction_MC} show the comparison of the estimation using the fake rate method and the simulation prediction as a function of the dielectron mass, for the QCD, and W+Jets and \GAM+Jets background respectively. One observes agreement to within the total uncertainties of the method for the QCD background. The W+Jets background is underestimated due to the fact that the fake rate in W+Jets events is higher than the fake rate in QCD events due to different fake electron composition seen in Figure \ref{fig:JetElectronFakeRate}. This difference is included in the final systematic uncertainty estimate. Figure \ref{fig:ZeeTotalFakeBkgPrediction_MC} shows the analogous comparison for the sum of all fake lepton backgrounds. The resulting predictions for the number of background events in the $60$ GeV to $120$ GeV mass window is shown in Table \ref{tab:mcPrediction} for each of the relevent background processes separately. 
+
+
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=0.49\textwidth]{MCBkgFakeRatePrediction_QCD_FinalVsMC.eps}
+\includegraphics[width=0.49\textwidth]{MCBkgFakeRatePrediction_QCD_LooseLooseTightJetVsMC.eps}
+   \caption{The QCD background prediction using the Tight+Jet and Loose+Loose extrapolation performed on Monte Carlo simulation is compared with the direct prediction from the simulation in (a). The Tight+Jet and Loose+Loose extrapolations are compared to the prediction from the simulation in (b). }
+   \label{fig:ZeeQCDBkgPrediction_MC}
+\end{center}
+\end{figure}
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=0.49\textwidth]{MCBkgFakeRatePrediction_WJets_FinalVsMC.eps}
+\includegraphics[width=0.49\textwidth]{MCBkgFakeRatePrediction_WJets_LooseLooseTightJetVsMC.eps}
+   \caption{The QCD background prediction using the Tight+Jet and Loose+Loose extrapolation performed on Monte Carlo simulation is compared with the direct prediction from the simulation in (a). The Tight+Jet and Loose+Loose extrapolations are compared to the prediction from the simulation in (b). }
+   \label{fig:ZeeWJetsBkgPrediction_MC}
+\end{center}
+\end{figure}
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=0.49\textwidth]{MCBkgFakeRatePrediction_PhotonJets_FinalVsMC.eps}
+\includegraphics[width=0.49\textwidth]{MCBkgFakeRatePrediction_PhotonJets_LooseLooseTightJetVsMC.eps}
+   \caption{The QCD background prediction using the Tight+Jet and Loose+Loose extrapolation performed on Monte Carlo simulation is compared with the direct prediction from the simulation in (a). The Tight+Jet and Loose+Loose extrapolations are compared to the prediction from the simulation in (b). }
+   \label{fig:ZeePhotonJetsBkgPrediction_MC}
+\end{center}
+\end{figure}
+
+
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=0.49\textwidth]{MCFakeRatePrediction_FinalVsMC.eps}
+\includegraphics[width=0.49\textwidth]{MCFakeRatePrediction_LooseLooseTightJetVsMC.eps}
+   \caption{As a consistency check, the total fake lepton background prediction derived from the fake rate method performed on Monte Carlo simulation is compared with the direct prediction from the simulation in (a), while the Tight+Jet and Loose+Loose extrapolations are separately compared to the simulation prediction in (b). }
+   \label{fig:ZeeTotalFakeBkgPrediction_MC}
+\end{center}
+\end{figure}
+
+The effect of signal contamination on these predictions are estimated by performing the extrapolation procedure on signal Monte Carlo. Figure \ref{fig:ZeeSignalContamination} shows the amount of signal contamination in the Loose+Loose and Tight+Jet predictions compared to the total fake lepton background. The contamination is on the order of $1\%$ for the Tight+Jet prediction and $0.01\%$ for the Loose+Loose prediction. This yields a negligible effect on the final background estimate. 
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=0.49\textwidth]{SignalFakeRateContamination_LooseLooseTightJetVsMCBkg.eps}
+   \caption{The signal contamination from \Z\To\EE events in the Tight+Jet and Loose+Loose background prediction calculated from Monte Carlo simulation is compared with the total background prediction. }
+   \label{fig:ZeeSignalContamination}
+\end{center}
+\end{figure}
+
+
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+ Background Process                  &  Tight+Jet Prediction  & Loose+Loose Prediction  & Final Prediction & MC Simulation Prediction \\
+\hline
+ QCD                                 & 8.1                    & 5.0                     & 3.1              & 3.7                     \\ 
+ W+Jets                              & 0.5                    & 0.001                   & 0.5              &  1.0                    \\ 
+ Photon+Jets                         & 1.0                    & 0.03                    & 1.0              & 1.4                     \\ 
+\hline
+ Total                               & 9.5                    & 5.0                     & 4.5              & 6.0                     \\ 
+\hline
+\end{tabular}
+\caption{The predictions obtained from the fake rate method performed on the Monte Carlo are compared with the direct Monte Carlo simulation prediction for each of the relevent background processes separately. \label{tab:mcPrediction}}
+\end{center}
+\end{table}
+
+
+
+\customSection{Data Results}
+
+The data driven estimate of the fake lepton background is compared to the prediction from the Monte Carlo simulation in Figure \ref{fig:ZeeTotalFakeBkgPrediction_Data}. The Tight+Jet and Loose+Loose predictions are also separately compared to the background predicted by the Monte Carlo simulation. The background estimate inside the Z mass window is summarized in Table \ref{tab:dataPrediction}, along with the uncertainties. 
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=0.49\textwidth]{FakeRatePrediction_FinalVsMC.eps}
+\includegraphics[width=0.49\textwidth]{FakeRatePrediction_LooseLooseTightJetVsMC.eps}
+   \caption{The data driven fake lepton background prediction is compared with the prediction from the Monte Carlo simulation in (a), while the Tight+Jet and Loose+Loose extrapolations from data are separately compared with the prediction from the Monte Carlo simulation in (b). }
+   \label{fig:ZeeTotalFakeBkgPrediction_Data}
+\end{center}
+\end{figure}
+
+
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+ Data Tight+Jet Events               & 15820 \\
+ Tight+Jet Prediction                & 7.9 +- 4.7 (stat) +- 2.2 (W+Jets systematics) \\
+\hline
+ Data Loose+Loose Events             & 13906 \\
+ Loose+Loose Prediction              & 3.5 +- 2.0 (stat) \\
+\hline
+ Final Prediction                    & 4.5 +- 5.1 (stat) +- 2.2 (W+Jets systematics) \\
+\hline
+ MC Simulation Prediction            & 6.0 +- 0.9 \\
+\hline
+\end{tabular}
+\caption{The data driven fake lepton background estimates are summarized and compared to the result from the MC simulation. Only statistical uncertainties are given and dominated by the statistical uncertainty of the binned fake rate measurements. \label{tab:dataPrediction}}
+\end{center}
+\end{table}
+
+
+
+\customSection{Systematic Uncertainties}
+
+The dominant systematic uncertainties are those associated with the fake rate measurement itself. There may be differences between the calibration sample and the dielectron sample, in both the composition of the exact fake processes, each with different fake rates, and in the amount of jet activity, which affects the isolation fake rate. 
+
+To account for the difference in jet activity, we take the difference between the Jet30 data measurement and the Jet15 data measurement as a systematic uncertainty. However, the comparison, shown in Figures \ref{fig:RecoFakeRateJetTriggerSystematics} and \ref{fig:JetFakeRateJetTriggerSystematics}, yields a negligible difference. 
+
+To account for the composition effect, we take the difference between the fake rate measurement from the Jet30 data measurement and the W+Jet fake rate from Monte Carlo as a systematic uncertainty for the fraction of the background that originate from W+Jets and \GAM+Jets events. This fraction is calculated from the Tight+Jet and Loose+Loose predictions as in equation \ref{eqn:WJetRatioFormula} and found to be roughly $0.2$ in data. 
+
+\begin{eqnarray}
+  \label{eqn:WJetRatioFormula}  
+\mathrm{Fraction\ of\ non-QCD\ Background} = 1 - \frac{N_{\mathrm{Loose+Loose}}}{N_{\mathrm{Tight+Jet}} - N_{\mathrm{Loose+Loose}}}
+\end{eqnarray}
+
+This difference between the W+Jets fake rate and the fake rate measured in the Jet30 data is illustrated in Figure \ref{fig:JetElectronFakeRate} for the jet fake rate.  This systematic uncertainty is only included for the Tight+Jet extrapolation because the Loose+Loose prediction does not account for any W+Jets background by construction. When propagated to the Tight+Jet prediction, we obtain a systematic uncertainty of $2.2$ events.
+
+\begin{figure}[htb]
+  \begin{center}
+    \subfigure[]{\includegraphics[width=0.49\textwidth]{RecoElectronEfficiency_RecoDenominator_VBTF95WPIdIsoNumerator_JetTriggerSystematics_Pt.eps}}     
+    \caption{A comparison is made between the fake rate for GSF electrons to pass VBTF95 electron selection ($\epsilon_{\mathrm{fake}}$) measured in the Jet30 data sample and the Jet15 data sample.}
+    \label{fig:RecoFakeRateJetTriggerSystematics}
+  \end{center}
+\end{figure}
+
+\begin{figure}[htb]
+  \begin{center}
+    \subfigure[]{\includegraphics[width=0.49\textwidth]{RecoElectronEfficiency_JetDenominator_VBTF95WPIdIsoNumerator_JetTriggerSystematics_Pt.eps}}     
+    \caption{A comparison is made between the fake rate for jets to be matched to a GSF electron passing the VBTF95 electron selection ($\epsilon_{\mathrm{fake}}$) measured in the Jet30 data sample and the Jet15 data sample.}
+    \label{fig:JetFakeRateJetTriggerSystematics}
+  \end{center}
+\end{figure}
+
+
+Finally, an additional systematic uncertainty due to jet angular resolution is considered. Since an electron inside a jet may point significantly away from the central jet axis, it is possible for a jet whose direction is outside of the electron acceptance region in $\eta$ to give a fake electron whose direction points inside the acceptance region. To estimate the magnitude of this effect, we compute the Tight+Jet prediction for jets with $|\eta|$ between $2.5$ and $2.75$. The resulting number of events for the dataset under consideration is $0.3$, which is roughly $7\%$ of the total background estimate. This represents a negligible part of the total systematic uncertainty. 
+
+
+\customSection{Conclusion}
+We have combined two different data driven techniques to estimate the total fake lepton background for the \Z\To\EE analysis in $2.88\ipb$. We estimate a total fake lepton background of $4.5 \pm 5.1$ (statistical) $\pm 2.2$ (systematic) events. A comprehensive set of systematic effects are taken into account and propagated to the final result. The current total uncertainty on the fake lepton background determination using this method represents a roughly $0.6\%$ uncertainty on the \Z\To\EE cross section measurement, dominated by the statistical uncertainty from the measurement of the fake rate in jet data, which will decrease with an increasing data sample. This measurement serves as a supplemental documentation for the main W and Z inclusive cross section measurement described here\cite{UpdatedCrossSectionNote}.
+
+
+
+\vspace*{-0.2cm}
+\thebibliography{12}
+
+\bibitem{CrossSectionNote}
+ CMS AN-2010/116 , ``Measurements of Inclusive W and Z Cross Sections in pp Collisions at $\sqrt{s}=7$ TeV'', 
+The Vector Boson Task Force of the CMS Collaboration  \textit{et al.}.
+
+\bibitem{FakeRateNote}
+ CMS AN-2009/120, ``Study of Data-Driven Methods For Estimation of Fake Lepton Backgrounds'',
+G. Bauer \textit{et al.}.
+
+\bibitem{UpdatedCrossSectionNote}
+ CMS AN-2010/264 , ``Updated Measurements of Inclusive W and Z Cross Sections at $\sqrt{s}=7$ TeV'', 
+J. Alcaraz Maestre, \textit{et al.}.
+
+
+\end{document}
+
+

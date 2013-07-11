@@ -1,0 +1,10 @@
+# -*- Makefile -*-
+# $Id: BuildFile,v 1.1 2009/03/06 16:47:44 phedex Exp $
+
+<use name=MitAna/DataTree>
+<use name=MitCommon/MathTools>
+<use name=root>
+#<flags CXXFLAGS="-g">
+<export>
+   <lib name=MitPhysicsUtils>
+</export>

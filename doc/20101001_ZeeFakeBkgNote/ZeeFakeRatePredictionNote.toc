@@ -1,0 +1,7 @@
+\contentsline {section}{\numberline {1}\relax \mathversion {bold}Introduction \relax \mathversion {normal}}{2}
+\contentsline {section}{\numberline {2}\relax \mathversion {bold}Fake Lepton Background Estimation Method \relax \mathversion {normal}}{2}
+\contentsline {section}{\numberline {3}\relax \mathversion {bold}Electron Fake Rate Measurements \relax \mathversion {normal}}{2}
+\contentsline {section}{\numberline {4}\relax \mathversion {bold}Performance on Monte Carlo Simulation \relax \mathversion {normal}}{3}
+\contentsline {section}{\numberline {5}\relax \mathversion {bold}Data Results \relax \mathversion {normal}}{4}
+\contentsline {section}{\numberline {6}\relax \mathversion {bold}Systematic Uncertainties \relax \mathversion {normal}}{5}
+\contentsline {section}{\numberline {7}\relax \mathversion {bold}Conclusion \relax \mathversion {normal}}{6}

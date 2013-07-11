@@ -1,0 +1,14 @@
+#s8-h130ww2l-id9                                 0.5076
+#s8-h150ww2l-id9                                 0.9342
+s8-h160ww2l-id9                                 1.0962
+#s8-h170ww2l-id9                                 1.053
+#s8-h200ww2l-id9                                 0.5994
+#s8-h500ww2l-id9                                 0.1172
+f8-ttbar-mg-id9                               375.0
+f8-wjets-mg-id9                             35550.0
+s8-ww2l-id9                                     7.822
+s8-wz3l-id9                                     1.053
+s8-zz4l-id9                                     0.105
+f8-vqq-mg-id9                                 289.0
+f8-zjets-mg-id9                              3540.0
+#s8-incmu_15-id9                         509100000.0

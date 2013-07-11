@@ -1,0 +1,7 @@
+#s8-qcdem_20_30-id9
+#s8-qcdem_30_80-id9
+#s8-qcdem_80_170-id9
+f8-wjets-mg-id9
+s8-we-id9
+s8-wm-id9
+s8-wtau-id9

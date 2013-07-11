@@ -1,0 +1,380 @@
+%-------------------------------------------------------------------------------
+% private environments
+%-------------------------------------------------------------------------------
+
+\newcommand{\customChapter}[1]{\chapter{\boldmath #1 \unboldmath}}
+\newcommand{\customSection}[1]{\section{\boldmath #1 \unboldmath}}
+\newcommand{\customSubsection}[1]{\boldmath\subsection{#1}\unboldmath}
+\newcommand{\customSubsubsection}[1]{\boldmath\subsection{#1}\unboldmath}
+
+%-------------------------------------------------------------------------------
+% technical reference definitions
+%-------------------------------------------------------------------------------
+
+\newcommand{\AppendixRef}[1]{Appendix~\ref{#1}}
+\newcommand{\EquationRef}[1]{Equation~(\ref{#1})}
+\newcommand{\FigureRef}[1]{Figure~\ref{#1}}
+\newcommand{\ReferenceRef}[1]{Reference~\cite{#1}}
+\newcommand{\SectionRef}[1]{Section~\ref{#1}}
+\newcommand{\TableRef}[1]{Table~\ref{#1}}
+
+%-------------------------------------------------------------------------------
+% unit definitions
+%-------------------------------------------------------------------------------
+
+\newcommand{\fs}{\ensuremath{\mathrm{fs}}}
+\newcommand{\ps}{\ensuremath{\mathrm{ps}}}
+\newcommand{\ns}{\ensuremath{\mathrm{ns}}}
+\newcommand{\ips}{\ensuremath{\mathrm{ps^{-1}}}}
+\newcommand{\um}{\ensuremath{\mathrm{\mu m}}}
+\newcommand{\mm}{\ensuremath{\mathrm{mm}}}
+\newcommand{\cm}{\ensuremath{\mathrm{cm}}}
+\renewcommand{\deg}{\ensuremath{^\mathrm{o}}}
+\newcommand{\ifb}{\ensuremath{\mathrm{fb^{-1}}}}
+\newcommand{\ipb}{\ensuremath{\mathrm{pb^{-1}}}}
+\newcommand{\inb}{\ensuremath{\mathrm{nb^{-1}}}}
+\newcommand{\iub}{\ensuremath{\mathrm{\mu b^{-1}}}}
+\newcommand{\fb}{\ensuremath{\mathrm{fb}}}
+\newcommand{\pb}{\ensuremath{\mathrm{pb}}}
+\newcommand{\nb}{\ensuremath{\mathrm{nb}}}
+\newcommand{\ub}{\ensuremath{\mathrm{\mu b}}}
+\newcommand{\eV}{\ensuremath{\mathrm{e\kern -0.1em V}}}
+\newcommand{\keV}{\ensuremath{\mathrm{ke\kern -0.1em V}}}
+\newcommand{\MeV}{\ensuremath{\mathrm{Me\kern -0.1em V}}}
+\newcommand{\GeV}{\ensuremath{\mathrm{Ge\kern -0.1em V}}}
+\newcommand{\TeV}{\ensuremath{\mathrm{Te\kern -0.1em V}}}
+\newcommand{\eVc}{\ensuremath{\mathrm{e\kern -0.1em V/}c}}
+\newcommand{\keVc}{\ensuremath{\mathrm{ke\kern -0.1em V/}c}}
+\newcommand{\MeVc}{\ensuremath{\mathrm{Me\kern -0.1em V/}c}}
+\newcommand{\GeVc}{\ensuremath{\mathrm{Ge\kern -0.1em V/}c}}
+\newcommand{\TeVc}{\ensuremath{\mathrm{Te\kern -0.1em V/}c}}
+\newcommand{\eVcc}{\ensuremath{\mathrm{e\kern -0.1em V/}c^2}}
+\newcommand{\keVcc}{\ensuremath{\mathrm{ke\kern -0.1em V/}c^2}}
+\newcommand{\MeVcc}{\ensuremath{\mathrm{Me\kern -0.1em V/}c^2}}
+\newcommand{\GeVcc}{\ensuremath{\mathrm{Ge\kern -0.1em V/}c^2}}
+\newcommand{\TeVcc}{\ensuremath{\mathrm{Te\kern -0.1em V/}c^2}}
+\newcommand{\Tesla}{\ensuremath{\mathrm{T}}}
+
+\newcommand{\kB}{\ensuremath{\mathrm{kBytes}}}
+\newcommand{\MB}{\ensuremath{\mathrm{MBytes}}}
+\newcommand{\GB}{\ensuremath{\mathrm{GBytes}}}
+\newcommand{\PB}{\ensuremath{\mathrm{PBytes}}}
+\newcommand{\TB}{\ensuremath{\mathrm{TBytes}}}
+\newcommand{\kBs}{\ensuremath{\mathrm{kBytes/s}}}
+\newcommand{\MBs}{\ensuremath{\mathrm{MBytes/s}}}
+
+\newcommand{\Hz}{\ensuremath{\mathrm{Hz}}}
+\newcommand{\kHz}{\ensuremath{\mathrm{kHz}}}
+\newcommand{\MHz}{\ensuremath{\mathrm{MHz}}}
+\newcommand{\GHz}{\ensuremath{\mathrm{GHz}}}
+
+\newcommand{\icmSQs}{\ensuremath{\mathrm{cm^{-2}s^{-1}}}}
+
+%-------------------------------------------------------------------------------
+% reconstruction variable definitions
+%-------------------------------------------------------------------------------
+
+\newcommand{\SQS}{\ensuremath{\sqrt{s}}}
+\newcommand{\ILUM}{\ensuremath{{\cal L}}}
+\newcommand{\TZ}{\ensuremath{t_0}}
+\newcommand{\PHISIX}{\ensuremath{\mathrm{\phi_6}}}
+\newcommand{\PHIZERO}{\ensuremath{\mathrm{\phi_0}}}
+\newcommand{\DPHI}{\ensuremath{\mathrm{\Delta \phi}}}
+\newcommand{\ETA}{\ensuremath{\mathrm{\eta}}}
+\newcommand{\DZERO}{\ensuremath{\mathrm{d_0}}}
+\newcommand{\DZEB}{\ensuremath{\mathrm{d_B}}}
+\newcommand{\PT}{\ensuremath{\mathrm{p_T}}}
+\newcommand{\Y}{\ensuremath{\mathrm{y}}}
+\newcommand{\BDCUTS}{\ensuremath{\mathrm{\PT(\BD)>6\,\GeV;~|\Y| < 1}}}
+\newcommand{\XSBD}{\ensuremath{\mathrm{\sigma_\BD}}}
+\newcommand{\XSTOT}{\ensuremath{\mathrm{\sigma_{total}}}}
+
+\newcommand{\Br}{\ensuremath{{\cal B}}}
+
+%-------------------------------------------------------------------------------
+% CKM matrix related
+%-------------------------------------------------------------------------------
+
+\newcommand{\LAM}{\ensuremath{\mathrm{\lambda}}}
+\newcommand{\RHO}{\ensuremath{\mathrm{\rho}}}
+%\newcommand{\ETA}{\ensuremath{\mathrm{\eta}}}
+
+\newcommand{\VCKM}{\ensuremath{\mathrm{V}}}
+\newcommand{\VCKMd}{\ensuremath{\mathrm{V^\dagger}}}
+
+\newcommand{\VUD}{\ensuremath{\mathrm{V_{ud}}}}
+\newcommand{\VUS}{\ensuremath{\mathrm{V_{us}}}}
+\newcommand{\VUB}{\ensuremath{\mathrm{V_{ub}}}}
+\newcommand{\VCD}{\ensuremath{\mathrm{V_{cd}}}}
+\newcommand{\VCB}{\ensuremath{\mathrm{V_{cb}}}}
+\newcommand{\VCS}{\ensuremath{\mathrm{V_{cs}}}}
+\newcommand{\VTB}{\ensuremath{\mathrm{V_{tb}}}}
+\newcommand{\VTD}{\ensuremath{\mathrm{V_{td}}}}
+\newcommand{\VTS}{\ensuremath{\mathrm{V_{ts}}}}
+
+\newcommand{\VUDs}{\ensuremath{\mathrm{V^*_{ud}}}}
+\newcommand{\VUBs}{\ensuremath{\mathrm{V^*_{ub}}}}
+\newcommand{\VCDs}{\ensuremath{\mathrm{V^*_{cd}}}}
+\newcommand{\VCBs}{\ensuremath{\mathrm{V^*_{cb}}}}
+\newcommand{\VCSs}{\ensuremath{\mathrm{V^*_{cs}}}}
+\newcommand{\VTBs}{\ensuremath{\mathrm{V^*_{tb}}}}
+\newcommand{\VTDs}{\ensuremath{\mathrm{V^*_{td}}}}
+\newcommand{\VTSs}{\ensuremath{\mathrm{V^*_{ts}}}}
+
+%-------------------------------------------------------------------------------
+% physics parameter definitions
+%-------------------------------------------------------------------------------
+
+\newcommand{\EPS}{\ensuremath{\varepsilon}}
+\newcommand{\DIL}{\ensuremath{\rm D}}
+\newcommand{\EPSDSQ}{\ensuremath{\rm \varepsilon D^2}}
+
+\newcommand{\SINTA}{\ensuremath{\sin 2 \alpha}}
+\newcommand{\SINTB}{\ensuremath{\sin 2 \beta}}
+
+\newcommand{\PHIDNP}{\ensuremath{\mathrm{\phi^d_{NP}}}}
+\newcommand{\PHISNP}{\ensuremath{\mathrm{\phi^s_{NP}}}}
+
+\newcommand{\FU}{\ensuremath{\mathrm{f_u}}}
+\newcommand{\FD}{\ensuremath{\mathrm{f_d}}}
+\newcommand{\FS}{\ensuremath{\mathrm{f_s}}}
+\newcommand{\FLB}{\ensuremath{\mathrm{f_{\Lambda_B}}}}
+\newcommand{\EPSB}{\ensuremath{\varepsilon_\mathrm{b}}}
+
+\newcommand{\GBS}{\ensuremath{\Gamma_s}}
+\newcommand{\DGBS}{\ensuremath{\Delta \Gamma_s}}
+\newcommand{\MBS}{\ensuremath{m_\BS}}
+\newcommand{\DMS}{\ensuremath{\Delta m_s}}
+\newcommand{\XS}{\ensuremath{x_s}}
+
+\newcommand{\GBD}{\ensuremath{\Gamma_\mathrm{d}}}
+\newcommand{\DGBD}{\ensuremath{\Delta \Gamma_\mathrm{d}}}
+\newcommand{\DG}{\ensuremath{\Delta\Gamma}}
+\newcommand{\DGG}{\ensuremath{\Delta\Gamma/\Gamma}}
+\newcommand{\DGGS}{\ensuremath{\Delta\Gamma_s/\Gamma_s}}
+\newcommand{\MBD}{\ensuremath{m_d}}
+\newcommand{\DMD}{\ensuremath{\Delta m_d}}
+\newcommand{\XD}{\ensuremath{x_d}}
+
+\newcommand{\MT}{\ensuremath{m_t}}
+
+%-------------------------------------------------------------------------------
+% particle definitions
+%-------------------------------------------------------------------------------
+
+% single particles - bosons
+\newcommand{\GAM}{\ensuremath{\gamma}}
+\newcommand{\Z}{\ensuremath{\mathrm{Z^0}}}
+\newcommand{\W}{\ensuremath{\mathrm{W}}}
+\newcommand{\WP}{\ensuremath{\mathrm{W^+}}}
+\newcommand{\WM}{\ensuremath{\mathrm{W^-}}}
+\newcommand{\WPM}{\ensuremath{\mathrm{W^\pm}}}
+\newcommand{\WMP}{\ensuremath{\mathrm{W^\mp}}}
+\newcommand{\Higgs}{\ensuremath{\mathrm{H}}}
+
+% single particles - leptons
+\newcommand{\EL}{\ensuremath{\mathrm{e}}}
+\newcommand{\ELP}{\ensuremath{\mathrm{e^+}}}
+\newcommand{\ELM}{\ensuremath{\mathrm{e^-}}}
+\newcommand{\MU}{\ensuremath{\mathrm{\mu}}}
+\newcommand{\MUP}{\ensuremath{\mathrm{\mu^+}}}
+\newcommand{\MUM}{\ensuremath{\mathrm{\mu^-}}}
+\newcommand{\LP}{\ensuremath{\ell^{+}}}
+\newcommand{\LM}{\ensuremath{\ell^{-}}}
+\newcommand{\NL}{\ensuremath{\nu_{\ell}}}
+\newcommand{\NLB}{\ensuremath{\overline{\nu}_{\ell}}}
+
+% single particles - quarks
+\newcommand{\up}{\ensuremath{u}}
+\newcommand{\down}{\ensuremath{d}}
+\newcommand{\strange}{\ensuremath{s}}
+\newcommand{\charm}{\ensuremath{c}}
+\newcommand{\bottom}{\ensuremath{b}}
+\newcommand{\topquark}{\ensuremath{t}}
+\newcommand{\ubar}{\ensuremath{\bar{u}}}
+\newcommand{\dbar}{\ensuremath{\bar{d}}}
+\newcommand{\sbar}{\ensuremath{\bar{s}}}
+\newcommand{\cbar}{\ensuremath{\bar{c}}}
+\newcommand{\bbar}{\ensuremath{\bar{b}}}
+\newcommand{\tbar}{\ensuremath{\bar{t}}}
+
+
+
+
+% single particles - B hadrons
+\newcommand{\B}{\ensuremath{B}}
+\newcommand{\BU}{\ensuremath{\mathrm{B_u}}}
+\newcommand{\BUP}{\ensuremath{\mathrm{B^+}}}
+\newcommand{\BUM}{\ensuremath{\mathrm{B^-}}}
+\newcommand{\BD}{\ensuremath{\mathrm{B^0}}}
+\newcommand{\BDB}{\ensuremath{\mathrm{\overline{B^0}}}}
+\newcommand{\BS}{\ensuremath{\mathrm{B_s}}}
+\newcommand{\BSB}{\ensuremath{\mathrm{\overline{B}_s}}}
+\newcommand{\BC}{\ensuremath{\mathrm{B_c}}}
+\newcommand{\BCP}{\ensuremath{\mathrm{B_c^+}}}
+\newcommand{\BCM}{\ensuremath{\mathrm{B_c^-}}}
+\newcommand{\LB}{\ensuremath{\mathrm{\Lambda_b}}}
+\newcommand{\LBB}{\ensuremath{\mathrm{\overline{\Lambda}_b}}}
+
+% single particles - charmed hadrons
+\newcommand{\D}{\ensuremath{D}}
+\newcommand{\DZ}{\ensuremath{\mathrm{D^0}}}
+\newcommand{\DZB}{\ensuremath{\mathrm{\overline{D}^0}}}
+\newcommand{\DP}{\ensuremath{\mathrm{D^+}}}
+\newcommand{\DM}{\ensuremath{\mathrm{D^-}}}
+\newcommand{\DS}{\ensuremath{\mathrm{D_s}}}
+\newcommand{\DSP}{\ensuremath{\mathrm{D^+_s}}}
+\newcommand{\DSM}{\ensuremath{\mathrm{D^-_s}}}
+\newcommand{\DSPM}{\ensuremath{\mathrm{D^\pm_s}}}
+\newcommand{\DSMP}{\ensuremath{\mathrm{D^\mp_s}}}
+\newcommand{\DSS}{\ensuremath{\mathrm{D^*_s}}}
+\newcommand{\DSSP}{\ensuremath{\mathrm{D^{*\,+}_s}}}
+\newcommand{\DSSM}{\ensuremath{\mathrm{D^{*\,-}_s}}}
+\newcommand{\DSSPM}{\ensuremath{\mathrm{D^{*\,\pm}_s}}}
+\newcommand{\DSSMP}{\ensuremath{\mathrm{D^{*\,\mp}_s}}}
+\newcommand{\LC}{\ensuremath{\mathrm{\Lambda_c}}}
+\newcommand{\LCP}{\ensuremath{\mathrm{\Lambda_c^+}}}
+\newcommand{\LCM}{\ensuremath{\mathrm{\Lambda_c^-}}}
+\newcommand{\SCZ}{\ensuremath{\mathrm{\Sigma_c^0}}}
+\newcommand{\SCP}{\ensuremath{\mathrm{\Sigma_c^+}}}
+\newcommand{\SCPP}{\ensuremath{\mathrm{\Sigma_c^{++}}}}
+
+% single particles - quarkonia
+\newcommand{\UPSI}{\ensuremath{\Upsilon}}
+\newcommand{\JPSI}{\ensuremath{\mathrm{J/\psi}}}
+\newcommand{\PHI}{\ensuremath{\phi}}
+
+% single particles - kaons
+\newcommand{\K}{\ensuremath{K}}
+\newcommand{\KP}{\ensuremath{\mathrm{K^+}}}
+\newcommand{\KM}{\ensuremath{\mathrm{K^-}}}
+\newcommand{\KPM}{\ensuremath{\mathrm{K^\pm}}}
+\newcommand{\KMP}{\ensuremath{\mathrm{K^\mp}}}
+\newcommand{\KZ}{\ensuremath{\mathrm{K^0}}}
+\newcommand{\KZB}{\ensuremath{\mathrm{\overline{K}^0}}}
+\newcommand{\KS}{\ensuremath{\mathrm{K^*}}}
+\newcommand{\KSZ}{\ensuremath{\mathrm{K^{*\,0}}}}
+\newcommand{\KZS}{\ensuremath{\mathrm{K^0_S}}}
+\newcommand{\KZL}{\ensuremath{\mathrm{K^0_L}}}
+\newcommand{\LS}{\ensuremath{\mathrm{\Lambda}}}
+\newcommand{\SSZ}{\ensuremath{\mathrm{\Sigma^0}}}
+\newcommand{\SSP}{\ensuremath{\mathrm{\Sigma^{+}}}}
+\newcommand{\SSM}{\ensuremath{\mathrm{\Sigma^{-}}}}
+
+% single particles - pions
+\newcommand{\PI}{\ensuremath{\pi}}
+\newcommand{\PIZ}{\ensuremath{\pi^0}}
+\newcommand{\PIP}{\ensuremath{\pi^+}}
+\newcommand{\PIM}{\ensuremath{\pi^-}}
+
+% single particles - protons
+\newcommand{\PR}{\ensuremath{p}}
+\newcommand{\PRB}{\ensuremath{\overline{p}}}
+
+% particle pairs
+\newcommand{\EE}{\ensuremath{e^+e^-}}
+\newcommand{\PPBAR}{\ensuremath{p\overline{p}}}
+\newcommand{\BBBAR}{\ensuremath{b\overline{b}}}
+\newcommand{\CCBAR}{\ensuremath{c\overline{c}}}
+\newcommand{\ZZ}{\ensuremath{\mathrm{Z^{0}Z^{0}}}}
+\newcommand{\WW}   {\ensuremath{\WP\WM}}
+\newcommand{\TTBAR}{\ensuremath{\mathrm{t}\bar{\mathrm{t}}}}
+
+% more complicated particle combination
+\newcommand{\WPlusJets}{\ensuremath{W\mathrm{+Jets}}}
+\newcommand{\WPlusGamma}{\ensuremath{W\mathrm{+}\gamma}}
+\newcommand{\Wb}{\ensuremath{Wb}}
+\newcommand{\Wc}{\ensuremath{Wc}}
+\newcommand{\Wbb}{\ensuremath{Wbb}}
+\newcommand{\Wcc}{\ensuremath{Wcc}}
+
+%-------------------------------------------------------------------------------
+% particle decay chain definitions
+%-------------------------------------------------------------------------------
+
+% helper
+\renewcommand{\to}{\ensuremath{\rightarrow}}
+
+% Higgs decays
+\newcommand{\HiggsToWW}   {\ensuremath{\Higgs \to \WPM\WMP}}
+
+
+% Lambda_b hadronic decays
+\newcommand{\LBPRDZPI}   {\ensuremath{\LB \to \PR \DZ \PIP}}
+\newcommand{\LBLCDS}     {\ensuremath{\LB \to \LCP \DSM}}
+\newcommand{\LBLCDSS}    {\ensuremath{\LB \to \LCP \DSSM}}
+\newcommand{\LBLCDSPIPI} {\ensuremath{\LB \to \LCP \DSM \PIP \PIM}}
+\newcommand{\LBLCDSSPIPI}{\ensuremath{\LB \to \LCP \DSSM \PIP \PIM}}
+\newcommand{\LBPRDS}     {\ensuremath{\LB \to \PR \DSM}}
+\newcommand{\LBPRDSS}    {\ensuremath{\LB \to \PR \DSSM}}
+\newcommand{\LBPRDSPIPI} {\ensuremath{\LB \to \PR \DSM \PIP \PIM}}
+\newcommand{\LBPRDSSPIPI}{\ensuremath{\LB \to \PR \DSSM \PIP \PIM}}
+\newcommand{\LBLCPI}     {\ensuremath{\LB \to \LCP \PIM}}
+\newcommand{\LBLCPIPIPI} {\ensuremath{\LB \to \LCP \PIM \PIP \PIM}}
+\newcommand{\LBSCZPIPI}  {\ensuremath{\LB \to \SCZ \PIM \PIP}}
+\newcommand{\LBSCPPPIPI} {\ensuremath{\LB \to \SCPP \PIM \PIM}}
+\newcommand{\LBPRPI}     {\ensuremath{\LB \to \PR \PIM}}
+\newcommand{\LBPRPIPIPI} {\ensuremath{\LB \to \PR \PIM \PIP \PIM}}
+\newcommand{\LBPRK}      {\ensuremath{\LB \to \PR \KM}}
+
+% Lambda_c hadronic decays
+\newcommand{\LCPRKPI}   {\ensuremath{\LCP \to \PR \KM \PIP}}
+\newcommand{\LCLSPIPIPI}{\ensuremath{\LCP \to \LS \PIP \PIM \PIP}}
+\newcommand{\LCLSPI}    {\ensuremath{\LCP \to \LS \PIP}}
+
+% Sigma_c hadronic decays
+\newcommand{\SCZLCPI}   {\ensuremath{\SCZ \to \LCP \PIM}}
+\newcommand{\SCPPLCPI}  {\ensuremath{\SCPP \to \LCP \PIP}}
+
+% Bs hadronic decays
+\newcommand{\BSDSPI}   {\ensuremath{\BS \to \DSM \PIP}}
+\newcommand{\BSDSSPI}  {\ensuremath{\BS \to \DSSM \PIP}}
+\newcommand{\BSDSTPI}  {\ensuremath{\BS \to \DSM \PIP \PIP \PIM}}
+\newcommand{\BSDSSTPI} {\ensuremath{\BS \to \DSSM \PIP \PIP \PIM}}
+\newcommand{\BSDSDS}   {\ensuremath{\BS \to \DSM \DSP}}
+\newcommand{\BSDSSDS}  {\ensuremath{\BS \to \DSSPM \DSMP}}
+\newcommand{\BSDSSDSS} {\ensuremath{\BS \to \DSSM \DSSP}}
+\newcommand{\BSDSKPHI} {\ensuremath{\BS \to \DSPM \KMP \PHI }}
+\newcommand{\BSDSSKPHI}{\ensuremath{\BS \to \DSSPM \KMP \PHI }}
+\newcommand{\BSKK}     {\ensuremath{\BS \to \KM \KP}}
+\newcommand{\BSKPI}    {\ensuremath{\BS \to \KM \PIP}}
+
+% Bs leptonic decays
+\newcommand{\BSJPSIPHI}{\ensuremath{\BS \to \JPSI \PHI}}
+\newcommand{\BSNLDSX}  {\ensuremath{\BS \to \NL \LP \DSM X}}
+
+% Bd hadronic decays
+\newcommand{\BDPIPI}   {\ensuremath{\BD \to \PIM \PIP}}
+\newcommand{\BDPIK}    {\ensuremath{\BD \to \PIM \KP}}
+\newcommand{\BDJPSIKS} {\ensuremath{\BD \to \JPSI \KZS}}
+
+% Ds* decays
+\newcommand{\DSSDSGP}  {\ensuremath{\DSS \to \DS \gamma,\PIZ}}
+
+% Ds decays
+\newcommand{\DSPHIPI}  {\ensuremath{\DSM \to \PHI \PIM}}
+\newcommand{\DSKSK}    {\ensuremath{\DSM \to \KSZ \KM}}
+\newcommand{\DSPIPIPI} {\ensuremath{\DSM \to \PIM \PIP \PIM}}
+\newcommand{\DSKZSK}   {\ensuremath{\DSM \to \KZS \KM}}
+\newcommand{\DSTPI}    {\ensuremath{\DSM \to \PIM \PIM \PIP}}
+\newcommand{\DSKKZSPIPI}{\ensuremath{\DSM \to \KP \KZS \PIM \PIM}}
+\newcommand{\DSPHITPI} {\ensuremath{\DSM \to \PHI \PIM \PIM \PIP}}
+\newcommand{\DSKPIPI}  {\ensuremath{\DSM \to \KM \PIM \PIP}}
+\newcommand{\DSNLLPHIX}{\ensuremath{\DSM \to \NLB \LP \PHI   X}}
+\newcommand{\DSALL}    {\ensuremath{\DSM \to \rm all \,\, above }}
+
+% D decays
+\newcommand{\DZKPI}    {\ensuremath{\DZ \to \KM \PIP}}
+\newcommand{\DZKPIPIPI}{\ensuremath{\DZ \to \KM \PIP \PIM \PIP}}
+
+% Lambda_c hadronic decays
+\newcommand{\LSPRPI}   {\ensuremath{\LS \to \PR \PIM}}
+
+% Phi decays
+\newcommand{\PHIKK}    {\ensuremath{\PHI \to \KM \KP}}
+
+% K* decays
+\newcommand{\KSKPI}    {\ensuremath{\KSZ \to \KP \PIM}}
+
+% Kshort decays
+\newcommand{\KZSPIPI}  {\ensuremath{\KZS \to \KP \PIM}}

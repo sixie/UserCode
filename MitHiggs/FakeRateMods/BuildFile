@@ -1,0 +1,10 @@
+# -*- Makefile -*-
+# $Id $
+
+<use name=MitAna/TreeMod>
+<use name=MitPhysics/Init>
+<use name=MitPhysics/Utils>
+<flags CXXFLAGS="-g">
+<export>
+   <lib name=MitHiggsFakeRateMods>
+</export>

@@ -1,0 +1,9 @@
+# -*- Makefile -*-
+# $Id: BuildFile,v 1.2 2008/12/04 19:19:50 sixie Exp $
+
+<use name=MitPhysics/Mods>
+<use name=MitPhysics/Init>
+#<flags CXXFLAGS="-g">
+<export>
+   <lib name=MitHiggsIsolationStudyMods>
+</export>

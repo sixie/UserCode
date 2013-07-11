@@ -1,0 +1,9 @@
+# -*- Makefile -*-
+# $Id: BuildFile,v 1.1 2009/02/15 18:11:10 sixie Exp $
+
+<use name=MitAna/DataTree>
+<use root>
+#<flags CXXFLAGS="-g">
+<export>
+   <lib name=MitPhysicsInit>
+</export>

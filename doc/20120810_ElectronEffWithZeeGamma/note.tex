@@ -1,0 +1,905 @@
+\documentclass{cmspaper}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage[pdfborder=0 0 0,
+            colorlinks,
+            urlcolor = blue,
+            linkcolor = black,
+            citecolor = black,
+            menucolor = black,]
+           {hyperref}
+%% \usepackage[colorlinks]{hyperref}
+%% \usepackage{url}
+\usepackage[toc,page]{appendix}
+\usepackage{varioref}
+\renewcommand{\appendixname}{Appendix}
+%% \renewcommand{\appendixtocname}{List of appendices}
+
+\input{defs.tex}
+
+\setcounter{topnumber}{1}
+\setcounter{bottomnumber}{1}
+\setcounter{secnumdepth}{6}
+%===================================================================================================
+\begin{document}
+\begin{titlepage}
+
+  \analysisnote{2012/XXX}
+
+  \date{\today}
+
+  \title{Electron Efficiency Measurement Using the Radiative \ZToEEGamma\ Sample}
+
+  \input{authors.tex}
+
+  \begin{abstract}
+  In this note, we report a new method for measuring the electron selection efficiency for
+  electrons with $p_{T}$ below $20$~\GeV\ using radiative \ZToEEGamma\ events. After full
+  event selection requirements, the signal to background in the sample where the electron
+  fails the selection remains better than $10:1$, yielding a very clean measurement even
+  for electrons with $p_{T}$ in the range between $7$~\GeV\ and $10$~\GeV .
+  \end{abstract} 
+
+\end{titlepage}
+\tableofcontents
+%\listoftables
+%\listoffigures
+\newpage 
+
+%===================================================================================================
+\section{Introduction}
+  \label{sec:intro}
+
+The measurement of the electron selection efficiency is a very important part of any cross section measurement.
+The standard method for performing this measurement is the so-called ``tag and probe'' method which makes
+use of the \ZToEE\ resonance to select a very pure sample of unbiased electrons. These sample of unbiased 
+electrons are then used to determine the efficiency with which they pass a given set of selection
+requirements~\cite{ZeeTagAndProbeEGamma,ZeeTagAndProbe2010,ZeeTagAndProbeTool}.
+
+This method is appropriate for the bulk of electron candidates, but begins to fail for
+electrons with transverse momentum less than about $15$~\GeV . There are a number of reasons for the failure
+of the method. At very low transverse momentum, the background begins to dominate over the signal and a determination
+of the number of signal electrons that fail any particular selection becomes very difficult. In addition, the
+\ZToEE\ event sample where one of the electrons has very low momentum is an intrinsically biased sample which
+is produced only in the tails of various distributions. The only 
+two ways to produce such events are if the \Z\ has large transverse momentum or if it is produced at large
+pseudorapidity. Furthermore, at decreasing transverse momentum, the sample will contain an increasing fraction 
+of radiative electrons. 
+
+In the context of the \HiggsToZZ\ analysis, we want to measure the Monte Carlo to data efficiency scale factor.
+The electrons which are produced in \HiggsToZZ\ events are typically not from a very boosted system, and 
+are typically not radiative. Thus, the efficiency scale factors measured using the \ZToEE\ sample is not very representative
+of the sample for which we intend to apply the scale factors. Therefore, the goal is to formulate a method 
+which can be used to measure the efficiency of electrons which are produced in the bulk 
+in the transverse momentum range between $5$~\GeV\ and $15$~\GeV .  
+
+In this note we describe a method to perform this measurement using a sample of radiative
+\ZToEEGamma\ events, where a sufficiently high transverse momentum final state radiation 
+photon is produced such that one of the electrons has fairly low transverse momentum. 
+
+
+\section{Trigger and Datasets}
+
+In this note we perform the efficiency measurement for the first $5$~\ifb\ of the data
+collected in 2012. We use the certified data up to run number $196531$.
+The primary datasets used are given in Table \ref{tab:primarydatasets}.
+The Drell-Yan Monte Carlo dataset used is \/DYJetsToLL\_M-50\_TuneZ2Star\_8TeV-madgraph-tarball\/Summer12-PU\_S7\_START52\_V9-v2\/AODSIM .
+
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+ Primary Dataset Type                     & Primary Dataset Name                       \\
+\hline 
+\multirow{2}{*}{Double Electron Triggers} & \/DoubleElectron\/Run2012A-PromptReco-v1\/AOD \\
+                                          & \/DoubleElectron\/Run2012B-PromptReco-v1\/AOD \\
+\hline
+\multirow{2}{*}{Single Electron Triggers} & \/SingleElectron\/Run2012A-PromptReco-v1\/AOD \\
+                                          & \/SingleElectron\/Run2012B-PromptReco-v1\/AOD \\
+\hline
+\end{tabular}
+\caption{Summary of datasets used for the efficiency measurement
+  \label{tab:primarydatasets}
+}
+\end{center}
+\end{table}
+
+
+The events used to perform the measurement are triggered either by one of the special
+tag and probe triggers or by the single electron trigger. The tag and probe triggers 
+require one electron with relatively tigher requirements and another unbiased electron or 
+supercluster object with no requirements. These triggers have fairly high efficiency to collect
+the relevant events for this measurement, but they are prescaled to various degrees due to 
+their large rates. The single electron triggers have extremely tight selection 
+cuts but are unprescaled. The tag and probe triggers and the single electron triggers 
+that are used for this measurement are summarized in Table \ref{tab:triggers}.
+
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+ Trigger Type                             & Trigger Path  Name                                             \\
+\hline    
+\multirow{3}{*}{Tag and Probe Triggers}   & HLT\_Ele20\_CaloIdVT\_CaloIsoVT\_TrkIdT\_TrkIsoVT\_SC4\_Mass50 \\
+                                          & HLT\_Ele17\_CaloIdVT\_CaloIsoVT\_TrkIdT\_TrkIsoVT\_SC8\_Mass30 \\
+                                          & HLT\_Ele32\_CaloIdL\_CaloIsoVL\_SC17                           \\
+\hline
+Single Electron Triggers                  & HLT\_Ele27\_WP80                                               \\
+\hline
+\end{tabular}
+\caption{Summary of triggers used for the efficiency measurement
+  \label{tab:triggers}
+}
+\end{center}
+\end{table} 
+
+
+\section{Event Selection and Methodology}
+
+The events that we intend to use to perform the efficiency measurements contain two electrons and 
+one photon. One of the electrons is required to pass fairly tight requirements on electron
+identification and isolation. This electron will be denoted the ``tag'' electron. The tag
+electron is required to have $p_{T}$ greater than $20$~\GeV\ and be matched to the object
+which fired the electron trigger. The photon is required to have $E_{T}$ greater than $10$~\GeV. 
+In the case where the event is collected via the tag and probe triggers, this photon 
+is almost guaranteed to fire the supercluster leg of the tag and probe triggers, ensuring that
+the remaining electron for which we measure the efficiency remains unbiased. The
+full event selection is described in greater detail in the next subsection. 
+
+\subsection{ Event Selection }
+
+We select events with one tag electron, one photon, and another unbiased reconstructed electron.
+The unbiased reconstructed electron is denoted as the ``probe'' electron. For this measurement,
+we will focus in particular on probe electrons with $p_{T}$ between $7$~\GeV\ and $20$~\GeV.
+The photon candidate is required to be sufficiently separated from either of the two electrons,
+so that we do not mistakenly identify the same object as both the photon and one of the electrons. 
+The photon is declared to be sufficiently separated from any electron if the separation 
+in the $\eta$ coordinate is larger than $0.15$ or if the $\Delta$R is larger than $0.7$. 
+This requirement and following event selection requirements are motivated by the CMS $\Z\gamma$
+inclusive cross section measurement~\cite{VGammaPaper,VGammaCMSNote}.
+
+The requirements for the tag electron are fully summarized in Table \ref{tab:TagElectronCuts}. 
+Only electrons with $|\eta| < 2.5$ are considered. In Figure \ref{fig:MassEEGamma_NoSelection}, 
+we show the distribution of the mass of the dielectron plus photon system after 
+selecting a tag electron, a photon, and a probe electron for the Drell-Yan 
+Monte Carlo simulation sample, separated into different processes.
+We note that the dominant contribution at this stage of the selection are events where one of the 
+electrons from the \Z\ decay has been misidentified as a photon. To reduce this background we require
+that the photon does not match to any pixel seed. This requirement significantly reduces the rate for
+electrons to be misindentified as photons. However, if the photon candidate is geometrically very close
+to any nearby electron, the pixel seed reconstructed for the electron may be mismatched to the photon.
+To avoid inefficiency for the photon selection due to such cases, we make the pixel seed veto requirement
+only if the photon is sufficiently far away from the tag electron and the probe electron. For barrel
+photons, we impose the pixel seed veto requirement only if the closest distance in the $\eta$ coordinate
+between the photon and either of the two electrons is larger than $0.04$ or if the closest 
+distance in the $\phi$ coodinate between the photon and either of the two electrons is larger than
+$0.3$. For the endcap, the minimum $\Delta\eta$ condition is loosened to $0.08$ for the pixel seed
+veto to be applied.  
+
+
+\begin{table}[!ht]
+  \centering
+  \begin{tabular}{|l|c|}
+    \hline
+    Variable                            &  Requirement for Barrel (Endcap) electrons   \\
+    \hline
+    $\sigma_{i\eta i\eta}$              & $ < 0.1 (0.3) $                              \\
+    $|\Delta\eta|$                      & $ < 0.004 (0.005)$                           \\
+    $|\Delta\phi|$                      & $ < 0.06 (0.03)$                             \\
+    Number of missing expected hits     & $ \le 0$                                     \\
+    Matched to reconstructed conversion & not matched                                  \\
+    $|d_{0}|$                           & $ < 0.02$~cm                                 \\
+    $|d_{z}|$                           & $ < 0.1$~cm                                  \\
+    PF Isolation ($\Delta$R=0.4)        & $ < p_{T} \times 0.15$                       \\
+    \hline
+  \end{tabular}
+  \caption{ Summary of the requirements for the tag electron}
+  \label{tab:TagElectronCuts}
+\end{table}
+
+
+
+
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[width=0.6\textwidth]{figures/MassEEGamma_NoSelection.pdf}
+    \caption{The distributions of the dielectron plus photon mass are shown for different processes. 
+      The green histogram shows the $m_{ee\gamma}$ distribution for events where both electrons
+      and the photon are real and promptly produced. The red histogram shows the $m_{ee\gamma}$ 
+      distribution for events where at least one of the electrons or the photon was misidentified.
+      The blue distribution shows the sum of the two different components.
+    }
+    \label{fig:MassEEGamma_NoSelection}
+  \end{center}
+\end{figure}
+
+The distribution of $m_{ee\gamma}$ after the pixel seed veto requirement is shown in
+Figure \ref{fig:MassEEGamma_AfterPixelVeto}. Next we make requirements on the 
+dielectron mass and the sum of the dielectron mass and $m_{ee\gamma}$ to reduce
+the background from initial state radiation, which does not represent a resonance peak
+in $m_{ee\gamma}$ at the pole mass of the \Z\ boson. The distributions of $m_{ee}$
+and $m_{ee} + m_{ee\gamma}$ are shown in Figure \ref{fig:ISRRemoval}. We require that
+$m_{ee} + m_{ee\gamma} < 180$~\GeV\ and that $m_{ee} > 40$~\GeV. In addition,
+to remain unbiased by the mass requirement in the tag and probe triggers, we require that
+$m_{e\gamma} > 50$~\GeV.
+
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[width=0.6\textwidth]{figures/MassEEGamma_AfterPixelVeto.pdf}
+    \caption{The distributions of $m_{ee\gamma}$ after the pixel seed veto requirement
+      are shown for the different processes
+      as described in the captions of Figure \ref{fig:MassEEGamma_NoSelection}.       
+    }
+    \label{fig:MassEEGamma_AfterPixelVeto}
+  \end{center}
+\end{figure}
+
+\begin{figure}[htb]
+  \begin{center}
+    \subfigure[$m_{ee} + m_{ee\gamma}$]{\includegraphics[width=0.48\textwidth]{figures/MassPlusDileptonmass_AfterPixelVeto.pdf}}
+    \subfigure[$m_{ee}$]{\includegraphics[width=0.48\textwidth]{figures/Dileptonmass_AfterISRRemoval.pdf}}
+    \caption{ The distribution of the sum of the dielectron mass and $m_{ee\gamma}$ after the pixel seed veto
+      requirement is shown in (a). The distribution of the dielectron mass after requiring that $m_{ee} + m_{ee\gamma} < 180$~\GeV\
+      is shown in (b). 
+    }
+    \label{fig:ISRRemoval}
+  \end{center}
+\end{figure}
+
+In Figure \ref{} we show the $m_{ee\gamma}$ distribution after these selection criteria 
+that reduce the initial state radiation background for events where the probe has $p_{T}$ 
+between $7$~\GeV\ and $10$~\GeV. At this stage, there are still a significant amount
+of background remaining where the photon is a jet that has been misidentified. To reduce 
+such backgrounds, we make more stringent requirements on the shower shape of the photon.
+The distribution of $\mathrm{R}_{9}$ and $\sigma_{i\eta i\eta}$ are shown in 
+Figures \ref{fig:PhotonR9_LowPtProbes} and \ref{fig:PhotonSigmaIEtaIEta_LowPtProbes} respectively. 
+We require that the $\mathrm{R}_{9}$ is
+larger than $0.9$ and that the $\sigma_{i\eta i\eta}$ is less than $0.0105$ and $0.028$ for
+the barrel and endcap photons respectively. 
+
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[width=0.6\textwidth]{figures/MassEEGamma_AfterPixelVeto.pdf}
+    \caption{The distributions of $m_{ee\gamma}$ for events with probe electrons with $p_{T}$
+      between $7$~\GeV\ and $10$~\GeV\ are shown.        
+    }
+    \label{fig:MassEEGamma_AfterPixelVeto}
+  \end{center}
+\end{figure}
+
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[width=0.6\textwidth]{figures/R9_AfterLowPtSelection.pdf}
+    \caption{The distributions of the photon $\mathrm{R}_{9}$ for events with probe electrons with $p_{T}$
+      between $7$~\GeV\ and $10$~\GeV\ are shown. 
+    }
+    \label{fig:PhotonR9_LowPtProbes}
+  \end{center}
+\end{figure}
+
+\begin{figure}[htb]
+  \begin{center}
+    \subfigure[All Probes]{\includegraphics[width=0.48\textwidth]{figures/SigmaIEtaIEtaBarrel_AfterLowPtSelection.pdf}}
+    \subfigure[Failing Probes]{\includegraphics[width=0.48\textwidth]{figures/SigmaIEtaIEtaEndcap_AfterLowPtSelection.pdf}}
+    \caption{ The distributions of the photon $\sigma_{i\eta i\eta}$ for events with probe electrons with $p_{T}$
+      between $7$~\GeV\ and $10$~\GeV\ are shown. 
+    }
+    \label{fig:PhotonSigmaIEtaIEta_LowPtProbes}
+  \end{center}
+\end{figure} 
+
+
+Finally, the signal to background can be significantly enhanced by requiring that the photon and the probe 
+electron are geometrically near each other. The distribution of the $\Delta$R between the photon and the
+probe electron is shown in Figure \ref{fig:DeltaRProbePhoton}. We require that the $\Delta$R is less
+than $0.7$. After making all of these selection requirements, we obtain the $m_{ee\gamma}$ distribution
+shown in Figure \ref{fig:MassEEGamma_AfterAllSelection}. The signal to background in the region near the 
+pole mass of the \Z\ boson is better than $10:1$. 
+
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[width=0.6\textwidth]{figures/DeltaRProbePhoton_AfterPhotonSelection.pdf}
+    \caption{The distributions of $\Delta$R between the photon and the probe electron,
+      for events with probe electrons with $p_{T}$ between $7$~\GeV\ and $10$~\GeV
+    }
+    \label{fig:DeltaRProbePhoton}
+  \end{center}
+\end{figure}
+
+\begin{figure}[htb]
+  \begin{center}
+    \subfigure[Barrel]{\includegraphics[width=0.48\textwidth]{figures/MassEEGamma_AfterAllSelection.pdf}}
+    \subfigure[Endcap]{\includegraphics[width=0.48\textwidth]{figures/MassEEGamma_AfterAllSelectionProbeFail.pdf}}
+    \caption{The distributions of $m_{ee\gamma}$ after all selection requirements
+      for events with probe electrons with $p_{T}$ between $7$~\GeV\ and $10$~\GeV\  are shown. 
+      All such events are shown in (a), and those events where the probe electron fails the 
+      selection requirements used for the \HiggsToZZ\ analysis are shown in (b). 
+    }
+    \label{fig:MassEEGamma_AfterAllSelection}
+  \end{center}
+\end{figure}
+
+
+\subsection{ Efficiency Fit Models }
+
+To extract the efficiency we perform a simultaneous unbinned maximum likelihood fit of the $m_{ee\gamma}$ mass 
+distribution for events where the probe passes the particular selection requirement and the events where 
+the probe fails the particular selection requirements. The shape of the signal in $m_{ee\gamma}$ is 
+modelled by the convolution of the template shape obtained from the simulation with a gaussian whose 
+mean and width are allowed to float. The gaussian is intended to model any potential difference in
+the energy scale and resolution of the electrons and photon between the simulation and the data. 
+
+From Figure \ref{fig:MassEEGamma_AfterAllSelection} one can see that the background is dominated by events
+where one of the electrons from the \Z\ boson decay is misidentified as a photon, and the probe electron
+is a jet that has been misidentified. This event sample exhibits a particular $m_{ee\gamma}$ shape which is
+primarily determined by the kinematics of the event. The fact that the tag electron and photon system originate
+from the \Z\ boson resonance and the fact that the probe electron is required to have $p_{T}$ around $10$~\GeV\ 
+implies that the shape of the $m_{ee\gamma}$ will exhibit a peaking structure slightly
+above $100$~\GeV. Since the shape of this distribution is primarily determined by kinematics, the simulation
+prediction is expected to the fairly accurate. In particular the separation in the peak between this background
+and the final state radiation signal predicted by the Monte Carlo simulation is expected to be quite robust. 
+Therefore, we model the shape of the background with a convolution of the same gaussian as defined above for the 
+signal and the template shape obtained for the background from the simulation. Finally another exponential
+background component is added to describe the contribution from any remaining processes, which are expected to be
+very small. The use of the convolution with the same gaussian function for signal and background essentially
+corrects for an overall energy scale and resolution, but assumes that these corrections do not differ between
+the signal and the background. Given that the signal and background are very similar, one exhibiting a peak at the
+pole mass of the \Z\ boson and one exhibiting a peak about $10$~\GeV\ higher, the assumption that the energy
+scale and resolution corrections from the simulation to the data is the same is a fairly robust one. 
+
+Due to the fact that the simulation has a limited number of events passing all selection cuts, the 
+background template will exhibit significant statistical fluctuations. To partially mitigate this problem,
+we note that the shape of the $m_{ee\gamma}$ distribution for background does not have any significant 
+dependence on the $\Delta$R. This is illustrated in Figure \ref{fig:BackgroundShapeModeling}, where we 
+observe that the shape is identical for events with $\Delta$R$<0.7$ and events 
+with $0.7 < \Delta$R$<1.5$. Beyond $1.5$, the shape begins to exhibit small biases. 
+Therefore we use events with $\Delta$R$<1.5$ from the simulation to build the mass shape templates. 
+Furthermore, for the background, variation in the $m_{ee\gamma}$ distribution shape
+between the barrel and the endcap is small compared to statistical fluctuations of the 
+Monte Carlo sample. Therefore, we combine the barrel and endcap templates to suppress
+the effect of statistical fluctuations of the limited Monte Carlo sample. This is observed to yield
+more stable fit results.
+
+
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[width=0.6\textwidth]{figures/MassEEGamma_BackgroundShapeModeling.pdf}
+    \caption{A comparison of the $m_{ee\gamma}$ shape is shown between events with $\Delta$R$<0.7$ and events 
+      with $0.7 < \Delta$R$<1.5$ for the background.
+    }
+    \label{fig:BackgroundShapeModeling}
+  \end{center}
+\end{figure}
+
+\subsection{ Photon Footprint Removal }
+
+For the measurement of the isolation efficiency, it is very important to properly account for the footprint
+of the photon near the probe. We must properly match the photon to the corresponding particle flow candidate
+in the isolation cone of the probe electron, and exclude it from the isolation sum. Ideally this matching
+can be done using the reference from the photon and the particle flow candidate to the same supercluster
+object. For technical reasons, we perform this matching by excluding any particle flow photons with 
+$|\Delta\eta|<0.015$ to the reconstructed photon if the photon is in the barrel, and excluding any particle
+flow photons with $\Delta$R$<0.07$ to the reconstructed photon if the photon is in the endcap. Furthermore,
+we exclude the particle flow candidate of any type with the smallest $\Delta$R to the reconstructed
+photon is the $\Delta$R is less than $0.1$. After performing this footprint removal, we obtain a fairly
+flat efficiency as a function of the $\Delta$R between the photon and the probe electron. This efficiency 
+measured from the simulation is shown in Figure \ref{fig:EfficiencyVsDeltaR}.
+
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[width=0.6\textwidth]{figures/Efficiency_DeltaRProbePhoton.pdf}
+    \caption{The efficiency of the electron selection used for the \HiggsToZZ\ analysis for ICHEP 2012 for
+      probe electrons with $p_{T}$ between $7$~\GeV\ and $10$~\GeV, as a function of the $\Delta$R between
+      the photon and the probe electron.
+    }
+    \label{fig:EfficiencyVsDeltaR}
+  \end{center}
+\end{figure}
+
+
+\section{Results}
+
+Using the method described above, we measure the efficiency for reconstructed GSF electrons to pass the 
+selection cuts used for the ICHEP 2012 \HiggsToZZ\ analysis \cite{HZZICHEPCMSNote,HZZICHEPCaliforniaCMSNote}.
+The result of the efficiency extraction fits are shown in Figures \ref{fig:MassFits_Pt7To10}, \ref{fig:MassFits_Pt10To15},
+and \ref{fig:MassFits_Pt15To20} for electrons with $p_{T}$ between $7$~\GeV\ and $10$~\GeV, between $10$~\GeV\ and $15$~\GeV,
+and between $15$~\GeV\ and $20$~\GeV respectively. Since the background in the passing sample are negligibly small, we
+fixed the background to zero in the fit for the pass sample.  
+The efficiency measured from the Monte Carlo simulation, the data, and the
+Monte Carlo to data scale factors are summarized in bins of $p_{T}$ and $\eta$ in Table \ref{tab:Efficiency_HZZICHEP2012WP}.
+We observe that the scale factors are consistent with $1.0$ for the bins with $p_{T}$ between $10$~\GeV\ and $20$~\GeV.
+For the lowest $p_{T}$ bin, the scale factor is about $0.8$ in the barrel and $0.7$ in the endcap. 
+
+\begin{figure}[htb]
+  \begin{center}
+    \subfigure[Barrel Pass]{\includegraphics[width=0.48\textwidth]{figures/passetapt_TemplateConvGausPlusExpFit_0.pdf}}
+    \subfigure[Barrel Fail]{\includegraphics[width=0.48\textwidth]{figures/failetapt_TemplateConvGausPlusExpFit_0.pdf}}
+    \subfigure[Endcap Pass]{\includegraphics[width=0.48\textwidth]{figures/passetapt_TemplateConvGausPlusExpFit_1.pdf}}
+    \subfigure[Endcap Fail]{\includegraphics[width=0.48\textwidth]{figures/failetapt_TemplateConvGausPlusExpFit_1.pdf}}
+    \caption{Fits to the $m_{ee\gamma}$ distribution are shown for the pass and fail samples for
+      electron probes with $p_{T}$ between $7$~\GeV\ and $10$~\GeV.
+    }
+    \label{fig:MassFits_Pt7To10}
+  \end{center}
+\end{figure}
+
+\begin{figure}[htb]
+  \begin{center}
+    \subfigure[Barrel Pass]{\includegraphics[width=0.48\textwidth]{figures/passetapt_TemplateConvGausPlusExpFit_2.pdf}}
+    \subfigure[Barrel Fail]{\includegraphics[width=0.48\textwidth]{figures/failetapt_TemplateConvGausPlusExpFit_2.pdf}}
+    \subfigure[Endcap Pass]{\includegraphics[width=0.48\textwidth]{figures/passetapt_TemplateConvGausPlusExpFit_3.pdf}}
+    \subfigure[Endcap Fail]{\includegraphics[width=0.48\textwidth]{figures/failetapt_TemplateConvGausPlusExpFit_3.pdf}}
+    \caption{Fits to the $m_{ee\gamma}$ distribution are shown for the pass and fail samples for
+      electron probes with $p_{T}$ between $10$~\GeV\ and $15$~\GeV.
+    }
+    \label{fig:MassFits_Pt10To15}
+  \end{center}
+\end{figure}
+
+\begin{figure}[htb]
+  \begin{center}
+    \subfigure[Barrel Pass]{\includegraphics[width=0.48\textwidth]{figures/passetapt_TemplateConvGausPlusExpFit_4.pdf}}
+    \subfigure[Barrel Fail]{\includegraphics[width=0.48\textwidth]{figures/failetapt_TemplateConvGausPlusExpFit_4.pdf}}
+    \subfigure[Endcap Pass]{\includegraphics[width=0.48\textwidth]{figures/passetapt_TemplateConvGausPlusExpFit_5.pdf}}
+    \subfigure[Endcap Fail]{\includegraphics[width=0.48\textwidth]{figures/failetapt_TemplateConvGausPlusExpFit_5.pdf}}
+    \caption{Fits to the $m_{ee\gamma}$ distribution are shown for the pass and fail samples for
+      electron probes with $p_{T}$ between $15$~\GeV\ and $20$~\GeV.
+    }
+    \label{fig:MassFits_Pt15To20}
+  \end{center}
+\end{figure}
+
+ \begin{table}[!ht]
+ \begin{center} 
+ \begin{tabular}{|c|c|c|c|}
+ \hline
+ $p_{T}$ / $\eta$ bin    &  Monte Carlo Efficiency    &  Data Efficiency   &  MC to Data Scale Factor \\   \hline           
+$  7.0 < p_{T} \le  10.0$ , $  0.0  \le |\eta| <   1.5$   &       0.6907 +/- 0.0274   &       0.5518 +/- 0.0429   &       0.7989 +/- 0.0697   \\   
+\hline
+$  7.0 < p_{T} \le  10.0$ , $  1.5  \le |\eta| <   2.5$   &       0.4819 +/- 0.0607   &       0.3076 +/- 0.0666   &       0.6382 +/- 0.1598   \\   
+\hline
+$ 10.0 < p_{T} \le  15.0$ , $  0.0  \le |\eta| <   1.5$   &       0.8330 +/- 0.0130   &       0.8212 +/- 0.0177   &       0.9859 +/- 0.0262   \\   
+\hline
+$ 10.0 < p_{T} \le  15.0$ , $  1.5  \le |\eta| <   2.5$   &       0.6833 +/- 0.0344   &       0.6961 +/- 0.0481   &       1.0188 +/- 0.0870   \\   
+\hline
+$ 15.0 < p_{T} \le  20.0$ , $  0.0  \le |\eta| <   1.5$   &       0.8875 +/- 0.0107   &       0.8738 +/- 0.0007   &       0.9845 +/- 0.0119   \\   
+\hline
+$ 15.0 < p_{T} \le  20.0$ , $  1.5  \le |\eta| <   2.5$   &       0.8411 +/- 0.0261   &       0.8132 +/- 0.0121   &       0.9668 +/- 0.0333   \\   
+\hline
+$ 20.0 < p_{T} $ , $  0.0  \le |\eta| <   1.5$   &       0.9246 +/- 0.0058   &       0.9209 +/- 0.0076   &       0.9959 +/- 0.0103   \\   
+\hline
+$ 20.0 < p_{T} $ , $  1.5  \le |\eta| <   2.5$   &       0.9035 +/- 0.0148   &       0.8745 +/- 0.0206   &       0.9679 +/- 0.0277   \\   
+\hline
+\end{tabular}
+\caption{The efficiencies for the electron selection used in the \HiggsToZZ\ analysis for ICHEP 2012
+measured from the Monte Carlo simulation and the data, and the Monte Carlo
+to data scale factors are shown for different bins of $p_{T}$ and $\eta$. }
+\label{tab:Efficiency_HZZICHEP2012WP}
+\end{center}
+\end{table}
+
+To perform further cross checks of these efficiency scale factors, we measure the efficiency of the isolation
+requirement only. These efficiencies are summarized in Table \ref{tab:Efficiency_HZZICHEP2012Iso}. In this case,
+we observe that all scale factors are statistically consistent with $1.0$, and conclude that the significant scale 
+factor correction is not a result of the isolation. 
+
+ \begin{table}[!ht]
+ \begin{center} 
+ \begin{tabular}{|c|c|c|c|}
+ \hline
+ $p_{T}$ / $\eta$ bin    &  Monte Carlo Efficiency    &  Data Efficiency   &  MC to Data Scale Factor \\   \hline           
+$  7.0 < p_{T} \le  10.0$ , $  0.0  \le |\eta| <   1.5$   &       0.8232 +/- 0.0224   &       0.7699 +/- 0.0484   &       0.9352 +/- 0.0640   \\   
+\hline
+$  7.0 < p_{T} \le  10.0$ , $  1.5  \le |\eta| <   2.5$   &       0.8105 +/- 0.0490   &       0.8244 +/- 0.0586   &       1.0171 +/- 0.0949   \\   
+\hline
+$ 10.0 < p_{T} \le  15.0$ , $  0.0  \le |\eta| <   1.5$   &       0.8866 +/- 0.0108   &       0.8981 +/- 0.0158   &       1.0130 +/- 0.0217   \\   
+\hline
+$ 10.0 < p_{T} \le  15.0$ , $  1.5  \le |\eta| <   2.5$   &       0.8843 +/- 0.0244   &       0.8747 +/- 0.0375   &       0.9891 +/- 0.0504   \\   
+\hline
+$ 15.0 < p_{T} \le  20.0$ , $  0.0  \le |\eta| <   1.5$   &       0.9209 +/- 0.0089   &       0.9096 +/- 0.0125   &       0.9877 +/- 0.0166   \\   
+\hline
+$ 15.0 < p_{T} \le  20.0$ , $  1.5  \le |\eta| <   2.5$   &       0.9253 +/- 0.0192   &       0.9852 +/- 0.0079   &       1.0648 +/- 0.0236   \\   
+\hline
+$ 20.0 < p_{T} $ , $  0.0  \le |\eta| <   1.5$   &       0.9529 +/- 0.0037   &       0.9508 +/- 0.0055   &       0.9978 +/- 0.0069   \\   
+\hline
+$ 20.0 < p_{T} $ , $  1.5  \le |\eta| <   2.5$   &       0.9695 +/- 0.0074   &       0.9941 +/- 0.0088   &       1.0254 +/- 0.0120   \\   
+\hline
+\end{tabular}
+\caption{The efficiencies for the electron isolation requirement measured from the Monte Carlo simulation and the data, and the Monte Carlo
+to data scale factors are shown for different bins of $p_{T}$ and $\eta$. }
+\label{tab:Efficiency_HZZICHEP2012Iso}
+\end{center}
+\end{table}
+
+Next we measure the efficiency of the BDT electron identification and impact parameter significance requirements 
+given that the electron already passed the isolation requirement. This isolation requirement reduces 
+the background to a negligible level, allowing the efficiency
+to be measured simply by counting passing and failing probes. The resulting efficiencies and scale factors are shown in
+Table \ref{tab:Efficiency_HZZICHEP2012IDGivenIso}. We observe that the scale factors for the lowest $p_{T}$ bins
+are statistically consistent with the scale factors obtained for the full selection efficiency. This confirms that the
+disagreement between data and Monte Carlo is originating from the BDT electron identification and impact parameter significance 
+requirements. As a final cross check we measure the efficiency of the isolation requirement given that the 
+electron already passed the identification and impact parameter significance requirements. These efficiencies are summarized in 
+Table \ref{tab:Efficiency_HZZICHEP2012IsoGivenID} and demonstrate again that the isolation efficiency agrees between
+data and Monte Carlo simulation. 
+
+
+ \begin{table}[!ht]
+ \begin{center} 
+ \begin{tabular}{|c|c|c|c|}
+ \hline
+ $p_{T}$ / $\eta$ bin    &  Monte Carlo Efficiency    &  Data Efficiency   &  MC to Data Scale Factor \\   \hline           
+$  7.0 < p_{T} \le  10.0$ , $  0.0  \le |\eta| <   1.5$   &       0.8423 +/- 0.0240   &       0.7185 +/- 0.0349   &       0.8531 +/- 0.0480   \\   
+\hline
+$  7.0 < p_{T} \le  10.0$ , $  1.5  \le |\eta| <   2.5$   &       0.6364 +/- 0.0629   &       0.4103 +/- 0.0762   &       0.6447 +/- 0.1338   \\   
+\hline
+$ 10.0 < p_{T} \le  15.0$ , $  0.0  \le |\eta| <   1.5$   &       0.9383 +/- 0.0091   &       0.9406 +/- 0.0100   &       1.0025 +/- 0.0144   \\   
+\hline
+$ 10.0 < p_{T} \le  15.0$ , $  1.5  \le |\eta| <   2.5$   &       0.7710 +/- 0.0324   &       0.7453 +/- 0.0385   &       0.9666 +/- 0.0643   \\   
+\hline
+$ 15.0 < p_{T} \le  20.0$ , $  0.0  \le |\eta| <   1.5$   &       0.9575 +/- 0.0072   &       0.9522 +/- 0.0090   &       0.9944 +/- 0.0121   \\   
+\hline
+$ 15.0 < p_{T} \le  20.0$ , $  1.5  \le |\eta| <   2.5$   &       0.8962 +/- 0.0225   &       0.8083 +/- 0.0326   &       0.9020 +/- 0.0427   \\   
+\hline
+$ 20.0 < p_{T} $ , $  0.0  \le |\eta| <   1.5$   &       0.9768 +/- 0.0028   &       0.9749 +/- 0.0033   &       0.9980 +/- 0.0044   \\   
+\hline
+$ 20.0 < p_{T} $ , $  1.5  \le |\eta| <   2.5$   &       0.9476 +/- 0.0094   &       0.9115 +/- 0.0138   &       0.9620 +/- 0.0174   \\   
+\hline
+\end{tabular}
+\caption{The efficiencies for the electron identification requirement given that the electron passed
+  the isolation requirement measured from the Monte Carlo simulation and the data, and the Monte Carlo
+to data scale factors are shown for different bins of $p_{T}$ and $\eta$. }
+\label{tab:Efficiency_HZZICHEP2012IDGivenIso}
+\end{center}
+\end{table}
+
+ \begin{table}[!ht]
+ \begin{center} 
+ \begin{tabular}{|c|c|c|c|}
+ \hline
+ $p_{T}$ / $\eta$ bin    &  Monte Carlo Efficiency    &  Data Efficiency   &  MC to Data Scale Factor \\   \hline           
+$  7.0 < p_{T} \le  10.0$ , $  0.0  \le |\eta| <   1.5$   &       0.8339 +/- 0.0243   &       0.7760 +/- 0.0365   &       0.9306 +/- 0.0515   \\   
+\hline
+$  7.0 < p_{T} \le  10.0$ , $  1.5  \le |\eta| <   2.5$   &       0.8167 +/- 0.0640   &       0.8421 +/- 0.0920   &       1.0311 +/- 0.1386   \\   
+\hline
+$ 10.0 < p_{T} \le  15.0$ , $  0.0  \le |\eta| <   1.5$   &       0.8939 +/- 0.0109   &       0.9035 +/- 0.0117   &       1.0108 +/- 0.0180   \\   
+\hline
+$ 10.0 < p_{T} \le  15.0$ , $  1.5  \le |\eta| <   2.5$   &       0.9066 +/- 0.0268   &       0.9186 +/- 0.0308   &       1.0132 +/- 0.0453   \\   
+\hline
+$ 15.0 < p_{T} \le  20.0$ , $  0.0  \le |\eta| <   1.5$   &       0.9236 +/- 0.0090   &       0.9317 +/- 0.0097   &       1.0087 +/- 0.0144   \\   
+\hline
+$ 15.0 < p_{T} \le  20.0$ , $  1.5  \le |\eta| <   2.5$   &       0.9357 +/- 0.0195   &       0.9510 +/- 0.0228   &       1.0163 +/- 0.0323   \\   
+\hline
+$ 20.0 < p_{T} $ , $  0.0  \le |\eta| <   1.5$   &       0.9542 +/- 0.0037   &       0.9500 +/- 0.0046   &       0.9956 +/- 0.0062   \\   
+\hline
+$ 20.0 < p_{T} $ , $  1.5  \le |\eta| <   2.5$   &       0.9731 +/- 0.0073   &       0.9913 +/- 0.0056   &       1.0187 +/- 0.0096   \\   
+\hline
+\end{tabular}
+\caption{The efficiencies for the electron isolation requirement given that the electron passed the identification
+  requirements measured from the Monte Carlo simulation and the data, and the Monte Carlo
+  to data scale factors are shown for different bins of $p_{T}$ and $\eta$. }
+\label{tab:Efficiency_HZZICHEP2012IsoGivenID}
+\end{center}
+\end{table}
+
+
+
+\section{Systematic Uncertainties}
+The main systematic uncertainty on the efficiency result from the uncertainty on the signal and 
+background models induced by potential differences in the energy scale and resolution between
+the Monte Carlo simulation and the data. The bulk of this effect is already accounted for 
+in the fit where we allow the energy scale and resolution parameters to float unconstrained. 
+These nuisances parameters are profiled and the uncertainty intervals obtained from the likelihood
+include this systematic uncertainty. 
+
+The remaining dominant uncertainty results from the assumption that this energy scale and resolution
+difference are identical for the signal and background. To assess the impact of this systematic uncertainty, 
+we throw toy experiments assuming that the energy scale correction for the data and the simulation
+differ by $1$~\GeV, $10\%$ of the difference in their respective mass peaks, 
+for the signal and the background and perform the fit assuming no such difference. Given the precision
+of our energy scale measurements and the proximity of the kinematic regions between the signal and background,
+this shift of $10\%$ is a fairly conservative estimate of any potential systematic error. 
+The variations of the mass distribution for the models applying these different assumptions are illustrated in 
+Fig \ref{fig:SystematicsModels}.
+
+
+
+\begin{figure}[htb]
+  \begin{center}
+    \subfigure[Shift $-1$~$\GeV$]{\includegraphics[width=0.32\textwidth]{figures/Model_ShiftMinus1GeV.pdf}}
+    \subfigure[Nominal]{\includegraphics[width=0.32\textwidth]{figures/Model_Nominal.pdf}}
+    \subfigure[Shift $+1$~$\GeV$]{\includegraphics[width=0.32\textwidth]{figures/Model_ShiftPlus1GeV.pdf}}
+    \caption{Alternative models of the signal and background for electron probes 
+      with $p_{T}$ between $7$~\GeV\ and $10$~\GeV\ which fail the electron selection.
+      The green curve represents the exponential component of the background. The red curve is the total background
+      comprised of the exponential component and the Drell-Yan fake electron and fake photon component.
+      The blue curve is the sum of the signal and the background.
+    }
+    \label{fig:SystematicsModels}
+  \end{center}
+\end{figure}
+
+
+
+The distributions of the fitted efficiency for the bin with $p_{T}$ between $7$~\GeV\ and $10$~\GeV\ 
+and $|eta| < 1.479$ are shown in Fig \ref{fig:EffToys}. The nominal efficiency for this bin is $0.550$. 
+The mean efficiency for the set of toys generated with the nominal model is $0.549$, so no 
+bias is observed from the fitting procedure. The mean efficiency for the set of toys generated with 
+a shift of $+1$~\GeV\ and $-1$~\GeV\ are $0.563\pm0.001$ and $0.542\pm0.001$ respectively. Taking
+the largest deviation from the nominal, we estimate a systematic uncertainty of about $2.5\%$
+relative to the measured efficiency. This uncertainty is propagated as a systematic uncertainty and added in 
+quadrature with the uncertainty obtained from the fit. 
+
+
+\begin{figure}[htb]
+  \begin{center}
+    \subfigure[Shift $-1$~$\GeV$]{\includegraphics[width=0.48\textwidth]{figures/Eff_ShiftMinus1GeV.pdf}}
+    \subfigure[Nominal]{\includegraphics[width=0.48\textwidth]{figures/Eff_Nominal.pdf}}
+    \subfigure[Shift $+1$~$\GeV$]{\includegraphics[width=0.48\textwidth]{figures/Eff_ShiftPlus1GeV.pdf}}
+    \caption{The distribution of the fitted efficiency from sets of toys experiments are shown. 
+      Alternative models are used to throw the toy experiments, while the efficiency fits are 
+      performed assuming the nominal model. Any deviation in the mean of these distributions
+      represent a systematic bias if the given alternative model is the true model for the data.
+    }
+    \label{fig:EffToys}
+  \end{center}
+\end{figure}
+
+
+\section{Conclusion}
+
+We have described a new method for measuring the selection efficiency for electrons with transverse
+momentum below $20$~\GeV\ using \ZToEEGamma\ events. The signal to background in the failing sample
+is enhanced up to about $10:1$ after all selection requirements, leading to a very clean measurement
+of the efficiency even for electrons between $7$~\GeV\ and $10$~\GeV . For the \HiggsToZZ\ electron
+selection used for the ICHEP 2012 analysis, we observe scale factors of about $0.8$ and $0.7$ for
+barrel and endcap electrons repsectively in the $p_{T}$ range between $7$~\GeV\ and $10$~\GeV. 
+For electrons in the $p_{T}$ range between $10$~\GeV\ and $20$~\GeV , we measure scale factors
+consistent with $1.0$. 
+
+
+%===================================================================================================
+\input{biblio.tex}
+%===================================================================================================
+
+\appendix
+\appendixpage
+
+\section{Efficiency for 2011 Data}
+
+ \begin{table}[!ht]
+ \begin{center} 
+ \begin{tabular}{|c|c|c|c|}
+ \hline
+ $p_{T}$ / $\eta$ bin    &  Monte Carlo Efficiency    &  Data Efficiency   &  MC to Data Scale Factor \\   \hline           
+$  7.0 < p_{T} \le  10.0$ , $  0.0  \le |\eta| <   1.5$   &       0.7094 +/- 0.0186   &       0.6022 +/- 0.0460   &       0.8489 +/- 0.0685   \\   
+\hline
+$  7.0 < p_{T} \le  10.0$ , $  1.5  \le |\eta| <   2.5$   &       0.6534 +/- 0.0395   &       0.4744 +/- 0.0633   &       0.7260 +/- 0.1063   \\   
+\hline
+%$ 10.0 < p_{T} \le  15.0$ , $  0.0  \le |\eta| <   1.5$   &       0.8675 +/- 0.0081   &       0.8392 +/- 0.0172   &       0.9674 +/- 0.0218   \\   
+%\hline
+%$ 10.0 < p_{T} \le  15.0$ , $  1.5  \le |\eta| <   2.5$   &       0.8024 +/- 0.0194   &       0.7641 +/- 0.0437   &       0.9523 +/- 0.0592   \\   
+%\hline
+%$ 15.0 < p_{T} \le  20.0$ , $  0.0  \le |\eta| <   1.5$   &       0.9235 +/- 0.0061   &       0.9103 +/- 0.0119   &       0.9857 +/- 0.0145   \\   
+%\hline
+%$ 15.0 < p_{T} \le  20.0$ , $  1.5  \le |\eta| <   2.5$   &       0.8927 +/- 0.0147   &       0.8176 +/- 0.0323   &       0.9159 +/- 0.0392   \\   
+%\hline
+\end{tabular}
+\caption{The efficiencies for the electron selection used in the \HiggsToZZ\ analysis for ICHEP 2012
+measured from the Monte Carlo simulation and the 2011 data, and the Monte Carlo
+to data scale factors are shown for different bins of $p_{T}$ and $\eta$. }
+\label{tab:Efficiency_HZZICHEP2012WP_Data2011}
+\end{center}
+\end{table}
+
+
+\begin{figure}[htb]
+  \begin{center}
+    \subfigure[Barrel Pass]{\includegraphics[width=0.48\textwidth]{figures/passetapt_TemplateConvGausPlusExpFit_Data2011_0.pdf}}
+    \subfigure[Barrel Fail]{\includegraphics[width=0.48\textwidth]{figures/failetapt_TemplateConvGausPlusExpFit_Data2011_0.pdf}}
+    \subfigure[Endcap Pass]{\includegraphics[width=0.48\textwidth]{figures/passetapt_TemplateConvGausPlusExpFit_Data2011_1.pdf}}
+    \subfigure[Endcap Fail]{\includegraphics[width=0.48\textwidth]{figures/failetapt_TemplateConvGausPlusExpFit_Data2011_1.pdf}}
+    \caption{Fits to the $m_{ee\gamma}$ distribution in 2011 data are shown for the pass and fail samples for
+      electron probes with $p_{T}$ between $7$~\GeV\ and $10$~\GeV.
+    }
+    \label{fig:MassFits_Pt7To10_Data2011}
+  \end{center}
+\end{figure}
+
+
+\section{Update for HCP 2012 Dataset}
+
+
+ \begin{table}[!ht]
+ \begin{center} 
+ \begin{tabular}{|c|c|c|c|}
+ \hline
+ $p_{T}$ / $\eta$ bin    &  Monte Carlo Efficiency    &  Data Efficiency   &  MC to Data Scale Factor \\   \hline           
+$  7.0 < p_{T} \le  10.0$ , $  0.0  \le |\eta| <   1.5$   &       0.6725 +/- 0.0302   &       0.5017 +/- 0.0271   &       0.7459 +/- 0.0524   \\   
+\hline
+$  7.0 < p_{T} \le  10.0$ , $  1.5  \le |\eta| <   2.5$   &       0.5783 +/- 0.0609   &       0.4033 +/- 0.0550   &       0.6974 +/- 0.1201   \\   
+\hline
+\end{tabular}
+\caption{ Efficiency for the selection used for the HZZ analysis for the HCP 2012 conference, measured on the HCP dataset of the 2012 data }
+\label{tab:Efficiency_HZZICHEP2012WP_HCP2012}
+\end{center}
+\end{table}
+
+\begin{figure}[htb]
+  \begin{center}
+    \subfigure[Barrel Pass]{\includegraphics[width=0.48\textwidth]{figures/passetapt_EleHZZHCP2012WP_TemplateConvGausPlusExpFit_DataHCP2012_0.pdf}}
+    \subfigure[Barrel Fail]{\includegraphics[width=0.48\textwidth]{figures/failetapt_EleHZZHCP2012WP_TemplateConvGausPlusExpFit_DataHCP2012_0.pdf}}
+    \subfigure[Endcap Pass]{\includegraphics[width=0.48\textwidth]{figures/passetapt_EleHZZHCP2012WP_TemplateConvGausPlusExpFit_DataHCP2012_1.pdf}}
+    \subfigure[Endcap Fail]{\includegraphics[width=0.48\textwidth]{figures/failetapt_EleHZZHCP2012WP_TemplateConvGausPlusExpFit_DataHCP2012_1.pdf}}
+    \caption{Fits to the $m_{ee\gamma}$ distribution from the 2012 data with the HCP dataset are shown for the pass and fail samples 
+      for electron probes with $p_{T}$ between $7$~\GeV\ and $10$~\GeV used to measure the efficiency of the HZZ electron selection.
+    }
+    \label{fig:EleEffMassFits_HZZHCP2012WP_Pt7To10_ZeeGamma_HCP2012}
+  \end{center}
+\end{figure}
+
+
+
+ \begin{table}[!ht]
+ \begin{center} 
+ \begin{tabular}{|c|c|c|c|}
+ \hline
+ $p_{T}$ / $\eta$ bin    &  Monte Carlo Efficiency    &  Data Efficiency   &  MC to Data Scale Factor \\   \hline           
+$  7.0 < p_{T} \le  10.0$ , $  0.0  \le |\eta| <   1.5$   &       0.8056 +/- 0.0262   &       0.7177 +/- 0.0270   &       0.8909 +/- 0.0443   \\   
+\hline
+$  7.0 < p_{T} \le  10.0$ , $  1.5  \le |\eta| <   2.5$   &       0.8452 +/- 0.0499   &       0.8476 +/- 0.0424   &       1.0028 +/- 0.0776   \\   
+\hline
+\end{tabular}
+\caption{ Efficiency for the isolation cuts in the selection used for the HZZ analysis for the HCP 2012 conference, 
+  measured on the HCP dataset of the 2012 data  }
+\label{tab:Efficiency_HZZICHEP2012Iso_HCP2012}
+\end{center}
+\end{table}
+
+
+\begin{figure}[htb]
+  \begin{center}
+    \subfigure[Barrel Pass]{\includegraphics[width=0.48\textwidth]{figures/passetapt_EleHZZHCP2012IsoOnly_TemplateConvGausPlusExpFit_DataHCP2012_0.pdf}}
+    \subfigure[Barrel Fail]{\includegraphics[width=0.48\textwidth]{figures/failetapt_EleHZZHCP2012IsoOnly_TemplateConvGausPlusExpFit_DataHCP2012_0.pdf}}
+    \subfigure[Endcap Pass]{\includegraphics[width=0.48\textwidth]{figures/passetapt_EleHZZHCP2012IsoOnly_TemplateConvGausPlusExpFit_DataHCP2012_1.pdf}}
+    \subfigure[Endcap Fail]{\includegraphics[width=0.48\textwidth]{figures/failetapt_EleHZZHCP2012IsoOnly_TemplateConvGausPlusExpFit_DataHCP2012_1.pdf}}
+    \caption{Fits to the $m_{ee\gamma}$ distribution from the 2012 data with the HCP dataset are shown for the pass and fail samples for
+      electron probes with $p_{T}$ between $7$~\GeV\ and $10$~\GeV used to measure the isolation efficiency of the HZZ electron selection.
+    }
+    \label{fig:MassFits_Pt7To10_Data2011}
+  \end{center}
+\end{figure}
+
+
+
+ \begin{table}[!ht]
+ \begin{center} 
+ \begin{tabular}{|c|c|c|c|}
+ \hline
+ $p_{T}$ / $\eta$ bin    &  Monte Carlo Efficiency    &  Data Efficiency   &  MC to Data Scale Factor \\   \hline           
+$  7.0 < p_{T} \le  10.0$ , $  0.0  \le |\eta| <   1.5$   &       0.8319 +/- 0.0282   &       0.7447 +/- 0.0281   &       0.8952 +/- 0.0454   \\   
+\hline
+$  7.0 < p_{T} \le  10.0$ , $  1.5  \le |\eta| <   2.5$   &       0.6901 +/- 0.0645   &       0.4810 +/- 0.0598   &       0.6969 +/- 0.1084   \\   
+\hline
+\end{tabular}
+\caption{ Efficiency for the identification and impact parameter cuts in the selection used for the HZZ analysis
+  for electrons already passing the isolation cuts for the HCP 2012 conference, 
+  measured on the HCP dataset of the 2012 data  }
+\label{tab:Efficiency_HZZICHEP2012IDGivenIso_HCP2012}
+\end{center}
+\end{table}
+
+
+
+\begin{figure}[htb]
+  \begin{center}
+    \subfigure[Barrel Pass]{\includegraphics[width=0.48\textwidth]{figures/passetapt_EleHZZHCP2012IDGivenIso_TemplateConvGausPlusExpFit_DataHCP2012_0.pdf}}
+    \subfigure[Barrel Fail]{\includegraphics[width=0.48\textwidth]{figures/failetapt_EleHZZHCP2012IDGivenIso_TemplateConvGausPlusExpFit_DataHCP2012_0.pdf}}
+    \subfigure[Endcap Pass]{\includegraphics[width=0.48\textwidth]{figures/passetapt_EleHZZHCP2012IDGivenIso_TemplateConvGausPlusExpFit_DataHCP2012_1.pdf}}
+    \subfigure[Endcap Fail]{\includegraphics[width=0.48\textwidth]{figures/failetapt_EleHZZHCP2012IDGivenIso_TemplateConvGausPlusExpFit_DataHCP2012_1.pdf}}
+    \caption{Fits to the $m_{ee\gamma}$ distribution from the 2012 data with the HCP dataset are shown for the pass and fail samples for
+      electron probes with $p_{T}$ between $7$~\GeV\ and $10$~\GeV used to measure the identification and impact parameter 
+      efficiency of the HZZ electron selection for electrons that already passed the isolation cuts.
+    }
+    \label{fig:MassFits_Pt7To10_Data2011}
+  \end{center}
+\end{figure}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Iso Given ID : just for cross check - not really used.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%  \begin{table}[!ht]
+%%  \begin{center} 
+%%  \begin{tabular}{|c|c|c|c|}
+%%  \hline
+%%  $p_{T}$ / $\eta$ bin    &  Monte Carlo Efficiency    &  Data Efficiency   &  MC to Data Scale Factor \\   \hline           
+%% $  7.0 < p_{T} \le  10.0$ , $  0.0  \le |\eta| <   1.5$   &       0.8248 +/- 0.0285   &       0.7985 +/- 0.0368   &       0.9682 +/- 0.0557   \\   
+%% \hline
+%% $  7.0 < p_{T} \le  10.0$ , $  1.5  \le |\eta| <   2.5$   &       0.8909 +/- 0.0595   &       0.9231 +/- 0.0990   &       1.0361 +/- 0.1309   \\   
+%% \hline
+%% \end{tabular}
+%% \caption{ HCP HZZ selection Isolation Given ID, 2012 data, HCP Dataset }
+%% \label{tab:Efficiency_HZZICHEP2012IsoGivenID_HCP2012}
+%% \end{center}
+%% \end{table}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% For comparison: Zee Tag and Probe Results for ID Given Iso
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  \begin{table}[!ht]
+%%  \begin{center} 
+%%  \begin{tabular}{|c|c|c|c|}
+%%  \hline
+%%  $p_{T}$ / $\eta$ bin    &  Monte Carlo Efficiency    &  Data Efficiency   &  MC to Data Scale Factor \\   \hline           
+%% $  7.0 < p_{T} \le  10.0$ , $  0.0  \le |\eta| <   1.5$   &       0.8845 +/- 0.0061   &       0.9244 +/- 0.0267   &       1.0451 +/- 0.0311   \\   
+%% \hline
+%% $  7.0 < p_{T} \le  10.0$ , $  1.5  \le |\eta| <   2.5$   &       0.6733 +/- 0.0086   &       0.6771 +/- 0.0341   &       1.0056 +/- 0.0522   \\   
+%% \hline
+%% \end{tabular}
+%% \caption{ HCP HZZ selection WP Efficiency Using Zee Tag and Probe, 2012 data, HCP Dataset. Fitted with BW conv CB (no large tail) }
+%% \label{tab:Efficiency_HZZICHEP2012IDGivenIso_HCP2012_ZeeTagAndProbe}
+%% \end{center}
+%% \end{table}
+
+
+%% \begin{table}[!ht]
+%%   \begin{center} 
+%%     \begin{tabular}{|c|c|c|c|}
+%%       \hline
+%%       $p_{T}$ / $\eta$ bin    &  Monte Carlo Efficiency    &  Data Efficiency   &  MC to Data Scale Factor \\   \hline           
+%%       $  7.0 < p_{T} \le  10.0$ , $  0.0  \le |\eta| <   1.5$   &       0.8845 +/- 0.0061   &       0.8427 +/- 0.0469   &       0.9527 +/- 0.0534   \\   
+%%       \hline
+%%       $  7.0 < p_{T} \le  10.0$ , $  1.5  \le |\eta| <   2.5$   &       0.6733 +/- 0.0086   &       0.6644 +/- 0.0568   &       0.9868 +/- 0.0853   \\   
+%%       \hline
+%%     \end{tabular}
+%%     \caption{ HCP HZZ selection ID Given Iso Using Zee Tag and Probe, 2012 data, HCP Dataset. Fitted with BW conv CB (allow large tail) }
+%%     \label{tab:Efficiency_HZZICHEP2012IDGivenIso_HCP2012_ZeeTagAndProbe_BWCBAllowLargeTail}
+%%   \end{center}
+%% \end{table}
+
+%% \begin{table}[!ht]
+%%   \begin{center} 
+%%     \begin{tabular}{|c|c|c|c|}
+%%       \hline
+%%       $  7.0 < p_{T} \le  10.0$ , $  0.0  \le |\eta| <   1.5$   &       0.8845 +/- 0.0061   &       0.8824 +/- 0.0078   &       0.9977 +/- 0.0112   \\   
+%%       \hline
+%%       $  7.0 < p_{T} \le  10.0$ , $  1.5  \le |\eta| <   2.5$   &       0.6733 +/- 0.0086   &       0.5930 +/- 0.0621   &       0.8808 +/- 0.0929   \\   
+%%       \hline
+%%     \end{tabular}
+%%     \caption{ HCP HZZ selection ID Given Iso Using Zee Tag and Probe, 2012 data, HCP Dataset. Fitted with MC template conv Gauss }
+%%     \label{tab:Efficiency_HZZICHEP2012IDGivenIso_HCP2012_ZeeTagAndProbe_MCTemplateConvGauss}
+%%   \end{center}
+%% \end{table}
+
+
+
+
+
+\end{document}
+
+
+
+%######################################################################################
+%#To DO:
+%
+% Systematic uncertainty: effect of limited MC statistics on shape templates
+%  (a) do fit with MC pseudo-data to check method consistency
+%  (b) take fitted model, throw toys to obtain templates. \
+%      use those templates to fit pseudoexperiments. look for biases
+%
+% 
+% can try to use RooKeys for template shapes
+%
+%# 
+%#######################################################################################
+
+
+
+
