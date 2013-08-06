@@ -55,8 +55,76 @@
 \section{Object Selection and Performance}
 \label{sec:objects}
 
+The signal events of interest typically contain two high $p_{T}$ photons and two high $p_{T}$ b-jets. 
+Photons are selected using a relatively robust cut-based approach, applying requirements on the
+electromagnetic shower width, the hadronic to electromagnetic energy ratio, and isolation~\cite{CMS-DP-2013-010}.
+The loose working point is used in order to retain as much signal photons as possible. Furthermore, photons are rejected
+if an electron is reconstructed within a $\Delta$R cone of $0.1$ to the photon. The efficiency for photons to pass
+these selection criteria is evaluated using the GEANT based full simulation of the current Run1 CMS detector, 
+and are shown in Figure \ref{fig:photonEfficiency}. The average photon selection efficiency is 
+about $85\%$ in the barrel, and about $70\%$ in the endcap. The lower efficiency in the endcap 
+is primarily due to the electron veto requirement, which
+can be improved in the future. The efficiency for jet-induced fake photons, sometimes referred to as the fake rate,
+are also evaluated using the full simulation of QCD dijet samples, and are shown in Figure \ref{fig:photonFakeRate}. 
+We note that the average fake rate for photons is about $5 \times 10^{-4}$ for gluon jets and 
+about $2\times 10^{-3}$ for quark jets.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.9\textwidth]{figures/EfficiencyPtEta_PromptPhoton.pdf}
+  \caption{Prompt Photon Selection Efficiency}
+  \label{fig:photonEfficiency}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.45\textwidth]{figures/EfficiencyPtEta_GluonJetFakesPhoton.pdf}
+  \includegraphics[width=0.45\textwidth]{figures/EfficiencyPtEta_QuarkJetFakesPhoton.pdf}
+  \caption{Photon Fake Rate, left gluon jets, right quark jets.}
+  \label{fig:photonFakeRate}
+\end{figure}
+
+Jets are reconstructed using the anti-Kt algorithm with the $D$ parameter equal to $0.5$,
+and corrected for pileup effects using the FastJet technique \cite{CMS:2010xta,CMS-DP-2013-011}. Standard CMS 
+jet energy corrections are applied up to level 3, correcting for non-uniformities as a function of
+pseudorapditiy and $p_{T}$. Jets are tagged as originating from a b-quark by searching for the
+presence of secondary vertices. Lifetime information from tracks are also combined to form a 
+combined secondary vertex b-tagging discriminator (CSV)~\cite{CMS:BTagPaper,CMS-DP-2013-005}.
+The medium working point for the CSV tagger is used. The efficiency for tagging b-jets is 
+evaluated using full simulation of the current Run1 CMS detector and shown in
+Figure \ref{fig:btagEfficiency}. On average, the b-tagging efficiency is about $70\%$ in the barrel, and
+about $55\%$ in the endcap. The mistag rate for light jets and charm jets are also evaluated using
+full simulation samples, and are shown in Figure \ref{fig:mistagRate}. The average mistag rate
+for light jets is about $1\%$ and for charm jets is about $15\%$. 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.9\textwidth]{figures/EfficiencyPtEta_BJet.pdf}
+  \caption{BTag Efficiency}
+  \label{fig:btagEfficiency}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.45\textwidth]{figures/EfficiencyPtEta_LightJetMistag.pdf}
+  \includegraphics[width=0.45\textwidth]{figures/EfficiencyPtEta_CharmJetMistag.pdf}
+  \caption{Mistag Rate, left light jets, right charm jets.}
+  \label{fig:mistagRate}
+\end{figure}
+
+
+Electrons and Muons are selected for the purpose of vetoing events with signatures consistent
+with Higgs produced in association with a top and anti top quark pair. This process contributes
+significantly to the total background after signal event selection requirements. A non-negligble
+fraction of such background events contain leptons and can be rejected on this basis. Very loose
+selection requirements, denoted as the veto working point, are placed on the 
+electron and muon candidates in order to suppress this background as much as possible. 
+
+
 \section{Event Selection and Optimization}
 \label{sec:eventselection}
+
+
 
 \section{Background Estimation}
 \label{sec:bkgestimation}
@@ -73,7 +141,7 @@
 
 
 %===================================================================================================
-\input{biblio.tex}
+%\input{biblio.tex}
 %===================================================================================================
 
 \appendix
