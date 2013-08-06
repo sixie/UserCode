@@ -1,0 +1,85 @@
+\documentclass{cmspaper}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage[pdfborder=0 0 0,
+            colorlinks,
+            urlcolor = blue,
+            linkcolor = black,
+            citecolor = black,
+            menucolor = black,]
+           {hyperref}
+%% \usepackage[colorlinks]{hyperref}
+%% \usepackage{url}
+\usepackage[toc,page]{appendix}
+\usepackage{varioref}
+
+%% package for
+
+\renewcommand{\appendixname}{Appendix}
+%% \renewcommand{\appendixtocname}{List of appendices}
+
+\input{defs.tex}
+
+\setcounter{topnumber}{1}
+\setcounter{bottomnumber}{1}
+\setcounter{secnumdepth}{6}
+%===================================================================================================
+\begin{document}
+\begin{titlepage}
+
+  \analysisnote{2013/XXX}
+
+  \date{\today}
+
+  \title{Measurement of the Di-Higgs Production Cross Section at 14 TeV in the Decay Channel to Two Photons and Two B-Jets}
+
+  \input{authors.tex} 
+
+  \begin{abstract}
+
+  \end{abstract} 
+
+\end{titlepage}
+\tableofcontents
+%\listoftables
+%\listoffigures
+\newpage 
+
+%===================================================================================================
+\section{Introduction}
+  \label{sec:intro}
+
+\section{Object Selection and Performance}
+\label{sec:objects}
+
+\section{Event Selection and Optimization}
+\label{sec:eventselection}
+
+\section{Background Estimation}
+\label{sec:bkgestimation}
+
+\section{Signal Extraction}
+\label{sec:signalextraction}
+
+\section{Systematic Uncertainties}
+\label{sec:systematics}
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+
+
+%===================================================================================================
+\input{biblio.tex}
+%===================================================================================================
+
+\appendix
+\appendixpage
+
+
+
+
+\end{document}
