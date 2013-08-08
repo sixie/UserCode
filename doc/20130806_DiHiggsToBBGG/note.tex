@@ -156,14 +156,42 @@ $\Delta R$ between photons and b-jets.
 %Valere has to add the rest about the cut optimization
 
 
-\section{Background Estimation}
+\section{Signal and Background Estimation}
 \label{sec:bkgestimation}
+The signal process of interest is the production of two Higgs bosons, one of which decays to a pair of b quarks, 
+and the other decaying to a pair of photons. 
 The backgrounds can be broadly categorized into resonant backgrounds which contain one Higgs boson 
 decaying to two photons, and non-resonant backgrounds which do not contain a Higgs boson. 
 Where available, we use full simulation Monte Carlo samples of the current Run1 CMS detector.
 For the remaining backgrounds we generate samples using madgraph, perform the parton showering and
 hadronization using Pythia, and then apply weights to account for the object selection efficiencies
 and fake rates.
+
+\subsection{$HH \rightarrow bb\gamma\gamma$ Signal}
+The signal process is generated with Madgraph using a custom model for the Di-Higgs process. The parton
+shower and hadronization effects are modelled using Pythia, and a GEANT-based full detector simulation 
+of the current Run1 CMS detector is performed. Next, we apply the object selection requirements as 
+described above in Section \ref{sec:objects}, and apply the event selection requirements as described 
+in Section \ref{sec:eventselection}. The Monte Carlo sample is normalized to a signal cross section
+times branching ratio of $0.089$~fb. In Table \ref{tab:signalEventYields}, we show the 
+expected event yields for $3 ab^{-1}$ of integrated luminosity at various stages of the event
+selection.
+
+
+\begin{table}[!ht]
+\begin{center} 
+\begin{tabular}{|c|c|c|}
+\hline
+Selection Stage       &  Signal Event Yield &  \\  \hline
+Object Selection                &  00000       \\ 
+Kinematic Selection ($\Delta$R) &  00000       \\ 
+Mass Windows                    &  00000       \\ \hline
+
+\end{tabular}
+\caption{Expected Signal Yields }
+\label{tab:signalEventYields}
+\end{center}
+\end{table}
 
 \subsection{Resonant Backgrounds}
 The main backgrounds involving a Higgs boson are $ZH$, where a Higgs boson is produced in association
@@ -172,8 +200,41 @@ in associated with a top and anti-top quark pair, and $b\bar{t}H$, where a Higgs
 association with a b and anti-b quark pair. Table \ref{} shows the cross sections for these processes
 for a center of mass energy of $14$~TeV.
 
+
+\begin{table}[!ht]
+\begin{center} 
+\begin{tabular}{|c|c|}
+\hline
+Process                                           &   Cross Section $\times$ BR (fb)   \\  \hline
+$ZH \rightarrow b\bar{b}\gamma\gamma$             &   $2.01$                           \\\hline
+$t\bar{t}H \rightarrow W W b \bar{b}\gamma\gamma$ &   $1.39$                           \\\hline
+
+\end{tabular}
+\caption{Resonant Bkg Cross Sections }
+\label{tab:ResonantBkgCrossSections}
+\end{center}
+\end{table}
+
 The $ZH$ and $t\bar{t}H$ backgrounds are estimated using full simulation samples. For reasons of 
 availability, these full simulation samples are produced for a center of mass energy of $8$~TeV.
+The event yields for these background processes expected for $3 ab^{-1}$ of integrated luminosity
+are shown in Table \ref{tab:resonantBkgEventYields} at various stages of the event selection.
+
+\begin{table}[!ht]
+\begin{center} 
+\begin{tabular}{|c|c|c|}
+\hline
+Process / Selection Stage       &  $ZH \rightarrow b\bar{b}\gamma\gamma$ &  $t\bar{t}H \rightarrow W W b \bar{b}\gamma\gamma$    \\  \hline
+Object Selection                &  00000                                 &  00000                                                \\ 
+Kinematic Selection ($\Delta$R) &  00000                                 &  00000                                                \\ 
+Mass Windows                    &  00000                                 &  00000                                                \\ \hline
+
+\end{tabular}
+\caption{Expected Resonant Background Yields }
+\label{tab:resonantBkgEventYields}
+\end{center}
+\end{table}
+
 
 %some words about bbH...%
 %some words about systematic error of using 8TeV samples?%
@@ -202,7 +263,6 @@ from the full simulation samples shown in Figures \ref{fig:photonEfficiency} to 
 
 \begin{table}[!ht]
 \begin{center} 
- Standard Electron Momentum Measurement \\
 \begin{tabular}{|c|c|c|}
 \hline
 Process                  &   Cross Section (fb)   &  Phase Space Cuts                                         \\  \hline
@@ -220,6 +280,26 @@ $jjjj$                   &  $2.04 \times 10^{10}$ &  $p_{T j} > 20$~GeV         
 \end{tabular}
 \caption{Madgraph Cross sections }
 \label{tab:MadgraphBkgCrossSections}
+\end{center}
+\end{table}
+
+We show the expected event yield for $3 ab^{-1}$ of integrated luminosity for various stages of the 
+event selection requirements in Table \ref{tab:bkgEventYields} for each of the above background processes.
+After all selection requirements, the dominant background processes are the irreducible
+$b \bar{b} \gamma\gamma$ process, and the $jj \gamma\gamma$ process with two mistagged b-jets.
+
+\begin{table}[!ht]
+\begin{center} 
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Process / Selection Stage       &  $b \bar{b} \gamma\gamma$ & $jj \gamma\gamma$ &  $bb jj$ & $cc jj$  &  $jjjj$    \\  \hline
+Object Selection                &  00000                    &  00000            &  00000   & 00000    &  00000     \\ 
+Kinematic Selection ($\Delta$R) &  00000                    &  00000            &  00000   & 00000    &  00000     \\ 
+Mass Windows                    &  00000                    &  00000            &  00000   & 00000    &  00000     \\ \hline
+
+\end{tabular}
+\caption{Expected Background Yields }
+\label{tab:bkgEventYields}
 \end{center}
 \end{table}
 
@@ -250,7 +330,127 @@ analysis after all cuts.
 
 \subsection{Summary of Backgrounds}
 
+Combining estimates of all background processes together, we show 
+a stacked histogram of the diphoton mass and the di-bjet mass distributions
+in Figures \ref{fig:DiPhotonMass_AfterObjectSelection} and 
+\ref{fig:DiBJetMass_AfterObjectSelection} after the object selection. In Figure 
+\ref{fig:DRVariables_AfterObjectSelection} we show the distributions of the $\Delta \mathrm{R}_{\gamma\gamma}$
+between the two photons, and the minimum $\Delta$R between any photon and any b-jet.
+The distributions of the $p_{T}$ of the diphoton and di-bjet systems are shown in 
+Figures \ref{fig:pTVariables_AfterObjectSelection}. Finally, we show the 
+diphoton and di-bjet mass distributions after making selection requirements on 
+the $\Delta$R variables as described in Section \ref{} in 
+Figures \ref{fig:DiPhotonMass_AfterKinematicSelection}
+and \ref{fig:DiBJetMass_AfterKinematicSelection}. 
+
+
+%% \begin{figure}[h]
+%%   \centering
+%% %  \includegraphics[width=0.9\textwidth]{figures/DiPhotonMass_AfterObjectSelection.pdf}
+%%   \caption{DiPhotonMass_AfterObjectSelection}
+%%   \label{fig:DiPhotonMass_AfterObjectSelection}
+%% \end{figure}
+
+%% \begin{figure}[h]
+%%   \centering
+%% %  \includegraphics[width=0.9\textwidth]{figures/DiBJetMass_AfterObjectSelection.pdf}
+%%   \caption{DiBJetMass_AfterObjectSelection}
+%%   \label{fig:DiBJetMass_AfterObjectSelection}
+%% \end{figure}
+
+%% \begin{figure}[h]
+%%   \centering
+%% %  \includegraphics[width=0.45\textwidth]{figures/DRgg_AfterObjectSelection.pdf}
+%% %  \includegraphics[width=0.45\textwidth]{figures/minDRgb_AfterObjectSelection.pdf}
+%%   \caption{DRVariables_AfterObjectSelection}
+%%   \label{fig:DRVariables_AfterObjectSelection}
+%% \end{figure}
+
+%% \begin{figure}[h]
+%%   \centering
+%% %  \includegraphics[width=0.45\textwidth]{figures/pTgg_AfterObjectSelection.pdf} 
+%% %  \includegraphics[width=0.45\textwidth]{figures/ptbb_AfterObjectSelection.pdf}
+%%   \caption{pTVariables_AfterObjectSelection}
+%%   \label{fig:pTVariables_AfterObjectSelection}
+%% \end{figure}
+
+%% \begin{figure}[h]
+%%   \centering
+%% %  \includegraphics[width=0.9\textwidth]{figures/DiPhotonMass_AfterKinematicSelection.pdf}
+%%   \caption{DiPhotonMass_AfterKinematicSelection}
+%%   \label{fig:DiPhotonMass_AfterKinematicSelection}
+%% \end{figure}
+%% \begin{figure}[h]
+%%   \centering
+%% %  \includegraphics[width=0.9\textwidth]{figures/DiBJetMass_AfterKinematicSelection.pdf}
+%%   \caption{DiBJetMass_AfterKinematicSelection}
+%%   \label{fig:DiBJetMass_AfterKinematicSelection}
+%% \end{figure}
+
+
+To show a rough estimate of the sensitivity of a cut-based analysis, we
+summarize the signal and background event yields in 
+Tables \ref{tab:EventYieldSummaryConservativeMassWindows}
+and \ref{tab:EventYieldSummaryOptimisticMassWindows} 
+for two sets of mass window selection cuts, one assuming
+conservative estimates of resolution performance ( $120 < M_{\gamma\gamma} < 130$ and 
+ $105 < M_{bb} < 145$ ) , and one assuming a more optimistic resolution
+performance ($122 < M_{\gamma\gamma} < 128$ and  $100 < M_{bb} < 140$ ).
+
+
+
+\begin{table}[!ht]
+\begin{center} 
+\begin{tabular}{|c|c|}
+\hline 
+Process                                              &  Event Yield at $3$~$ab^{-1}$ \\  \hline
+$HH \rightarrow bb\gamma\gamma$ (Signal)             &  00000                     \\  \hline
+$ZH \rightarrow b\bar{b}\gamma\gamma$                &  00000                     \\  
+$t\bar{t}H \rightarrow W W b \bar{b}\gamma\gamma$    &  00000                     \\  \hline
+$b \bar{b} \gamma\gamma$                             &  00000                     \\  
+$jj \gamma\gamma$ (Mistags)                          &  00000                     \\  
+$bb jj$ (Fake Photons)                               &  00000                     \\  
+$cc jj$ (Fake Photons \& Mistags)                    &  00000                     \\  
+$jjjj$  (Fake Photons \& Mistags)                    &  00000                     \\  \hline
+$t\bar{t}$ (Electron Fakes Photons)                  &  00000                     \\  \hline
+\hline
+$S/B$                                                &  00000                     \\  \hline
+$S/\sqrt{B}$                                         &  00000                     \\  \hline
+
+\end{tabular}
+\caption{Expected Yields for conservative mass windows }
+\label{tab:EventYieldSummaryConservativeMassWindows}
+\end{center}
+\end{table}
  
+
+\begin{table}[!ht]
+\begin{center} 
+\begin{tabular}{|c|c|}
+\hline 
+Process                                              &  Event Yield at $3$~$ab^{-1}$ \\  \hline
+$HH \rightarrow bb\gamma\gamma$ (Signal)             &  00000                     \\  \hline
+$ZH \rightarrow b\bar{b}\gamma\gamma$                &  00000                     \\  
+$t\bar{t}H \rightarrow W W b \bar{b}\gamma\gamma$    &  00000                     \\  \hline
+$b \bar{b} \gamma\gamma$                             &  00000                     \\  
+$jj \gamma\gamma$ (Mistags)                          &  00000                     \\  
+$bb jj$ (Fake Photons)                               &  00000                     \\  
+$cc jj$ (Fake Photons \& Mistags)                    &  00000                     \\  
+$jjjj$  (Fake Photons \& Mistags)                    &  00000                     \\  \hline
+$t\bar{t}$ (Electron Fakes Photons)                  &  00000                     \\  \hline
+\hline
+$S/B$                                                &  00000                     \\  \hline
+$S/\sqrt{B}$                                         &  00000                     \\  \hline
+
+\end{tabular}
+\caption{Expected Yields for optimistic mass windows }
+\label{tab:EventYieldSummaryOptimisticMassWindows}
+\end{center}
+\end{table}
+ 
+
+
+
 
 \section{Signal Extraction}
 \label{sec:signalextraction}
