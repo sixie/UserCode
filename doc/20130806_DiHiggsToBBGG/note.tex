@@ -120,14 +120,137 @@ fraction of such background events contain leptons and can be rejected on this b
 selection requirements, denoted as the veto working point, are placed on the 
 electron and muon candidates in order to suppress this background as much as possible. 
 
+\subsection{Extrapolation to High Pileup}
+\label{sec:HighPileupExtrapolation}
+
+Using full simulation of the CMS Phase1 detector with an average of 140 pileup events, we extrapolate
+the photon and b-tagging efficiency and the photon fake rates and mistag rates to pileup conditions
+expected for the high luminosity LHC. 
+
+Figures \ref{} and ref{} show the efficiency for b-tagging and the mistag rate for light jets 
+as a function of the number of pileup events mixed with the primary interaction. Based on these efficiencies, 
+to extrapolate to conditions corresponding to an average of 140 pileup events we decrease
+the b-tagging efficiency by $XX\%$ and increase the mistag rate by a factor of $X$. 
+
+%More on photons
+
+
 
 \section{Event Selection and Optimization}
 \label{sec:eventselection}
+ 
+We begin by selecting events containing two photons with $p_{T}$ greater than $25$~GeV
+and $|\eta|<2.5$, and two b-tagged jets with $p_{T}$ greater than $30$~GeV and $|\eta|<2.4$.
+One of the two photons is required to have $p_{T} > 40$~GeV. To suppress $t\bar{t}H$ background
+events, we require that there are no electrons or muons passing the veto selection and that 
+the number of jets with $|\eta|<2.5$ is less than $4$. In Figure\ref{}, we show the distribution
+of the number of jets with $|\eta|<2.5$ for the diHiggs signal and the $t\bar{t}H$ background
+to demonstrate the effectiveness of the jet counting requirement.
 
+We investigated a number of different additional kinematic requirements in order to improve the
+signal to background ratio. Following the motivation from the ATLAS public note \cite{ATLASHHToBBGG},
+we apply requirements on the $\Delta$R between the two photons, and the minimum of the 
+$\Delta R$ between photons and b-jets. 
+%show figures motivating this
+
+%Valere has to add the rest about the cut optimization
 
 
 \section{Background Estimation}
 \label{sec:bkgestimation}
+The backgrounds can be broadly categorized into resonant backgrounds which contain one Higgs boson 
+decaying to two photons, and non-resonant backgrounds which do not contain a Higgs boson. 
+Where available, we use full simulation Monte Carlo samples of the current Run1 CMS detector.
+For the remaining backgrounds we generate samples using madgraph, perform the parton showering and
+hadronization using Pythia, and then apply weights to account for the object selection efficiencies
+and fake rates.
+
+\subsection{Resonant Backgrounds}
+The main backgrounds involving a Higgs boson are $ZH$, where a Higgs boson is produced in association
+with a Z boson which subsequently decays to two b-jets, $t\bar{t}H$, where a Higgs boson is produced
+in associated with a top and anti-top quark pair, and $b\bar{t}H$, where a Higgs boson is produced in
+association with a b and anti-b quark pair. Table \ref{} shows the cross sections for these processes
+for a center of mass energy of $14$~TeV.
+
+The $ZH$ and $t\bar{t}H$ backgrounds are estimated using full simulation samples. For reasons of 
+availability, these full simulation samples are produced for a center of mass energy of $8$~TeV.
+
+%some words about bbH...%
+%some words about systematic error of using 8TeV samples?%
+
+
+
+\subsection{Non-resonant Backgrounds}
+The non-resonant backgrounds include QCD production of $b \bar{b} \gamma\gamma$, QCD production
+of $jj \gamma\gamma$ with light jets mistagged as b-jets, QCD production of $b \bar{b} jj$ with
+jets mis-identified as photons, and QCD production of four jets with two jets mis-identified 
+as photons and two jets mistagged as b-jets. These background processes have cross sections
+that are several orders of magnitude larger than the resonant backgrounds, but are suppressed
+by the low rate for mistags and mis-identified photons. Due to their large cross sections, 
+it is computationally impossible to fully simulate these background events. Instead, we adopt the
+approach of producing generator particle level Monte Carlo samples and weight the events by the
+corresponding efficiencies for selecting the constituent particles.
+
+All QCD background processes are generated using Madgraph \cite{madgraph} with particular kinematic
+cuts in order to focus in on the phase space of interest. Table \ref{tab:MadgraphBkgCrossSections} 
+summarizes the different QCD processes that were produced, their cross sections, 
+and any phase space requirements that were applied. Pythia is used to perform parton showering,
+and hadronization, and particle level jet clustering is performed. The efficiencies, fake rates, and
+mistag rates are applied as a function of the jet $\eta$ and $p_{T}$ according to the measurements
+from the full simulation samples shown in Figures \ref{fig:photonEfficiency} to \ref{fig:mistagRate}.
+
+
+\begin{table}[!ht]
+\begin{center} 
+ Standard Electron Momentum Measurement \\
+\begin{tabular}{|c|c|c|}
+\hline
+Process                  &   Cross Section (fb)   &  Phase Space Cuts                                         \\  \hline
+$b \bar{b} \gamma\gamma$ &   $136.4$              &  $p_{T b} > 20$~GeV, $p_{T \gamma} > 20$~GeV, $|\eta_{\gamma}| < 3.0$, $|\eta_{b}| < 3.0$   \\
+                         &                        &  $ 60 < M_{\gamma\gamma} < 200$, $ 60 < M_{bb} < 200$     \\\hline
+$jj \gamma\gamma$        &   $22440$              &  $p_{T j} > 20$~GeV, $p_{T \gamma} > 20$~GeV, $|\eta_{\gamma}| < 3.0$    \\
+                         &                        &  $ 60 < M_{\gamma\gamma} < 200$, $ 60 < M_{jj} < 200$     \\\hline
+$bb jj$                  &   $2.14 \times 10^{8}$ &  $p_{T b} > 20$~GeV, $p_{T j} > 20$~GeV, $|\eta_{b}| < 2.5$, $|\eta_{j}| < 2.5$      \\
+                         &                        &  $ 90 < M_{bb} < 160$  , $110 < M_{jj} < 140$,            \\\hline
+$cc jj$                  &   $2.14 \times 10^{8}$ &  $p_{T j} > 20$~GeV, $|\eta_{j}| < 2.5$                   \\
+                         &                        &  $110 < M_{jj} < 140$,                                    \\\hline
+$jjjj$                   &  $2.04 \times 10^{10}$ &  $p_{T j} > 20$~GeV                                       \\
+                         &                        &  $60 < M_{jj} < 200$,                                     \\\hline
+
+\end{tabular}
+\caption{Madgraph Cross sections }
+\label{tab:MadgraphBkgCrossSections}
+\end{center}
+\end{table}
+
+
+
+Finally, Standard Model production of $t\bar{t}$ will enter as background for our signal event selection
+for events where both top quarks decay leptonically to electrons and the electrons are mis-reconstructed
+as photons. The efficiency for electrons to be mis-identified as photons is estimated from full simulation
+of the current Run1 CMS detector and is shown in Figure \ref{fig:electronToPhotonFakerate}. The average
+rate for electrons to be mis-identified as photons is about $1\%$ in the barrel, and $3\%$ in the endcap.
+A full simulation sample of the $t\bar{t}$ process at a center of mass energy of $8$~TeV is normalized
+to the production cross section at a center of mass energy of $14$~TeV to estimate the contribution
+of this background after all selection requirements. The $14$~TeV production cross section for 
+$t\bar{t}$ is computed at next-to-leading-order using MCFM~\cite{MCFM} and is found to 
+be $880$pb. The di-electron events from this sample are
+weighted by the corresponding mis-identification rates from Figure \ref{fig:electronToPhotonFakerate}
+according to the $p_{T}$ and $\eta$ of the generated particle level electrons, and all event selection
+requirements are applied. This yields a total contribution of about $0.6$ events for the cut-based
+analysis after all cuts.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.9\textwidth]{figures/EfficiencyPtEta_ElectronFakesPhoton.pdf}
+  \caption{Electron To Photon Fake Rate}
+  \label{fig:electronToPhotonFakerate}
+\end{figure}
+
+
+\subsection{Summary of Backgrounds}
+
+ 
 
 \section{Signal Extraction}
 \label{sec:signalextraction}
@@ -137,7 +260,6 @@ electron and muon candidates in order to suppress this background as much as pos
 
 \section{Conclusion}
 \label{sec:conclusion}
-
 
 
 %===================================================================================================
