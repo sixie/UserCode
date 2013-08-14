@@ -143,17 +143,170 @@ We begin by selecting events containing two photons with $p_{T}$ greater than $2
 and $|\eta|<2.5$, and two b-tagged jets with $p_{T}$ greater than $30$~GeV and $|\eta|<2.4$.
 One of the two photons is required to have $p_{T} > 40$~GeV. To suppress $t\bar{t}H$ background
 events, we require that there are no electrons or muons passing the veto selection and that 
-the number of jets with $|\eta|<2.5$ is less than $4$. In Figure\ref{}, we show the distribution
-of the number of jets with $|\eta|<2.5$ for the diHiggs signal and the $t\bar{t}H$ background
-to demonstrate the effectiveness of the jet counting requirement.
+the number of jets with $|\eta|<2.5$ is less than $4$. In Figure~\ref{fig:LeptonVetoAndJetCounting}, 
+we show the distribution of the number of selected leptons and the number of jets with $|\eta|<2.5$ 
+for the di-Higgs signal and the $t\bar{t}H$ background
+to demonstrate the effectiveness of the lepton veto and jet counting requirements.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.48\textwidth]{figures/NLeptons.pdf}	
+\includegraphics[width=0.48\textwidth]{figures/Ncentraljets.pdf}	
+\caption{Distributions of the number of selected leptons and the number of jets with $|\eta|<2.5$ for 
+the di-Higgs signal, the $t\bar{t}H$ background, and the ZH background, are shown normalized in area.}
+\label{fig:LeptonVetoAndJetCounting}
+\end{figure}
 
 We investigated a number of different additional kinematic requirements in order to improve the
 signal to background ratio. Following the motivation from the ATLAS public note \cite{ATLASHHToBBGG},
 we apply requirements on the $\Delta$R between the two photons, and the minimum of the 
-$\Delta R$ between photons and b-jets. 
-%show figures motivating this
+$\Delta R$ between photons and b-jets. We denote these selection requirements as ``Scheme 0'', 
+requiring that $\Delta R_{\gamma\gamma}<2.0$ and $min\Delta R_{\gamma b}>1.0$. 
+In Figure \ref{fig:scheme0}, we show the distributions for $\Delta R_{\gamma\gamma}$ and $min\Delta R_{\gamma b}$ 
+after the object selection cuts to illustrate the effectiveness of these angular requirements.
 
-%Valere has to add the rest about the cut optimization
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.38, angle=0]{figures/Cuts/dRgg_ps_normalized}	
+\includegraphics[scale=0.38, angle=0]{figures/Cuts/minDRgb_ps_normalized.pdf}	
+\caption{Distributions of $\Delta R_{\gamma\gamma}$ and $min\Delta R_{\gamma b}$ are shown for the 
+di-Higgs signal, the  $t\bar{t}H$ background, and the QCD non-resonant backgrounds, and are
+normalized in area. }
+\label{fig:scheme0}
+\end{figure}
+
+We examined additional requirements for further signal to background optimization. 
+We tighten the requirement on the minimum of the $\Delta$R between photons and b-jets, 
+requiring that  $min\Delta R_{\gamma b} > 1.5$, and we add a requirement on
+the $\Delta$R between the two b-jets: $\Delta R_{b\bar{b}}<2.0$. These cuts in addition
+to the cuts used above are denoted as ``Scheme 1'' selection. 
+In Figure \ref{fig:dRbb_s0}, we show $\Delta R_{b\bar{b}}$ after the ``Scheme 0'' cuts 
+to demonstrate the effectiveness of this additional requirement in reducing background, while
+retaining the majority of the signal events. 
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.45, angle=0]{figures/Cuts/dRbb_s0_normalized.pdf}	
+\caption{dRbb after Scheme 0 cuts}
+\label{fig:dRbb_s0}
+\end{figure}
+
+In Table \ref{tab:scheme1_events}, we summarize the expected event yields for the signal and 
+various background processes for an integrated luminosity of $3000$~$pb^{-1}$ after 
+the ``Scheme 1'' selection requirements. The methods used to estimate the backgrounds
+are described in greater detail in Section \ref{sec:bkgestimation}. The event yields
+for three different mass windows are provided corresponding to the mass windows
+used for the mass fit analysis described later in Section \ref{sec:massfits}, a mass window
+corresponding to a conservative estimate of the expected mass resolutions, 
+and a mass window corresponding to a more optimistic estimate of the expected mass resolution.
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\multicolumn{4}{|c|}{\textbf{Expected Event Yield: Scheme 1 Selection}}                                 \\ \hline
+Sample Type & Fit Window                    & Conservative Window           & More Optimistic Window    \\ 
+            & $M_{b\bar{b}}:$ (70,200)      & $M_{b\bar{b}}$: (105,145)     & $M_{b\bar{b}}$: (110,140)      \\ 
+            & $M_{\gamma\gamma}$: (100,150) & $M_{\gamma\gamma}$: (120,130) & $M_{\gamma\gamma}$: (122,128)  \\ 
+\hline
+$HH\rightarrow bb\gamma\gamma$     & 16.3     & 12.0     & 9.4       \\ \hline
+$ZH\rightarrow bb \gamma\gamma$    & 19.4     & 2.9      & 1.3       \\ 
+$ttH,H\rightarrow\gamma\gamma$     & 4.8      & 1.7      & 1.2       \\ 
+$bb\gamma\gamma$                   & 150.4    & 9.6      & 4.5       \\ 
+$jj\gamma\gamma$                   & 114.5    & 8.0      & 4.1       \\ 
+$jjjj$, $ccjj$, $bbjj$             & 11.1     & 0.0      & 0.0       \\ 
+$t\bar{t}$                         & 5.3      & 0.2      & 0.0       \\ \hline
+S/B Ratio                          & 0.1      & 0.5      & 0.8       \\ \hline
+$S/\sqrt{B}$ (Signal Significance) & 0.9      & 2.5      & 2.8       \\ \hline
+\end{tabular}
+\caption{Scheme 1 expected events}
+\label{tab:scheme1_events}
+\end{center}
+\end{table}
+
+Furthermore, we studied an alternative kinematic selection scheme, where cuts are applied
+on the transverse momenta of the diphoton, di-bjet, and di-Higgs systems rather than the angular variables.
+The distributions of these transverse momentum observables are shown in Figure \ref{fig:Ptcuts} for the 
+di-Higgs signal, the  $t\bar{t}H$ background, and the QCD non-resonant backgrounds, after objection
+selection but before any other kinematic cuts are applied. We introduce the ``Scheme 2'' 
+kinematic selection requirements where we require that $10 < P_{Tb\bar{b}\gamma\gamma} < 110$ $GeV/c$ 
+and $(P_{Tb\bar{b}}+P_{T\gamma\gamma})>260$ $GeV/c$. 
+Finally, we introduce the ``Scheme 1 Tight'' selection by further tightening the 
+cuts on the angular variables, requiring that $\Delta R_{\gamma\gamma} < 1.6$, 
+$\Delta R_{b\bar{b}}<1.6$ and $min\Delta R_{\gamma b} > 1.5$. 
+
+In Table \ref{tab:event_schemes}, we compare the expected signal and background event yields
+within the conservative mass window defined above for the four selection schemes that we studied. 
+We observe that ``Scheme1'' and ``Scheme2'' achieve similar signal to background ratios, and both
+improve slightly upon the ``Scheme0'' selection. The ``Scheme 1 Tight'' selection achieves
+significantly improves signal to background, but at a cost of about $25\%$ in signal efficiency.
+Attempts at achieving better signal to background ratio by tightening cuts in the ``Scheme 2''
+scenario resulted in significantly larger reduction in signal yield compared to the ``Scheme 1 tight''
+scenario. 
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.35, angle=0]{figures/Cuts/bbggPt_ps_normalized.pdf}	
+\includegraphics[scale=0.35, angle=0]{figures/Cuts/SumbbggPt_ps_normalized.pdf}	
+\includegraphics[scale=0.35, angle=0]{figures/Cuts/dibjetPt_ps_normalized.pdf}	
+\includegraphics[scale=0.35, angle=0]{figures/Cuts/diphotonPt_ps_normalized.pdf}	
+\caption{photon and b-jet $p_{T}$ distributioons post-object selection}
+\label{fig:Ptcuts}
+\end{figure}
+
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}   
+\hline 
+\multicolumn{5}{|c|}{\textbf{Expected Event Yield - $M_{bb}$: (105,145), $M_{\gamma\gamma}$: (120,130)}}\\ \hline
+Sample Type                        & Scheme 0 & Scheme 1 & Scheme 2 & Scheme 1 Tight                 \\ \hline
+$HH\rightarrow bb\gamma\gamma$     & 13.7     & 12.0     & 11.9     & 9.0                            \\ \hline
+$ZH\rightarrow bb \gamma\gamma$    & 3.6      & 2.9      & 2.4      & 2.0                            \\ 
+$ttH,H\rightarrow\gamma\gamma$     & 2.9      & 1.7      & 1.5      & 1.1                            \\ 
+$bb\gamma\gamma$                   & 15.3     & 9.6      & 8.7      & 3.7                            \\ 
+$jj\gamma\gamma$                   & 16.0     & 8.0      & 9.7      & 2.7                            \\ 
+$jjjj$, $ccjj$, $bbjj$             & 0.2      & 0.0      & 0.0      & 0.0                            \\ 
+$t\bar{t}$                         & 0.8      & 0.2      & 0.1      & 0.0                            \\ \hline
+S/B Ratio                          & 0.4      & 0.5      & 0.5      & 1.0                            \\ \hline
+$S/\sqrt{B}$ (Signal Significance) & 2.2      & 2.5      & 2.5      & 2.9                            \\ \hline
+\end{tabular}
+\caption{Expected events per cut scheme}
+\label{tab:event_schemes}
+\end{center}
+\end{table}
+
+
+
+We study the degree to which the different kinematic requirements alter the shape
+of the diphoton and di-bjet mass distributions. In Section \ref{sec:massfits}, we describe how we 
+extract the signal from the non-resonant backgrounds using maximum likelihood fits to the
+diphoton and di-bjet mass distributions. For this analysis method, it is critical that any of the kinematic selection cuts
+that we apply preserves the smooth and monotonic behavior of the non-resonant background. Any
+peak-like feature that is introduced in the non-resonant background as a result of any of the
+kinematic selection cuts would bias the determination of the background from the fit and would lead
+to a bias of the cross section measurement. 
+
+In Figure \ref{fig:Mbb_Mgg}, we show the distributions of the diphoton and di-bjet mass after the 
+``Scheme0'', ``Scheme1'', and ``Scheme2'' selection requirements for the non-resonant 
+$b\bar{b}\gamma\gamma$ background. We note that the ``Scheme 0'' and the ``Scheme 1'' selection 
+cuts do preserve the general exponentially decaying trend in the mass distributions, 
+however the ``Scheme 2''  selection cuts appear to significantly change the shape of the 
+mass distributions. They still appear smooth and monotonic, but are significantly more flat,
+and with a more severe inflection in the case of the diphoton mass. Therefore, we prefer
+the ``Scheme 1'' cuts and all following discussion will use the ``Scheme 1'' selection
+by default. 
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.35, angle=0]{figures/Cuts/MassBB_s0.pdf}	
+\includegraphics[scale=0.35, angle=0]{figures/Cuts/MassGG_s0.pdf}	
+\includegraphics[scale=0.35, angle=0]{figures/Cuts/MassBB_s1.pdf}	
+\includegraphics[scale=0.35, angle=0]{figures/Cuts/MassGG_s1.pdf}	
+\includegraphics[scale=0.35, angle=0]{figures/Cuts/MassBB_s2.pdf}	
+\includegraphics[scale=0.35, angle=0]{figures/Cuts/MassGG_s2.pdf}	
+\caption{diphoton and di-bjet mass backgrounds}
+\label{fig:Mbb_Mgg}
+\end{figure}
+
 
 
 \section{Signal and Background Estimation}
@@ -470,7 +623,121 @@ on the diphoton and di-bjet mass distributions.
 \subsection{Maximum Likelihood Mass Fits}
 \label{sec:massfits}
 
+We derive probability density functions (PDF's) for the diphoton mass, $m_{\gamma\gamma}$, and di-bjet mass, $m_{bb}$
+ distributions for the signal, the resonant background, and the non-resonant background by 
+fitting the distributions from the Monte Carlo simulation samples to particular parameterizations 
+of the lineshape for $m_{\gamma\gamma}$ and $m_{bb}$. The $m_{\gamma\gamma}$
+distribution of the signal and resonant background is fitted to a Gaussian distribution, while for
+the non-resonant background it is fitted to a decaying exponential. The $m_{bb}$ distribution 
+for the signal and resonant backgrounds, dominated by ZH where the Z boson decays into a pair of b-jets,
+are fitted to a Crystal Ball distribution. The $m_{bb}$ distribution for the non-resonant background is
+again fitted to a decaying exponential. Figure \ref{fig:TwoDFitModels} shows the $m_{\gamma\gamma}$
+and $m_{bb}$ distributions and PDF's used to model the lineshape for the signal, the resonant background,
+and the non-resonant background.
 
+\begin{figure}[h!]
+  \centering
+  \subfigure[]{\includegraphics[width=0.32\textwidth]{figures/sigBjetHistFitCB.pdf}}
+  \subfigure[]{\includegraphics[width=0.32\textwidth]{figures/resBjetHistExtFitCB.pdf}}
+  \subfigure[]{\includegraphics[width=0.32\textwidth]{figures/nonresBjetHistFitExpo.pdf}}
+  \subfigure[]{\includegraphics[width=0.32\textwidth]{figures/sigPhoHistFit.pdf}}
+  \subfigure[]{\includegraphics[width=0.32\textwidth]{figures/resPhoHistFit.pdf}}
+  \subfigure[]{\includegraphics[width=0.32\textwidth]{figures/nonresPhoHistFitExpo.pdf}}
+  \caption{The preliminary fits of (a) the signal, (b) resonant background, and (c) non-resonant background on the di-bjet mass distribution and the preliminary fits of (d) the signal, (e) resonant background, and (f) non-resonant background on the diphoton mass distribution.}
+  \label{fig:prelimTwoDFits}
+\end{figure}
+
+We check for correlations between $m_{\gamma\gamma}$ and $m_{bb}$ by evaluating the correlation coefficient
+for the three different background components, and find values of $0.016$ for the signal, 
+$0.060$ for the resonant background, and $0.059$ for the non-resonant background. These values are sufficiently
+close to zero that we assume no correlation between the two masses. Therefore, the two 
+dimensional PDF's are simply the product of the one dimensional PDF's.
+
+
+\subsubsection{One Dimensional Fits}
+We first perform a one dimensional maximum likelihood fit on the di-bjet mass distribution. 
+The selection cuts labelled ``Scheme1'' from Section \ref{sec:eventselection} are applied, and a conservative
+window on the diphoton mass from $120$~GeV to $130$~GeV is required to reduce non-resonant background. 
+Using the expected event yields for the signal, resonant background, and non-resonant background, as
+weights, we combine the PDF's for the three different processes into a total PDF to model the full
+signal region sample.
+
+Toy Monte Carlo experiments are generated randomly from this model, and the pseudodata are fitted
+to this model, where the event yields for the signal, the resonant background, and the non-resonant
+background are allowed to float, as well as the parameters of the exponential function modelling
+the non-resonant background. One example toy experiment and fitted result is shown in 
+Figure \ref{fig:oneDfullFit}. 
+
+Figure \ref{fig:oneDpullPlot} summarizes the pull distribution for a set of 10,000 toy MC experiments,
+illustrating that there is essentially no bias in the fitting procedure. We show also the
+distribution of the relative fit uncertainty on the signal yield, representing an estimate of the
+statistical uncertainty of the cross section measurement. 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.9\textwidth]{figures/oneDimFitPhoWin_0.pdf}
+  \caption{Example of a full one dimensional fit on the di-bjet mass. The signal, resonant background, and non-resonant background components are respectively shown in red, yellow, and green.}
+  \label{fig:oneDfullFit}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.45\textwidth]{figures/sigPullFitOneD.pdf}
+  %\includegraphics[width=0.45\textwidth]{figures/relativeErrFitOneD.pdf}
+  \caption{Pull distribution and Gaussian fit for 10,000 one dimensional toy MC experiments.}
+  \label{fig:oneDfullFit}
+\end{figure}
+
+\subsubsection{Two Dimensional Fits}
+Finally, we perform a two dimensional maximum likelihood fit to the diphoton mass and di-bjet mass distributions. 
+We apply again the ``Scheme1'' selection requirements, and apply wide mass windows from $100$~GeV to $150$~GeV
+for the diphoton mass, and from $70$~GeV to $200$~GeV for the di-bjet mass. The expected number of events
+are used to weight the PDF's for the signal, the resonant background, and the non-resonant background to build
+the model for the signal region sample. 
+
+We perform, again, toy Monte Carlo experiments randomly drawn from the full model and perform the two dimensional
+fit, where we float the yields of the signal, the resonant background, and the non-resonant background, as well as
+the parameters of the exponential function modelling the non-resonant background. Figure \ref{fig:twoDfullFit}
+shows one example toy experiment and the fitted result. In Figure \ref{fig:twoDpullPlot},
+we show the pull distribution for a sample of 10,000 toy MC experiments, demonstrating that the fit yields unbiased
+measurements of the signal yield and its uncertainty. We show also the distribution of the fit uncertainty
+on the signal yield, showing the average statistical uncertainty of the cross section measurement using the two
+dimensional fit. In Table \ref{tab:RelativeUncertaintyOnSignalYield},
+we compare the average statistical uncertainty on the cross section measurement
+for the cut-based analysis, the one dimensional fit to $m_{bb}$, and the two dimensional fit. 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.9\textwidth]{figures/projectionFits_0.pdf}
+  \caption{Projections of a full two dimensional fit on the di-bjet mass (left) and diphoton mass (right). The signal, resonant background, and non-resonant background components are respectively shown in red, yellow, and green.}
+  \label{fig:twoDfullFit}
+\end{figure}
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.45\textwidth]{figures/sigPullFitTwoD.pdf}
+  %\includegraphics[width=0.45\textwidth]{figures/relativeErrFitTwoD.pdf}
+  \caption{Pull distribution and Gaussian fit for 10,000 two dimensional toy MC experiments.}
+  \label{fig:twoDpullPlot}
+\end{figure}
+
+
+
+\begin{table}[!ht]
+\begin{center} 
+\begin{tabular}{|c|c|}
+\hline 
+Analysis Method                 &  Relative Uncertainty on Signal Yield \\  \hline
+Cut-Based Analysis (Scheme1)    &  XX\%                                 \\  
+1D Fit to $m_{bb}$              &  XX\%                                 \\  
+2D Fit                          &  XX\%                                 \\  \hline
+\end{tabular}
+\caption{Average Relative Uncertainty on Signal Yield for various analysis methods. }
+\label{tab:RelativeUncertaintyOnSignalYield}
+\end{center}
+\end{table}
+ 
 
 \section{Systematic Uncertainties}
 \label{sec:systematics}
