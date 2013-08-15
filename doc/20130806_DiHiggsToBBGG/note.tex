@@ -120,20 +120,63 @@ fraction of such background events contain leptons and can be rejected on this b
 selection requirements, denoted as the veto working point, are placed on the 
 electron and muon candidates in order to suppress this background as much as possible. 
 
-\subsection{Extrapolation to High Pileup}
+\subsection{Extrapolation to High Pileup} 
 \label{sec:HighPileupExtrapolation}
 
-Using full simulation of the CMS Phase1 detector with an average of 140 pileup events, we extrapolate
-the photon and b-tagging efficiency and the photon fake rates and mistag rates to pileup conditions
+Using a combination of the full simulation of the CMS Phase1 detector with an average of 140 pileup events
+and the Delphes fast simulation \cite{Delphes}, we extrapolate the photon and b-tagging efficiency to pileup conditions
 expected for the high luminosity LHC. 
 
-Figures \ref{} and ref{} show the efficiency for b-tagging and the mistag rate for light jets 
-as a function of the number of pileup events mixed with the primary interaction. Based on these efficiencies, 
-to extrapolate to conditions corresponding to an average of 140 pileup events we decrease
-the b-tagging efficiency by $XX\%$ and increase the mistag rate by a factor of $X$. 
+Figure \ref{fig:BTaggingEfficiencyVsPU} shows the efficiency for tagging b-jets
+as a function of the number of pileup events mixed with the primary interaction,
+evaluated from the full simulation of the current CMS detector for low pileup and
+the full simulation of the Phase1 upgraded CMS detector for high pileup. The standard
+reconstruction has been used for the high pileup sample, and no attempt was made to
+re-optimize the algorithms. Therefore, these estimates are likely to be 
+more pessimistic than what can be realistically achieved. Based on these estimates, 
+we reduce the b-jet tagging efficiency by a relative fraction of about $20\%$ per
+b-jet to extrapolate to the high pileup scenario of the HL-LHC. We also find that
+the mistag rate for light jets increases by about a factor of two, using the
+current algorithms. It is likely that algorithms can be re-optimized to retain the
+same level of background rejection, but we address this pessimistic scenario
+by presenting results where the non-resonant background is increased by a factor
+of two.
 
-%More on photons
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.45\textwidth]{figures/BTagEfficiencyPU_CSVmedium_Eta1.pdf}
+  \includegraphics[width=0.45\textwidth]{figures/BTagEfficiencyPU_CSVmedium_Eta2.pdf}
+  \caption{B-tagging Efficiency From Full simulation.}
+  \label{fig:BTaggingEfficiencyVsPU}
+\end{figure} 
 
+Figure \ref{fig:PhotonIDEfficiencyVsPU} shows the efficiency for the photon identification
+selection requirements as a function of the number of simultaneous pileup events, estimated
+using the analogous full simulation samples as described above. Due to technical
+problems with the isolation algorithm in the full simulation high pileup sample, 
+the isolation efficiency is, instead, estimated using the Delphes fast simulation package.
+Delphes input cards specifically designed for a potential Phase 2 CMS detector was used.
+The isolation efficiency as a function of the photon $p_{T}$ is shown in 
+Figure \ref{fig:PhotonIsoEfficiencyVsPU}, for three different pileup scenarios. Combining
+the information from the identification selection efficiency and the isolation efficiency,
+we reduce the total photon selection efficiency by a relative fraction of $20\%$ per photon
+for the HL-LHC pileup scenario.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.45\textwidth]{figures/PhotonIDnoheEfficiencyTrend_fullsim_Eta1.pdf}
+  \includegraphics[width=0.45\textwidth]{figures/PhotonIDnoheEfficiencyTrend_fullsim_Eta2.pdf} 
+  \caption{Photon ID Efficiency From Fullsim.}
+  \label{fig:PhotonIDEfficiencyVsPU}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.45\textwidth]{figures/PhotonIsoEfficiencyTrend_phaseII_Eta1.pdf}
+  \includegraphics[width=0.45\textwidth]{figures/PhotonIsoEfficiencyTrend_phaseII_Eta2.pdf}
+  \caption{Photon Isolation Efficiency From Delphes.}
+  \label{fig:PhotonIsoEfficiencyVsPU}
+\end{figure}
 
 
 \section{Event Selection and Optimization}
