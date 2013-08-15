@@ -242,6 +242,7 @@ for three different mass windows are provided corresponding to the mass windows
 used for the mass fit analysis described later in Section \ref{sec:massfits}, a mass window
 corresponding to a conservative estimate of the expected mass resolutions, 
 and a mass window corresponding to a more optimistic estimate of the expected mass resolution.
+
 \begin{table}[!ht]
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|}
@@ -431,8 +432,6 @@ Mass Windows                         &  2.9                                   & 
 \end{center}
 \end{table}
 
-
-%some words about bbH...%
 %some words about systematic error of using 8TeV samples?%
 
 
@@ -707,7 +706,7 @@ for the cut-based analysis, the one dimensional fit to $m_{bb}$, and the two dim
 \begin{tabular}{|c|c|}
 \hline 
 Analysis Method                 &  Relative Uncertainty on Signal Yield \\  \hline
-Cut-Based Analysis (Scheme1)    &  XX\%                                 \\  
+Cut-Based Analysis (Scheme1)    &  48\%                                 \\  
 1D Fit to $m_{bb}$              &  XX\%                                 \\  
 2D Fit                          &  XX\%                                 \\  \hline
 \end{tabular}
@@ -717,10 +716,111 @@ Cut-Based Analysis (Scheme1)    &  XX\%                                 \\
 \end{table}
  
 
-\section{Systematic Uncertainties}
-\label{sec:systematics}
+\section{Upgrade Scenarios}
+\label{sec:scnearios}
+
+Rather than providing estimates of systematic uncertainties with limited accuracy, we instead
+provide di-Higgs cross section measurement uncertainties under a number of different scenarios
+that we may face in the future HL-LHC running conditions. 
+
+\subsection{High Pileup Scenario}
+First, using the results of the object selection performance extrapolated to the HL-LHC pileup scenario
+discussed in Section \ref{sec:HighPileupExtrapolation}, we obtain signal and background yields
+summarized in Table \ref{tab:scheme1PU140_events}. From these expected event yields, we observe
+that under this very pessimistic detector performance scenario, the di-Higgs cross section
+measurement sensitivity would degrade by about $50\%$, yielding a statistical 
+uncertainty of about $70\%$ for a cut-based analysis. The two-dimensional mass fit analysis
+yields statistical uncertainty of about $XX\%$ under this scenario. 
+
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\multicolumn{4}{|c|}{\textbf{Expected Event Yield: Scheme 1 Selection}}                                 \\ \hline
+Sample Type & Fit Window                    & Conservative Window           & More Optimistic Window    \\ 
+            & $M_{b\bar{b}}:$ (70,200)      & $M_{b\bar{b}}$: (105,145)     & $M_{b\bar{b}}$: (110,140)      \\ 
+            & $M_{\gamma\gamma}$: (100,150) & $M_{\gamma\gamma}$: (120,130) & $M_{\gamma\gamma}$: (122,128)  \\ 
+\hline
+$HH\rightarrow bb\gamma\gamma$     & 16.3     & 12.0     & 9.4       \\ \hline
+$ZH\rightarrow bb \gamma\gamma$    & 19.4     & 2.9      & 1.3       \\ 
+$ttH,H\rightarrow\gamma\gamma$     & 4.8      & 1.7      & 1.2       \\ 
+$bb\gamma\gamma$                   & 150.4    & 9.6      & 4.5       \\ 
+$jj\gamma\gamma$                   & 114.5    & 8.0      & 4.1       \\ 
+$jjjj$, $ccjj$, $bbjj$             & 11.1     & 0.0      & 0.0       \\ 
+$t\bar{t}$                         & 5.3      & 0.2      & 0.0       \\ \hline
+S/B Ratio                          & 0.1      & 0.5      & 0.8       \\ \hline
+$S/\sqrt{B}$ (Signal Significance) & 0.9      & 2.5      & 2.8       \\ \hline
+\end{tabular}
+\caption{Scheme 1 expected events}
+\label{tab:scheme1PU140_events}
+\end{center}
+\end{table}
+
+\subsection{Improved and Degraded Background Rejection}
+
+We explore the scenario where the size of the non-resonant background is increased
+by a factor of $2$. This may occur due to degraded object selection performance resulting
+in poorer signal to background discrimination, or simply due to a systematic mis-estimate
+of the QCD backgrounds from the current Monte Carlo simulation. We also explore the
+scenario where the size of the non-resonant background is decreased by a factor of $2$,
+which may occur if detector hardware or algorithmic improvements can significantly
+improve the b-tagging performance such that the mistag background from the 
+$jj\gamma\gamma$ is reduced to negligible levels. The results for the 
+cut-based analysis and the two dimensional mass fit analysis are
+summarized in Table \ref{tab:ModifiedBkgRejectionScenarios}.
 
 
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{|c|cc|}
+\hline
+Scenario                                       & \multicolumn{2}{|c|}{ Relative Uncertainty on Cross Section Measurement } \\ 
+                                               & Cut-Based Analysis & 2D Mass Fit Analysis                                 \\ \hline
+Increased Non-Resonant Bkg by factor of $2$    & $XX\%$             &   $XX\%$                                             \\
+Reduced Non-Resonant Bkg by factor of $2$      & $XX\%$             &   $XX\%$                                             \\ 
+\hline
+
+\end{tabular}
+\caption{Modified Bkg Rejection Scenarios}
+\label{tab:ModifiedBkgRejectionScenarios}
+\end{center}
+\end{table}
+
+
+\subsection{Photon and Jet Energy Resolution}
+We study the dependence of the di-Higgs cross section measurement sensitivity on the
+photon and jet energy resolution that can be achieved. This is performed by varying
+the widths of the input model PDF's for the diphoton mass and the di-bjet mass,
+generating a corresponding set of toy experiments, and performing the 2D mass fit analysis for each 
+such set. For the diphoton mass, we scan widths ranging from $0.9$~GeV to $1.9$~GeV,
+corresponding to average photon energy resolutions ranging from about $1\%$ to $2\%$.
+For the di-bjet mass, we scan widths ranging from $10$~GeV to $20~GeV$, corresponding
+to average jet energy resolutions ranging from about $11\%$ to $22\%$. The effect of
+these different resolutions on the cross section measurement is shown 
+in Figure \ref{fig:ResolutionScan}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.49\textwidth]{figures/XSUncertaintyVsPhotonResolution.pdf}
+  \includegraphics[width=0.49\textwidth]{figures/XSUncertaintyVsJetEnergyResolution.pdf}
+  \caption{Resolution Scan.}
+  \label{fig:ResolutionScan}
+\end{figure}
+
+
+\subsection{Integrated Luminosity}
+
+Finally, we study the sensitivity of the cross section measurement on the total
+integrated luminosity. The result is shown in Figure \ref{fig:ResolutionScan},
+where we see that with two experiments both collecting an integrated luminosity
+of $3$~$ab^{-1}$, we achieve a relative uncertainty of about $35\%$.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.65\textwidth]{figures/XSUncertaintyVsLumi.pdf}
+  \caption{Resolution Scan.}
+  \label{fig:ResolutionScan}
+\end{figure}
 
 \section{Conclusion}
 \label{sec:conclusion}
